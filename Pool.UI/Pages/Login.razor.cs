@@ -32,7 +32,6 @@ public  class Login_razor : ComponentBase
             else if(LoginResponse.StatusCode == HttpStatusCode.Unauthorized)
             {
                 await js.InvokeVoidAsync("alert", "Invalid User Name or Password");
-                return;
             }
         }
         catch (Exception e)
