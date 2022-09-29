@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "b2ddb794-f478-4dd3-b14f-2e410158b614": {
+      "ProjectGuid": "b2ddb794-f478-4dd3-b14f-2e410158b614",
+      "DisplayName": "Pool.UI",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
+}
