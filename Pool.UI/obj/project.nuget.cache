@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "9chfDwoGfD/gFlx/r/cSz5N0uInydNi8bGiT8JVebCaz0lfsb7bIyanpJhfrsbGSOoFwMbp/LFSaQzQp5FXY7g==",
+  "dgSpecHash": "0aoMoeysDMIEn2XcNuX2VJW97nEqpjKI3gKW/S1iPnJRobEAfBAI0SlhgPy3hO8aD7r0ABMmABRQFgQnn5ekNg==",
   "success": true,
   "projectFilePath": "D:\\C\\MainProjects\\Pool\\Pool.UI\\Pool.UI.csproj",
   "expectedPackageFiles": [
@@ -30,6 +30,7 @@
     "C:\\Users\\User\\.nuget\\packages\\microsoft.extensions.primitives\\6.0.0\\microsoft.extensions.primitives.6.0.0.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\microsoft.jsinterop\\6.0.8\\microsoft.jsinterop.6.0.8.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\microsoft.jsinterop.webassembly\\6.0.8\\microsoft.jsinterop.webassembly.6.0.8.nupkg.sha512",
+    "C:\\Users\\User\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\system.diagnostics.diagnosticsource\\6.0.0\\system.diagnostics.diagnosticsource.6.0.0.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\system.io.pipelines\\6.0.3\\system.io.pipelines.6.0.3.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",

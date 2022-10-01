@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "UqfbeTFen76eutirQrjBGI8zurDbxOFvAEeHCn1m0X0=",
+  "Hash": "C0CG7BMuPAPd9HNZtU4bfxxsKktzBA+eLHkb/JRaXjs=",
   "Source": "Pool.UI",
   "BasePath": "/",
   "Mode": "Root",
@@ -695,6 +695,23 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "C:\\Users\\User\\.nuget\\packages\\microsoft.netcore.app.runtime.mono.browser-wasm\\6.0.8\\runtimes\\browser-wasm\\lib\\net6.0\\netstandard.dll"
+    },
+    {
+      "Identity": "D:\\C\\MainProjects\\Pool\\Pool.UI\\bin\\Debug\\net6.0\\wwwroot\\_framework\\Newtonsoft.Json.dll",
+      "SourceId": "Pool.UI",
+      "SourceType": "Computed",
+      "ContentRoot": "D:\\C\\MainProjects\\Pool\\Pool.UI\\bin\\Debug\\net6.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/Newtonsoft.Json.dll",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "BlazorWebAssemblyResource",
+      "AssetTraitValue": "runtime",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "C:\\Users\\User\\.nuget\\packages\\newtonsoft.json\\13.0.1\\lib\\netstandard2.0\\Newtonsoft.Json.dll"
     },
     {
       "Identity": "D:\\C\\MainProjects\\Pool\\Pool.UI\\bin\\Debug\\net6.0\\wwwroot\\_framework\\Pool.Shared.dll",
@@ -4061,6 +4078,23 @@
       "CopyToOutputDirectory": "PreserveNewest",
       "CopyToPublishDirectory": "Never",
       "OriginalItemSpec": "D:\\C\\MainProjects\\Pool\\Pool.UI\\bin\\Debug\\net6.0\\wwwroot\\_framework\\System.Drawing.Primitives.dll"
+    },
+    {
+      "Identity": "D:\\C\\MainProjects\\Pool\\Pool.UI\\obj\\Debug\\net6.0\\build-gz\\ARJCOHn+.gz",
+      "SourceId": "Pool.UI",
+      "SourceType": "Computed",
+      "ContentRoot": "D:\\C\\MainProjects\\Pool\\Pool.UI\\bin\\Debug\\net6.0\\wwwroot\\",
+      "BasePath": "/",
+      "RelativePath": "_framework/Newtonsoft.Json.dll.gz",
+      "AssetKind": "Build",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "RelatedAsset": "D:\\C\\MainProjects\\Pool\\Pool.UI\\bin\\Debug\\net6.0\\wwwroot\\_framework\\Newtonsoft.Json.dll",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "CopyToOutputDirectory": "PreserveNewest",
+      "CopyToPublishDirectory": "Never",
+      "OriginalItemSpec": "D:\\C\\MainProjects\\Pool\\Pool.UI\\bin\\Debug\\net6.0\\wwwroot\\_framework\\Newtonsoft.Json.dll"
     },
     {
       "Identity": "D:\\C\\MainProjects\\Pool\\Pool.UI\\obj\\Debug\\net6.0\\build-gz\\ARsau+xm.gz",

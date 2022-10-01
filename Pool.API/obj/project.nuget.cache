@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "p4d9iNH5upOTGZiaLIAw+d95XjgCsLsRccNHnclOWdmVl04WS6uQtZAs8sMtcdV+gqdkHvqO5ft+d4RwDFiReA==",
+  "dgSpecHash": "I5luguVO6MijLeky25qX2ngtpBd4q2czRLnKuzzN+rP7Wu3qfeaOVOh1buA3lrrxvjt+3EUbfMwxtqZ8wn+p+w==",
   "success": true,
   "projectFilePath": "D:\\C\\MainProjects\\Pool\\Pool.API\\Pool.API.csproj",
   "expectedPackageFiles": [
@@ -16,6 +16,7 @@
     "C:\\Users\\User\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\User\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\swashbuckle.aspnetcore\\6.4.0\\swashbuckle.aspnetcore.6.4.0.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.4.0\\swashbuckle.aspnetcore.swagger.6.4.0.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.4.0\\swashbuckle.aspnetcore.swaggergen.6.4.0.nupkg.sha512",

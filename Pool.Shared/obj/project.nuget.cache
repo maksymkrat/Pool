@@ -1,9 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "f1+SzFGLIPOJO3YbWgkXesgX2ru3V/h8/rCvqkdxQijCOxEcGR0ny8KnDamMOkFVLznWCeZs/TtZwjU5pr73zg==",
+  "dgSpecHash": "ojd6tOIDW7djLkJpOaBk3lBs9fvswDh3ZA2S0DSJav+ruqqrc2I1bJklqDYepv8N7jYSD8fpSIglmb5O0JAPcA==",
   "success": true,
   "projectFilePath": "D:\\C\\MainProjects\\Pool\\Pool.Shared\\Pool.Shared.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\User\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
+  ],
   "logs": [
     {
       "code": "NU1803",

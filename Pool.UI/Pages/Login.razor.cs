@@ -5,12 +5,14 @@ using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.JSInterop;
 using Pool.Shared.Models;
 using Pool.UI.Authentication;
+using Pool.UI.Services;
 
 namespace Pool.UI.Pages;
 
 public  class Login_razor : ComponentBase
 {
-    [Inject]  HttpClient httpClient { get; set; }
+    //[Inject]  HttpClient httpClient { get; set; }
+    [Inject]  AccountService accountService { get; set; }
     [Inject] private IJSRuntime js { get; set; }
     [Inject] private AuthenticationStateProvider authStateProvider { get; set; }
     [Inject] private NavigationManager navManager { get; set; }
@@ -21,15 +23,16 @@ public  class Login_razor : ComponentBase
     {
         try
         {
-            var LoginResponse = await httpClient.PostAsJsonAsync<LoginRequest>("/api/account/login", loginRequest);
-            if (LoginResponse.IsSuccessStatusCode)
+            var LoginResponse =  await accountService.Login(loginRequest);
+            Console.WriteLine("fds");
+            if (LoginResponse != null)
             {
-                var userSession = await LoginResponse.Content.ReadFromJsonAsync<UserSession>();
+                var userSession = LoginResponse;
                 var customAuthStateProvider = (CustomAuthenticationStateProvider)authStateProvider;
                 await customAuthStateProvider.UpdateAuthenticationState(userSession);
                 navManager.NavigateTo("/", true);
             }
-            else if(LoginResponse.StatusCode == HttpStatusCode.Unauthorized)
+            else 
             {
                 await js.InvokeVoidAsync("alert", "Invalid User Name or Password");
             }
