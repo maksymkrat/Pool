@@ -28,14 +28,7 @@ public class AccountController : ControllerBase
         else
             return userSession;
     }
-
-
-    //async method
-    // [HttpGet("test")]
-    // public async Task<IActionResult> Test()
-    // {
-    //     return Ok("response");
-    // }
+    
     
     [HttpGet("test")]
     public IActionResult Test()

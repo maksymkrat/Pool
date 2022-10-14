@@ -200,14 +200,14 @@
       "netstandard.dll": "sha256-HhuK9zDkd1N7hODAEiNJ11VF8T54IgrM6hZfLHmHdqM=",
       "System.Private.CoreLib.dll": "sha256-dXaTqyg1PnXPiSwywpic1PVrd7P8Vb5tN0i0\/urdt3E=",
       "Pool.Shared.dll": "sha256-z6gkF4ZiUmDh3\/QBnuFcYe3gguRryPA7BaOojYZzvfA=",
-      "Pool.UI.dll": "sha256-UzxN7EaNPepyPSXK7gjam7kd+qJk\/6MRL6kprTiK9+8="
+      "Pool.UI.dll": "sha256-AqH7s+JF2kUWxjgcDuyoipcMMeQDrmhw132HWpoxPX8="
     },
     "extensions": null,
     "lazyAssembly": null,
     "libraryInitializers": null,
     "pdb": {
       "Pool.Shared.pdb": "sha256-qLTWEsgsrG81POHHGWj860f8Br\/9yENSqh89THkpWic=",
-      "Pool.UI.pdb": "sha256-zrkb7jNi\/85ruyoTtywt6CucpXEvCoMrSO5ZWiSkahs="
+      "Pool.UI.pdb": "sha256-GZLAUIffUqOhwpWHoa6Cs2LtznbHWypmOEEdxn6wEG0="
     },
     "runtime": {
       "dotnet.6.0.8.ow7cvgo8k6.js": "sha256-WT60vnXnQtCNURE40qo+XSL1o4iYFvABy0NVaFhm7MI=",

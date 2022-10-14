@@ -9,8 +9,6 @@
 
     <main>
         <div class="top-row px-4">
-            <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
-
             <AuthorizeView>
                 <Authorized>
                     <a @onclick="Logout" href="">Logout</a>
@@ -18,6 +16,7 @@
                 </Authorized>
                 <NotAuthorized>
                     <a href="/login">Login</a>
+                    <a href="/registration">Registration</a>
                 </NotAuthorized>
             </AuthorizeView>
         </div>
