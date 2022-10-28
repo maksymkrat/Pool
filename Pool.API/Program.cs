@@ -2,7 +2,10 @@ using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Pool.API.Authentication;
+using Pool.API.Repository;
+using Pool.API.Repository.IRepository;
 using Pool.API.Services;
+using Pool.API.Services.IServicec;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +14,12 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddHttpClient();
+
+builder.Services.AddSingleton<IUserRepository,UserRepository>();
+builder.Services.AddSingleton<IWordRepository,WordRepository>();
+
+builder.Services.AddSingleton<IUserService, UserService>();
+builder.Services.AddSingleton<IWordService, WordService>();
 
 
 builder.Services.AddAuthentication(o =>

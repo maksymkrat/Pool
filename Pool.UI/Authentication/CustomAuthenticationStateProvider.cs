@@ -22,7 +22,7 @@ public class CustomAuthenticationStateProvider : AuthenticationStateProvider
         {
             try
             {
-                var userSession = await _localStorageService.ReadEncryptedItemAsync<UserSession>("UserSession");
+                var userSession = await _localStorageService.ReadEncryptedItemAsync<UserSession>("UserSessionJWT");
                 if (userSession == null)
                     return await Task.FromResult(new AuthenticationState(_anonymous));
                 var claimsPrincipal = new ClaimsPrincipal(new ClaimsIdentity(new List<Claim>
@@ -52,12 +52,12 @@ public class CustomAuthenticationStateProvider : AuthenticationStateProvider
                 }));
 
                 userSession.ExpiryTimeStamp = DateTime.Now.AddSeconds(userSession.ExpiryIn);
-                await _localStorageService.SaveItemEncryptedAsync("UserSession", userSession);
+                await _localStorageService.SaveItemEncryptedAsync("UserSessionJWT", userSession);
             }
             else
             {
                 claimsPrincipal = _anonymous;
-                await _localStorageService.RemoveItemAsync("UserSession");
+                await _localStorageService.RemoveItemAsync("UserSessionJWT");
             }
 
             NotifyAuthenticationStateChanged(Task.FromResult(new AuthenticationState(claimsPrincipal)));
@@ -69,9 +69,9 @@ public class CustomAuthenticationStateProvider : AuthenticationStateProvider
             var result = string.Empty;
             try
             {
-                var userSessioin = await _localStorageService.ReadEncryptedItemAsync<UserSession>("UserSession");
-                if(userSessioin != null && DateTime.Now < userSessioin.ExpiryTimeStamp)
-                    result = userSessioin.Token;
+                var userSession = await _localStorageService.ReadEncryptedItemAsync<UserSession>("UserSessionJWT");
+                if(userSession != null && DateTime.Now < userSession.ExpiryTimeStamp)
+                    result = userSession.Token;
             }
             catch {}
             return result;

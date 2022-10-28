@@ -51,42 +51,42 @@ public abstract class HttpServiceBase
             return JsonConvert.DeserializeObject<T>(value);
         }
         
-        // protected async Task AddAuthorizationAsync(bool skipAuthStateProviderVerification = false)
-        // {
-        //     string token = string.Empty;
-        //
-        //     if (skipAuthStateProviderVerification)
-        //         token = await GetTokenFromLocalstorage();
-        //     else
-        //     {
-        //         try
-        //         {
-        //             token = await ((CustomAuthenticationStateProvider) _authenticationStateProvider).GetToken();
-        //         }
-        //         catch (Exception ex)
-        //         {
-        //             Console.WriteLine(ex);
-        //         }
-        //     }
-        //
-        //     if (string.IsNullOrEmpty(token))
-        //         return;
-        //
-        //     _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-        // }
-        //
-        // private async Task<string> GetTokenFromLocalstorage()
-        // {
-        //     var jwt = await _localStorageService.GetItemAsync<object>("_jwt");
-        //
-        //     if (jwt == null)
-        //         return string.Empty;
-        //
-        //     var deserializedToken = JsonConvert.DeserializeObject<UserSession>(jwt.ToString());
-        //
-        //     if (deserializedToken == null)
-        //         return string.Empty;
-        //
-        //     return deserializedToken.Token;
-        // }
+        protected async Task AddAuthorizationAsync(bool skipAuthStateProviderVerification = false)
+        {
+            string token = string.Empty;
+        
+            if (skipAuthStateProviderVerification)
+                token = await GetTokenFromLocalstorage();
+            else
+            {
+                try
+                {
+                    token = await ((CustomAuthenticationStateProvider) _authenticationStateProvider).GetToken();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex);
+                }
+            }
+        
+            if (string.IsNullOrEmpty(token))
+                return;
+        
+            _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+        }
+        
+        private async Task<string> GetTokenFromLocalstorage()
+        {
+            var jwt = await _localStorageService.GetItemAsync<object>("UserSessionJWT");
+        
+            if (jwt == null)
+                return string.Empty;
+        
+            var deserializedToken = JsonConvert.DeserializeObject<UserSession>(jwt.ToString());
+        
+            if (deserializedToken == null)
+                return string.Empty;
+        
+            return deserializedToken.Token;
+        }
 }

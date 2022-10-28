@@ -6,5 +6,5 @@ public class Word
     public string WordText { get; set; }
     public string Translation { get; set; }
     public DateTime DateTime { get; set; }
-    public string User_id { get; set; }
+    public Guid User_id { get; set; }
 }

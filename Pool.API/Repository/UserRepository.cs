@@ -1,5 +1,6 @@
 ﻿using Microsoft.Data.SqlClient;
 using Pool.API.Models;
+using Pool.API.Repository.IRepository;
 
 namespace Pool.API.Repository;
 
