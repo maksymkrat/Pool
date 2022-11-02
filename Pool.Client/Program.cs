@@ -1,7 +1,5 @@
 using Blazored.LocalStorage;
-using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
-using Microsoft.AspNetCore.Components.Web;
 using Pool.Client.Authentication;
 using Pool.Client.Data;
 using Pool.Client.Services;
@@ -13,6 +11,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddBlazoredLocalStorage();
+builder.Services.AddAuthenticationCore();
 
 builder.Services.AddScoped<AccountService>();
 builder.Services.AddScoped<WordService>();

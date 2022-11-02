@@ -1,6 +1,9 @@
 ﻿@inherits LayoutComponentBase
 
-<PageTitle>Pool.Client</PageTitle>
+@inject AuthenticationStateProvider authStateProvider
+@inject NavigationManager navManager
+
+<PageTitle>Pool.UI</PageTitle>
 
 <div class="page">
     <div class="sidebar">
@@ -9,7 +12,16 @@
 
     <main>
         <div class="top-row px-4">
-            <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
+            <AuthorizeView>
+                <Authorized>
+                    <a @onclick="Logout" href="">Logout</a>
+                    @* <a @onclick="Logout" href="javascript:void(0)">Logout</a> *@
+                </Authorized>
+                <NotAuthorized>
+                    <a href="/login">Login</a>
+                    <a href="/registration">Registration</a>
+                </NotAuthorized>
+            </AuthorizeView>
         </div>
 
         <article class="content px-4">
@@ -17,3 +29,27 @@
         </article>
     </main>
 </div>
+
+@code{
+
+
+    // [CascadingParameter]
+    // protected Task<AuthenticationState> AuthState { get; set; }
+    //
+    // protected async override Task OnInitializedAsync()
+    // {
+    //     var user = (await AuthState).User;
+    //     if (!user.Identity.IsAuthenticated)
+    //     {
+    //         navManager.NavigateTo($"/login", false);
+    //     }
+    // }
+
+    private async Task Logout()
+    {
+        var customAuthStateProvider = (CustomAuthenticationStateProvider) authStateProvider;
+        await customAuthStateProvider.UpdateAuthenticationState(null);
+        navManager.NavigateTo("/", true);
+    }
+
+}

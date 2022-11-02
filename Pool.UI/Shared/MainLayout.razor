@@ -33,17 +33,17 @@
 @code{
 
 
-    [CascadingParameter]
-    protected Task<AuthenticationState> AuthState { get; set; }
-
-    protected async override Task OnInitializedAsync()
-    {
-        var user = (await AuthState).User;
-        if (!user.Identity.IsAuthenticated)
-        {
-            navManager.NavigateTo($"/login", false);
-        }
-    }
+    // [CascadingParameter]
+    // protected Task<AuthenticationState> AuthState { get; set; }
+    //
+    // protected async override Task OnInitializedAsync()
+    // {
+    //     var user = (await AuthState).User;
+    //     if (!user.Identity.IsAuthenticated)
+    //     {
+    //         navManager.NavigateTo($"/login", false);
+    //     }
+    // }
 
     private async Task Logout()
     {
