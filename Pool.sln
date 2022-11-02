@@ -6,6 +6,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pool.API", "Pool.API\Pool.A
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pool.Shared", "Pool.Shared\Pool.Shared.csproj", "{E145F436-3831-494E-A6E2-57D260D5122A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pool.Client", "Pool.Client\Pool.Client.csproj", "{5B7BD065-D6AD-4B4C-9E14-6E7233070416}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -24,5 +26,9 @@ Global
 		{E145F436-3831-494E-A6E2-57D260D5122A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E145F436-3831-494E-A6E2-57D260D5122A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E145F436-3831-494E-A6E2-57D260D5122A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B7BD065-D6AD-4B4C-9E14-6E7233070416}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B7BD065-D6AD-4B4C-9E14-6E7233070416}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B7BD065-D6AD-4B4C-9E14-6E7233070416}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B7BD065-D6AD-4B4C-9E14-6E7233070416}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
