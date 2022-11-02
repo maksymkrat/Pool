@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "q/KNNqX95BC3XJKkPTtVao/naaJhZiLrk5RvBIvCsh0=",
+  "Hash": "jgQj2rSmFZj5YRXU5EmkOsJDexkPHSqAqlrdqxXgnhE=",
   "Source": "Pool.Client",
   "BasePath": "_content/Pool.Client",
   "Mode": "Default",
@@ -95,6 +95,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\bootstrap\\bootstrap.min.css.map"
+    },
+    {
+      "Identity": "D:\\C\\MainProjects\\Pool\\Pool.Client\\wwwroot\\css\\myStyle.css",
+      "SourceId": "Pool.Client",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\C\\MainProjects\\Pool\\Pool.Client\\wwwroot\\",
+      "BasePath": "_content/Pool.Client",
+      "RelativePath": "css/myStyle.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\myStyle.css"
     },
     {
       "Identity": "D:\\C\\MainProjects\\Pool\\Pool.Client\\wwwroot\\css\\open-iconic\\FONT-LICENSE",
