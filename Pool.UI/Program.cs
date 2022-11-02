@@ -13,9 +13,13 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 //builder.Services.AddScoped(sp => new HttpClient {BaseAddress = new Uri("http://localhost:1111")});
 
 builder.Services.AddBlazoredLocalStorage();
+builder.Services.AddAuthorizationCore();
+
 builder.Services.AddScoped<AccountService>();
 builder.Services.AddScoped<WordService>();
 builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthenticationStateProvider>();
-builder.Services.AddAuthorizationCore();
+
+
+
 await builder.Build().RunAsync();
 
