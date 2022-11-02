@@ -25,11 +25,9 @@
                                 <div class="col-4">
                                     <button type="button" class="word btn btn-success form-control  " @onclick="AddWord">add word</button>
                                 </div>
-
                             </div>
-
                         </div>
-
+                        
                         <div class="col-sm-12 col-md-6 border border-primary rounded ">
                             <p class="text-primary">Translation:</p>
                             <div class="pl-5 word">
@@ -46,10 +44,10 @@
                 </div>
             </div>
         </div>
-        @* <Confirmation @ref="Confirmation" onCancel="onCancel" onConfirm="onConfirm"> *@
-        @*     <div class="text-danger"> Do you want ot delete { @WordToBeDelated.WordText }?</div> *@
-            @* </Confirmation> *@
-    
+        <DeleteConfiraation @ref="Confirmation" onCancel="onCancel" onConfirm="onConfirm">
+            <div class="text-danger"> Do you want ot delete { @WordToBeDelated.WordText }?</div>
+        </DeleteConfiraation>
+
     </Authorized>
     <NotAuthorized>
         <Login/>

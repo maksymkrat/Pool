@@ -22,6 +22,18 @@ build_property._RazorSourceGeneratorDebug =
 build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/C/MainProjects/Pool/Pool.UI/Components/DeleteConfiraation.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xEZWxldGVDb25maXJhYXRpb24ucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/C/MainProjects/Pool/Pool.UI/Components/SelectedWord.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xTZWxlY3RlZFdvcmQucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/C/MainProjects/Pool/Pool.UI/Components/WordsTable.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xXb3Jkc1RhYmxlLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/C/MainProjects/Pool/Pool.UI/Pages/Compose_words.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29tcG9zZV93b3Jkcy5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 

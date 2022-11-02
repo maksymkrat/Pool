@@ -2,14 +2,15 @@
 using Microsoft.AspNetCore.Components;
 using Pool.Shared.Models;
 using Pool.Shared.Models.DeserializeTranslation;
+using Pool.UI.Components;
+using Pool.UI.Services;
 
 namespace Pool.UI.Pages;
 
 public class Vocabulary_razor : ComponentBase
 {
      [Inject] private ILogger<Vocabulary> _logger { get; set; }
-        // [Inject] private IWordRepository _repository { get; set; }
-        // [Inject] private IBusinessLogic _business { get; set; }
+     [Inject] private WordService _wordService { get; set; }
 
         protected List<Word> words = new List<Word>();
 
@@ -28,9 +29,19 @@ public class Vocabulary_razor : ComponentBase
         protected Translater translater;
         protected string wordTranslation;
         protected string WordForTranslation;
-        //protected Confirmation Confirmation { get; set; }
+        protected DeleteConfiraation Confirmation { get; set; }
         protected Word WordToBeDelated { get; set; }
 
+        protected override void OnInitialized()
+        {
+            UpdateWords();
+        }
+
+        protected async void UpdateWords()
+        {
+             Words = await _wordService.GetAllWords();
+             StateHasChanged();
+        }
         protected async void AddWord()
         {
             if (!string.IsNullOrWhiteSpace(newWord) && !String.IsNullOrWhiteSpace(newTranslate))
@@ -68,40 +79,29 @@ public class Vocabulary_razor : ComponentBase
             // }
         }
 
-        // protected void DeleteWord(Word word)
-        // {
-        //     WordToBeDelated = word;
-        //     Confirmation.Show();
-        // }
+        protected void DeleteWord(Word word)
+        {
+            WordToBeDelated = word;
+            // Confirmation.Show();
+        }
 
-        // protected void onConfirm()
-        // {
-        //     _repository.DeleteWordById(WordToBeDelated.Id);
-        //     Confirmation.Hide();
-        //     UpdateWords();
-        //     StateHasChanged();
-        //     WordToBeDelated = null;
-        // }
+        protected void onConfirm()
+        {
+            // _repository.DeleteWordById(WordToBeDelated.Id);
+            // Confirmation.Hide();
+            UpdateWords();
+            StateHasChanged();
+            WordToBeDelated = null;
+        }
 
-        // protected void onCancel()
-        // {
-        //     Confirmation.Hide();
-        //     WordToBeDelated = null;
-        // }
+        protected void onCancel()
+        {
+            //Confirmation.Hide();
+            WordToBeDelated = null;
+        }
 
         protected void SayWord(Word word)
         {
            // _business.Speech(word.WordText);
-        }
-
-        protected override void OnInitialized()
-        {
-            UpdateWords();
-        }
-
-        protected async void UpdateWords()
-        {
-            // Words = await _repository.GetAllWords();
-            // StateHasChanged();
         }
 }

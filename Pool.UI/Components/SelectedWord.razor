@@ -1,0 +1,30 @@
+﻿<div class="col-4  hovered-word alert alert-@ResultStyle" @onclick="SelectWord">
+    <span >@TestWord.Translation </span>
+</div>
+
+@code {
+
+    [Parameter]
+    public string ResultStyle { get; set; }
+
+    [Parameter]
+    public Word TestWord { get; set; }
+
+    [Parameter]
+    public Word MainWord { get; set; }
+
+    [Parameter]
+    public EventCallback<string> styleMainWord { get; set; }
+
+    async Task SelectWord()
+    {
+        if (TestWord.Id == MainWord.Id)
+        {
+            ResultStyle = "success";
+        }
+        else
+        {
+            ResultStyle = "danger";
+        }
+    }
+}

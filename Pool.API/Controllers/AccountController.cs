@@ -18,15 +18,24 @@ public class AccountController : ControllerBase
     [HttpPost]
     [Route("Login")]
     [AllowAnonymous]
-    public ActionResult<UserSession> Login([FromBody] LoginRequest loginRequest)
+    public ActionResult Login([FromBody] LoginRequest loginRequest)
     {
-        var jwtAuthenticationManager = new JwtAuthenticationManager(_userAccountService);
-        var userSession = jwtAuthenticationManager.GenerateJwtToken(loginRequest.UserName, loginRequest.Password);
+        try
+        {
+            var jwtAuthenticationManager = new JwtAuthenticationManager(_userAccountService);
+            var userSession = jwtAuthenticationManager.GenerateJwtToken(loginRequest.UserName, loginRequest.Password);
 
-        if (userSession is null)
-            return Unauthorized();
-        else
-            return userSession;
+            if (userSession is null)
+                return Unauthorized();
+            else
+                return Ok(userSession);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            return StatusCode(500);
+        }
+        
     }
     
     
