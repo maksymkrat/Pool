@@ -14,21 +14,39 @@
                 <span class="oi oi-home" aria-hidden="true"></span> Home
             </NavLink>
         </div>
-        <AuthorizeView Roles="ADMIN,USER">
+        <AuthorizeView Roles="USER">
             <Authorized>
                 <div class="nav-item px-3">
-                            <NavLink class="nav-link" href="counter">
-                                <span class="oi oi-plus" aria-hidden="true"></span> Counter
-                            </NavLink>
-                        </div>
-                        <div class="nav-item px-3">
-                            <NavLink class="nav-link" href="fetchdata">
-                                <span class="oi oi-list-rich" aria-hidden="true"></span> Fetch data
-                            </NavLink>
-                        </div>        
+                    <NavLink class="nav-link" href="vocabulary">
+                        <span class="oi oi-list" aria-hidden="true"></span> Vocabulary
+                    </NavLink>
+                </div>
+                <div class="nav-item px-3">
+                    <NavLink class="nav-link" href="words-test">
+                        <span class="oi oi-task" aria-hidden="true"></span> Words test
+                    </NavLink>
+                </div>
+
+                <div class="nav-item px-3">
+                    <NavLink class="nav-link" href="compose-words">
+                        <span class="oi oi-ellipses" aria-hidden="true"></span> Compose words
+                    </NavLink>
+                </div>
+
             </Authorized>
         </AuthorizeView>
-        
+
+        <AuthorizeView Roles="ADMIN">
+            <Authorized>
+                <div class="nav-item px-3">
+                    <NavLink class="nav-link" href="users">
+                        <span class="oi oi-people" aria-hidden="true"></span> Users
+                    </NavLink>
+                </div>
+
+            </Authorized>
+        </AuthorizeView>
+
     </nav>
 </div>
 

@@ -1,0 +1,55 @@
+﻿@page "/vocabulary"
+@inherits Vocabulary_razor
+
+
+<AuthorizeView>
+    <Authorized>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col">
+                    <div class="row mr-0">
+                        <div class="col-sm-12 col-md-6">
+                            <div class="row ">
+                                <div class="col-8">
+                                    <input class="word form-control  border border-dark " placeholder="some word" @bind="newWord"/>
+                                </div>
+                                <div class="col-4">
+                                    <button type="button" class="word btn btn-primary form-control " @onclick="TranslateWord">translate</button>
+                                </div>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="col-8">
+                                    <input class="word form-control border border-dark " placeholder="some translate" @bind="newTranslate"/>
+                                </div>
+
+                                <div class="col-4">
+                                    <button type="button" class="word btn btn-success form-control  " @onclick="AddWord">add word</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-sm-12 col-md-6 border border-primary rounded ">
+                            <p class="text-primary">Translation:</p>
+                            <div class="pl-5 word">
+                                @WordForTranslation
+                                <br/>
+                                @wordTranslation
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <WordsTable Words="Words" DeleteWord="DeleteWord" SayWord="SayWord"></WordsTable>
+
+                </div>
+            </div>
+        </div>
+        <DeleteConfiraation @ref="Confirmation" onCancel="onCancel" onConfirm="onConfirm">
+            <div class="text-danger"> Do you want ot delete { @WordToBeDelated.WordText }?</div>
+        </DeleteConfiraation>
+
+    </Authorized>
+    <NotAuthorized>
+        <Login/>
+    </NotAuthorized>
+</AuthorizeView>

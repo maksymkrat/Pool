@@ -1,7 +1,6 @@
 using Blazored.LocalStorage;
 using Microsoft.AspNetCore.Components.Authorization;
 using Pool.Client.Authentication;
-using Pool.Client.Data;
 using Pool.Client.Services;
 
 
@@ -16,7 +15,6 @@ builder.Services.AddAuthenticationCore();
 builder.Services.AddScoped<AccountService>();
 builder.Services.AddScoped<WordService>();
 builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthenticationStateProvider>();
-builder.Services.AddSingleton<WeatherForecastService>();
 
 var app = builder.Build();
 
