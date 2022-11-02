@@ -44,9 +44,9 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
-            "Microsoft.Extensions.Localization": {
+            "Microsoft.AspNetCore.Components.Web": {
               "target": "Package",
-              "version": "[7.0.0-rc.2.22476.2, )"
+              "version": "[6.0.8, )"
             },
             "Newtonsoft.Json": {
               "target": "Package",
@@ -119,28 +119,15 @@
           "dependencies": {
             "Blazored.LocalStorage": {
               "target": "Package",
-              "version": "[4.3.0-preview.1, )"
+              "version": "[4.2.0, )"
             },
             "Microsoft.AspNetCore.Components.Authorization": {
               "target": "Package",
-              "version": "[6.0.9, )"
-            },
-            "Microsoft.AspNetCore.Components.WebAssembly": {
-              "target": "Package",
               "version": "[6.0.8, )"
-            },
-            "Microsoft.AspNetCore.Components.WebAssembly.DevServer": {
-              "suppressParent": "All",
-              "target": "Package",
-              "version": "[6.0.8, )"
-            },
-            "Microsoft.Extensions.Localization": {
-              "target": "Package",
-              "version": "[7.0.0-rc.2.22476.2, )"
             },
             "NLog.Extensions.Logging": {
               "target": "Package",
-              "version": "[5.0.4, )"
+              "version": "[5.1.0, )"
             },
             "Newtonsoft.Json": {
               "target": "Package",
@@ -148,7 +135,7 @@
             },
             "System.Speech": {
               "target": "Package",
-              "version": "[7.0.0-rc.2.22472.3, )"
+              "version": "[6.0.0, )"
             }
           },
           "imports": [
@@ -162,23 +149,15 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
-          "downloadDependencies": [
-            {
-              "name": "Microsoft.NETCore.App.Runtime.Mono.browser-wasm",
-              "version": "[6.0.8, 6.0.8]"
-            }
-          ],
           "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
           },
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.400\\RuntimeIdentifierGraph.json"
-        }
-      },
-      "runtimes": {
-        "browser-wasm": {
-          "#import": []
         }
       }
     }

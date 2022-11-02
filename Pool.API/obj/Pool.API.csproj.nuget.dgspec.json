@@ -50,19 +50,15 @@
           "dependencies": {
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
-              "version": "[6.0.9, )"
+              "version": "[6.0.8, )"
             },
             "Microsoft.Data.SqlClient": {
               "target": "Package",
-              "version": "[5.1.0-preview1.22279.3, )"
-            },
-            "Microsoft.Extensions.Localization": {
-              "target": "Package",
-              "version": "[7.0.0-rc.2.22476.2, )"
+              "version": "[5.0.1, )"
             },
             "NLog.Extensions.Logging": {
               "target": "Package",
-              "version": "[5.0.4, )"
+              "version": "[5.1.0, )"
             },
             "Newtonsoft.Json": {
               "target": "Package",
@@ -74,11 +70,11 @@
             },
             "System.IdentityModel.Tokens.Jwt": {
               "target": "Package",
-              "version": "[6.23.1, )"
+              "version": "[6.25.0, )"
             },
             "System.Speech": {
               "target": "Package",
-              "version": "[7.0.0-rc.2.22472.3, )"
+              "version": "[6.0.0, )"
             }
           },
           "imports": [
@@ -144,9 +140,9 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
-            "Microsoft.Extensions.Localization": {
+            "Microsoft.AspNetCore.Components.Web": {
               "target": "Package",
-              "version": "[7.0.0-rc.2.22476.2, )"
+              "version": "[6.0.8, )"
             },
             "Newtonsoft.Json": {
               "target": "Package",

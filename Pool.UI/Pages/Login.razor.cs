@@ -24,7 +24,6 @@ public  class Login_razor : ComponentBase
         try
         {
             var LoginResponse =  await accountService.Login(loginRequest);
-            Console.WriteLine("fds");
             if (LoginResponse != null)
             {
                 var userSession = LoginResponse;

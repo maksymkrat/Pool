@@ -1,11 +1,23 @@
 {
   "Version": 1,
-  "Hash": "yXiQ4O+vzP2HDAibIAx0bpdN8uAtryrFXkZYFXrdWM4=",
+  "Hash": "OryocqqIWUN8SiklwyMkJrQQhe4kFgMwWB8EjbExOh4=",
   "Source": "Pool.API",
   "BasePath": "_content/Pool.API",
   "Mode": "Default",
   "ManifestType": "Build",
-  "ReferencedProjectsConfiguration": [],
+  "ReferencedProjectsConfiguration": [
+    {
+      "Identity": "D:\\C\\MainProjects\\Pool\\Pool.Shared\\Pool.Shared.csproj",
+      "Version": 2,
+      "Source": "Pool.Shared",
+      "GetPublishAssetsTargets": "ComputeReferencedStaticWebAssetsPublishManifest;GetCurrentProjectPublishStaticWebAssetItems",
+      "AdditionalPublishProperties": "Configuration=Debug;Platform=AnyCPU",
+      "AdditionalPublishPropertiesToRemove": "WebPublishProfileFile;TargetFramework;RuntimeIdentifier",
+      "GetBuildAssetsTargets": "GetCurrentProjectBuildStaticWebAssetItems",
+      "AdditionalBuildProperties": "Configuration=Debug;Platform=AnyCPU",
+      "AdditionalBuildPropertiesToRemove": "WebPublishProfileFile;TargetFramework;RuntimeIdentifier"
+    }
+  ],
   "DiscoveryPatterns": [],
   "Assets": []
 }
