@@ -46,9 +46,18 @@ public class WordRepository : IWordRepository
         throw new NotImplementedException();
     }
 
-    public Task<bool> DeleteWordById(int id)
+    public async Task<bool> DeleteWordById(int id)
     {
-        throw new NotImplementedException();
+        using (var conn = new SqlConnection(DefaultConnection))
+        {
+                
+            await conn.OpenAsync();
+            SqlCommand cmd = new SqlCommand("DELETE FROM Words WHERE Id=@wordId", conn);
+            cmd.Parameters.Add(new SqlParameter("@wordId", SqlDbType.Int) {Value = id});
+
+            return await cmd.ExecuteNonQueryAsync() > 0;
+
+        }
     }
 
     public Task<List<Word>> GetFourWordsForTestWords(Guid userId)

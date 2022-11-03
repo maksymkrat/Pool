@@ -20,16 +20,15 @@ public abstract class HttpServiceBase
 
 
     protected HttpServiceBase(
-        //IConfiguration configuration,
+        AuthenticationStateProvider authenticationStateProvider,
         ILocalStorageService localStorageService)
     {
-        // _configuration = configuration;
         _localStorageService = localStorageService;
+        _authenticationStateProvider = authenticationStateProvider;
 
         _client = new HttpClient();
         _client.BaseAddress = new Uri(WebApiUrl);
         _client.DefaultRequestHeaders.Accept.Clear();
-        //_client.Timeout = TimeSpan.FromMinutes(5);
         _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
     }
 

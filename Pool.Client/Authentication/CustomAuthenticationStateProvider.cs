@@ -70,10 +70,13 @@ public class CustomAuthenticationStateProvider : AuthenticationStateProvider
             try
             {
                 var userSession = await _localStorageService.ReadEncryptedItemAsync<UserSession>("UserSessionJWT");
-                if(userSession != null && DateTime.Now < userSession.ExpiryTimeStamp)
+                if (userSession != null)
                     result = userSession.Token;
             }
-            catch {}
+            catch
+            {
+                
+            }
             return result;
         }
 }

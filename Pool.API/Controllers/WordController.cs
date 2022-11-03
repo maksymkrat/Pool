@@ -1,9 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Pool.API.Services.IServicec;
-using Pool.Shared.Models;
 
 namespace Pool.API.Controllers;
-
+[Authorize]
 [Route("api/[controller]")]
 [ApiController]
 public class WordController : ControllerBase

@@ -1,5 +1,6 @@
 ﻿using System.Text;
 using Blazored.LocalStorage;
+using Microsoft.AspNetCore.Components.Authorization;
 using Newtonsoft.Json;
 using Pool.Shared.Models;
 
@@ -10,7 +11,9 @@ public class AccountService : HttpServiceBase
     protected sealed override string _apiControllerName { get; set; }
     public UserSession UserSession { get; set; }
 
-    public AccountService(ILocalStorageService localStorageService) : base(localStorageService)
+    public AccountService(
+            AuthenticationStateProvider authenticationStateProvider, 
+            ILocalStorageService localStorageService) : base(authenticationStateProvider, localStorageService)
     {
         _apiControllerName = "account";
     }

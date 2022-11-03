@@ -9,6 +9,7 @@ public class UserSession
     public string PhoneNumber { get; set; }
     public string Token { get; set; }
     public string Role { get; set; }
+    public List<Word> Words { get; set; }
     public int ExpiryIn { get; set; }
     public DateTime ExpiryTimeStamp { get; set; }
 }
