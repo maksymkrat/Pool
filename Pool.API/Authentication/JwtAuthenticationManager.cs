@@ -26,7 +26,7 @@ public class JwtAuthenticationManager
 
             //validating the user credentials
              var userAccount = _userAccountService.GetUserAccountByUserName(userName);
-            if (userAccount == null || userAccount.Password != password)
+            if (userAccount == null || userAccount.PasswordH != password)
                 return null;
 
             //generating jwt token
@@ -34,7 +34,7 @@ public class JwtAuthenticationManager
             var tokenKey = Encoding.ASCII.GetBytes(JWT_SECURITY_KEY);
             var claimsIdentity = new ClaimsIdentity(new List<Claim>
             {
-                new Claim(ClaimTypes.Name, userAccount.UserName),
+                new Claim(ClaimTypes.Name, userAccount.Email),
                 new Claim(ClaimTypes.Role, userAccount.Role),
             });
 
@@ -53,7 +53,11 @@ public class JwtAuthenticationManager
             //returning the user session object
             var userSession = new UserSession
             {
-                UserName = userAccount.UserName,
+                Id = userAccount.Id,
+                FirstName = userAccount.FirstName,
+                LastName = userAccount.LastName,
+                Email = userAccount.Email,
+                PhoneNumber = userAccount.PhoneNumber,
                 Role = userAccount.Role,
                 Token = token,
                 ExpiryIn = (int)tokenExpiryTimeStamp.Subtract(DateTime.Now).TotalSeconds

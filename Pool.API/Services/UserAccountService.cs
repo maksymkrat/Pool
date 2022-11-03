@@ -11,13 +11,13 @@ public class UserAccountService
     {
         _userAccountList = new List<UserAccount>()
         {
-            new UserAccount(){UserName = "admin", Password="admin", Role = "ADMIN"},
-            new UserAccount(){UserName = "user", Password="user", Role = "USER"}
+            new UserAccount(){Email = "admin", PasswordH= "admin", Role = "ADMIN"},
+            new UserAccount(){Email = "user", PasswordH= "user", Role = "USER"}
         };
     }
 
     public UserAccount? GetUserAccountByUserName(string userName)
     {
-        return _userAccountList.FirstOrDefault(x => x.UserName == userName);
+        return _userAccountList.FirstOrDefault(x => x.Email == userName);
     }
 }

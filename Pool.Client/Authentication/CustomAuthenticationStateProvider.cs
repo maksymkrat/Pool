@@ -27,7 +27,7 @@ public class CustomAuthenticationStateProvider : AuthenticationStateProvider
                     return await Task.FromResult(new AuthenticationState(_anonymous));
                 var claimsPrincipal = new ClaimsPrincipal(new ClaimsIdentity(new List<Claim>
                 {
-                    new Claim(ClaimTypes.Name, userSession.UserName),
+                    new Claim(ClaimTypes.Name, userSession.Email),
                     new Claim(ClaimTypes.Role, userSession.Role)
                 }, "JwtAuth"));
 
@@ -47,7 +47,7 @@ public class CustomAuthenticationStateProvider : AuthenticationStateProvider
             {
                  claimsPrincipal = new ClaimsPrincipal(new ClaimsIdentity(new List<Claim>
                 {
-                    new Claim(ClaimTypes.Name, userSession.UserName),
+                    new Claim(ClaimTypes.Name, userSession.Email),
                     new Claim(ClaimTypes.Role, userSession.Role)
                 }));
 

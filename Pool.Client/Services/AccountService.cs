@@ -8,6 +8,7 @@ namespace Pool.Client.Services;
 public class AccountService : HttpServiceBase
 {
     protected sealed override string _apiControllerName { get; set; }
+    public UserSession UserSession { get; set; }
 
     public AccountService(ILocalStorageService localStorageService) : base(localStorageService)
     {
@@ -26,7 +27,8 @@ public class AccountService : HttpServiceBase
             new StringContent(JsonConvert.SerializeObject(loginRequest), Encoding.UTF8, "application/json"));
         if (!result.IsSuccessStatusCode || string.IsNullOrEmpty(result.Content.ToString()))
             return null;
-        return await DeserializeFromStream<UserSession>(result.Content);
+        UserSession = await DeserializeFromStream<UserSession>(result.Content);
+        return UserSession;
     }
 
 }
