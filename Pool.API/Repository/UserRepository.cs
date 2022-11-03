@@ -1,4 +1,5 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using System.Data;
+using Microsoft.Data.SqlClient;
 using Pool.API.Models;
 using Pool.API.Repository.IRepository;
 
@@ -8,19 +9,55 @@ public class UserRepository : IUserRepository
 {
     private readonly IConfiguration _configuration;
     private readonly string _defaultConnection;
-    public UserRepository( IConfiguration configuration)
+
+    public UserRepository(IConfiguration configuration)
     {
         _configuration = configuration;
         _defaultConnection = _configuration.GetConnectionString("DefaultConnection");
     }
 
-    public UserAccount GetUserAccountByEmail(string email)
+    public async Task<UserAccount> GetUserAccountByEmail(string email)
     {
-        using (var conn = new SqlConnection(_defaultConnection))
+        try
         {
-            
-        }
+            using (var conn = new SqlConnection(_defaultConnection))
+            {
+                conn.Open();
+                SqlCommand cmd = new SqlCommand("SELECT  [U].[Id]," +
+                                                "[U].[First_name]," +
+                                                "[U].[Last_name]," +
+                                                "[U].[Email]," +
+                                                "[U].[Phone_number]," +
+                                                "[U].[PasswordHash]," +
+                                                "R.[Name] AS [Role]" +
+                                                "FROM [Users] U" +
+                                                " LEFT JOIN Users_Roles AS UR  ON U.Id = UR.User_id" +
+                                                " LEFT JOIN Roles AS R ON UR.Role_id = R.Id" +
+                                                " WHERE U.Email = @email ", conn);
+                cmd.Parameters.Add(new SqlParameter("@email", email.ToLower())); // TODO When create user email ot lower
+                cmd.CommandType = CommandType.Text;
 
-        return null;
+                using (SqlDataReader reader = cmd.ExecuteReader())
+                {
+                    reader.Read();
+                    UserAccount userAccount = new UserAccount()
+                    {
+                        Id = new Guid(reader["Id"].ToString()),
+                        Email = reader["Email"].ToString(),
+                        FirstName = reader["First_name"].ToString(),
+                        LastName = reader["Last_name"].ToString(),
+                        PhoneNumber = reader["Phone_number"].ToString(),
+                        PasswordH = reader["PasswordHash"].ToString(),
+                        Role = reader["Role"].ToString().Trim(),
+                    };
+                    return userAccount;
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
     }
 }

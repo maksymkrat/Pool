@@ -3,6 +3,7 @@ using System.Security.Claims;
 using System.Text;
 using Microsoft.IdentityModel.Tokens;
 using Pool.API.Services;
+using Pool.API.Services.IServicec;
 using Pool.Shared.Models;
 
 namespace Pool.API.Authentication;
@@ -12,11 +13,11 @@ public class JwtAuthenticationManager
     public const string JWT_SECURITY_KEY = "some-security-key";
         private const int JWT_TOKEN_VALIDITY_MINS = 20;
 
-        private UserAccountService _userAccountService;
+        private readonly IUserService _userService;
 
-        public JwtAuthenticationManager(UserAccountService userAccountService)
+        public JwtAuthenticationManager(IUserService userService)
         {
-            _userAccountService = userAccountService;
+            _userService = userService;
         }
 
         public UserSession? GenerateJwtToken(string userName, string password)
@@ -25,7 +26,7 @@ public class JwtAuthenticationManager
                 return null;
 
             //validating the user credentials
-             var userAccount = _userAccountService.GetUserAccountByUserName(userName);
+             var userAccount = _userService.GetUserAccountByEmail(userName).Result;
             if (userAccount == null || userAccount.PasswordH != password)
                 return null;
 

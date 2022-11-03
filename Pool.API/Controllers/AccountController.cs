@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Pool.API.Authentication;
 using Pool.API.Services;
+using Pool.API.Services.IServicec;
 using Pool.Shared.Models;
 
 namespace Pool.API.Controllers;
@@ -9,12 +10,14 @@ namespace Pool.API.Controllers;
 [ApiController]
 public class AccountController : ControllerBase
 {
-    private UserAccountService _userAccountService;
+    private readonly IUserService _userService;
 
-    public AccountController(UserAccountService userAccountService0)
+    public AccountController( IUserService userService)
     {
-        _userAccountService = userAccountService0;
+        _userService = userService;
     }
+
+
     [HttpPost]
     [Route("Login")]
     [AllowAnonymous]
@@ -22,7 +25,7 @@ public class AccountController : ControllerBase
     {
         try
         {
-            var jwtAuthenticationManager = new JwtAuthenticationManager(_userAccountService);
+            var jwtAuthenticationManager = new JwtAuthenticationManager(_userService);
             var userSession = jwtAuthenticationManager.GenerateJwtToken(loginRequest.UserName, loginRequest.Password);
 
             if (userSession is null)
