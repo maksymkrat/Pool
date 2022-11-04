@@ -26,4 +26,22 @@ public class WordService : HttpServiceBase
         return await DeserializeFromStream<List<Word>>(result.Content);
             
     }
+    public async Task<List<Word>> GetFourRandomWords(Guid userId)
+    {
+        await AddAuthorizationAsync();
+        var result = await _client.GetAsync(Url($"GetFourRandomWords/{userId}"));
+        if (!result.IsSuccessStatusCode || string.IsNullOrEmpty(result.Content.ToString()))
+            return new List<Word>();
+        return await DeserializeFromStream<List<Word>>(result.Content);
+            
+    }
+    public async Task<Word> GetRandomWord(Guid userId)
+    {
+        await AddAuthorizationAsync();
+        var result = await _client.GetAsync(Url($"GetRandomWord/{userId}"));
+        if (!result.IsSuccessStatusCode || string.IsNullOrEmpty(result.Content.ToString()))
+            return new Word();
+        return await DeserializeFromStream<Word>(result.Content);
+            
+    }
 } 

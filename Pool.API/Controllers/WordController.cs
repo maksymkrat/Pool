@@ -33,13 +33,13 @@ public class WordController : ControllerBase
         }
     }
     
-    //[HttpGet("GetRandomWord/{userId}")]
-    [HttpGet("GetRandomWord")]
-    public async Task<IActionResult> GetRandomWord()
+    [HttpGet("GetRandomWord/{userId}")]
+    //[HttpGet("GetRandomWord")]
+    public async Task<IActionResult> GetRandomWord(Guid userId)
     {
         try
         {
-            var result = await _wordService.GetRandomWord(UserId);
+            var result = await _wordService.GetRandomWord(userId);
             return Ok(result);
         }
         catch (Exception e)
@@ -48,14 +48,14 @@ public class WordController : ControllerBase
             return StatusCode(500);
         }
     }
-    //[HttpGet("GetFourRandomWords/{userId}")]
-    [HttpGet("GetFourRandomWords")]
-    public async Task<IActionResult> GetFourRandomWords()
+    [HttpGet("GetFourRandomWords/{userId}")]
+    //[HttpGet("GetFourRandomWords")]
+    public async Task<IActionResult> GetFourRandomWords(Guid userId)
     {
         
         try
         {
-            var result = await _wordService.GetFourRandomWords(UserId);
+            var result = await _wordService.GetFourRandomWords(userId);
             return Ok(result);
         }
         catch (Exception e)

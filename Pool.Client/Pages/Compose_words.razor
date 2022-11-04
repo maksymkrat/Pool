@@ -1,7 +1,62 @@
 ﻿@page "/compose-words"
 @inherits Compose_words_razor
-<h3>Compose_words</h3>
 
-@code {
-    
+@if (MainWord != null)
+{
+    <div class="container">
+        <div class="row  justify-content-center m-4">
+        
+            <div class="col-6 main-word">
+                <span>@MainWord.Translation</span>
+            </div>
+       
+
+
+        </div>
+        @if (resultWord.Count == 0)
+        {
+            <div class="empty-div-result-word">
+            
+            </div>
+        }
+        else
+        {
+            <div class="row  justify-content-center">
+                @foreach (var item in resultWord)
+                {
+                    <div class="result-word text-center alert alert-@ResultStyle" @onclick="(() => {DeleteCharWithResult(item);})">
+                        <span>@item</span>
+                    </div> 
+                }
+            </div>
+        }
+   
+        @if (mixedСharacters.Count == 0)
+        {
+            <div class="col empty-div-mixed-chars">
+            
+            </div>
+        }
+        else
+        {
+            <div class="col d-flex justify-content-center">
+                @foreach (var item in mixedСharacters)
+                {
+                    <div class="col hovered-word" @onclick="(() => {AddCharForResult(item);})">
+                        <span>@item</span>
+                    </div> 
+                }
+       
+            </div>
+        }
+
+        <div class="row ">
+            <div class="col-6">
+            </div>
+            <div class="col-6 text-center">
+                <button class="btn-next-test " @onclick="ResetWord">Next test</button>
+            </div>
+        </div>
+    </div>
+
 }
