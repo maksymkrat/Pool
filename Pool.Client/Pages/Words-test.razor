@@ -1,4 +1,31 @@
 ﻿@page "/words-test"
 @inherits Words_test_razor
-<h3>Words_test</h3>
 
+@if (MainWord != null)
+{
+    <div class="container">
+        <div class="row  d-flex justify-content-center  mb-4">
+
+            <div class="col-6  main-word alert-@mainWordStyle">
+                <span class="">@MainWord.WordText</span>
+            </div>
+
+        </div>
+
+        <div class="row d-flex justify-content-center">
+            @for (int i = 0; i < 4; i++)
+            {
+                <SelectedWord MainWord="MainWord" TestWord="Words[i]" ResultStyle="@resultStyle" styleMainWord="ChangeStyleMainWord"></SelectedWord>
+            }
+
+        </div>
+
+        <div class="row ">
+            <div class="col-6">
+            </div>
+            <div class="col-6 text-center">
+                <button class="btn-next-test " @onclick="ResetWord">Next test</button>
+            </div>
+        </div>
+    </div>
+}
