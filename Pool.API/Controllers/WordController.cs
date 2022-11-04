@@ -24,7 +24,7 @@ public class WordController : ControllerBase
     {
         try
         {
-            var result = await _wordService.GetAllUsersWords();
+            var result = await _wordService.GetAllUsersWords(userId);
             return Ok(result);
         }
         catch (Exception e)

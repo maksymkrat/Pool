@@ -16,13 +16,16 @@ public class WordRepository : IWordRepository
         DefaultConnection = _configuration.GetConnectionString("DefaultConnection");
     }
 
-    public async Task<List<Word>> GetAllUsersWords() //Guid userId add in parametrs
+    public async Task<List<Word>> GetAllUsersWords(Guid userId) //Guid userId add in parametrs
     {
         List<Word> words = new List<Word>();
         using (var conn = new SqlConnection(DefaultConnection))
         {
             conn.Open();
-            SqlCommand cmd = new SqlCommand("SELECT * FROM Words", conn);
+            SqlCommand cmd = new SqlCommand("SELECT * FROM Words" +
+                                            " WHERE User_Id = @userId " +
+                                            " ORDER BY Id DESC", conn);
+            cmd.Parameters.Add(new SqlParameter("@userId", userId));
             cmd.CommandType = CommandType.Text;
             using (SqlDataReader reader = cmd.ExecuteReader())
             {
