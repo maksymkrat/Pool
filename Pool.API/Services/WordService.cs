@@ -32,4 +32,9 @@ public class WordService : IWordService
     {
         return _wordRepository.DeleteWordById(id);
     }
+
+    public Task<bool> AddWord(Word word)
+    {
+        return _wordRepository.AddWord(word);
+    }
 }

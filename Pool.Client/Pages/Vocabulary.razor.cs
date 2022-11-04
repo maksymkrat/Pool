@@ -31,18 +31,19 @@ public class Vocabulary_razor : ComponentBase
     protected string WordForTranslation;
     protected DeleteConfiraation Confirmation { get; set; }
     protected Word WordToBeDelated { get; set; }
+    protected readonly Guid userId = new Guid("23A2DCB7-38B5-44B4-85E9-9E6AF7F4646F");
 
 
     protected async override Task OnInitializedAsync()
     {
-         await base.OnInitializedAsync();
+         //await base.OnInitializedAsync();
         UpdateWords();
     }
 
     protected async void UpdateWords()
     {
         // var userId = _accountService.UserSession.Id;
-        Words = await _wordService.GetAllWords(new Guid("23A2DCB7-38B5-44B4-85E9-9E6AF7F4646F")); //hardcode
+        Words = await _wordService.GetAllWords(userId); //hardcode
         InvokeAsync(StateHasChanged);
     }
 
@@ -50,24 +51,25 @@ public class Vocabulary_razor : ComponentBase
     {
         if (!string.IsNullOrWhiteSpace(newWord) && !String.IsNullOrWhiteSpace(newTranslate))
         {
-            // var result = await _repository.AddWord(new Word()
-            // {
-            //     WordText = newWord.ToLower(),
-            //     Translation = newTranslate.ToLower()
-            // });
+            var result = await _wordService.AddWord(new Word()
+            {
+                WordText = newWord.ToLower(),
+                Translation = newTranslate.ToLower(),
+                User_id = userId
+            });
 
             newWord = string.Empty;
             newTranslate = string.Empty;
             wordTranslation = string.Empty;
-            // if (result)
-            // {
-            //     UpdateWords();
-            //     StateHasChanged();
-            // }
-            // else
-            // {
-            //     //  do not add word
-            // }
+            if (result)
+            {
+                UpdateWords();
+                InvokeAsync(StateHasChanged);
+            }
+            else
+            {
+                //  do not add word
+            }
         }
     }
 
@@ -94,7 +96,7 @@ public class Vocabulary_razor : ComponentBase
          _wordService.DeleteById(WordToBeDelated.Id);
          Confirmation.Hide();
         UpdateWords();
-        StateHasChanged();
+        InvokeAsync(StateHasChanged);
         WordToBeDelated = null;
     }
 

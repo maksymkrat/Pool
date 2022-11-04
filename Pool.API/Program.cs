@@ -44,8 +44,6 @@ builder.Services.AddAuthentication(o =>
 
 });
 
-builder.Services.AddSingleton<UserAccountService>();
-
 var app = builder.Build();
 
 //app.MapGet("/", () => "api ran");

@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Pool.API.Services.IServicec;
+using Pool.Shared.Models;
 
 namespace Pool.API.Controllers;
 //[Authorize]
@@ -71,6 +72,22 @@ public class WordController : ControllerBase
         {
             var result = await _wordService.DeleteWordById(id);
             return Ok(result);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            return StatusCode(500);
+        }
+    }
+
+    [HttpPost("AddWord")]
+    public async Task<IActionResult> AddWord([FromBody] Word word)
+    {
+        try
+        {
+            var result = _wordService.AddWord(word);
+            return Ok(result);
+
         }
         catch (Exception e)
         {

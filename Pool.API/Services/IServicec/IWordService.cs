@@ -8,4 +8,5 @@ public interface IWordService
     Task<List<Word>> GetFourRandomWords(Guid userId);
     Task<Word> GetRandomWord(Guid userId);
     Task<bool> DeleteWordById(int id);
+    Task<bool> AddWord( Word word);
 }

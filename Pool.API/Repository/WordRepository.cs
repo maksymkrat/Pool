@@ -43,9 +43,19 @@ public class WordRepository : IWordRepository
         }
     }
 
-    public Task<bool> AddWord(Word word, Guid userId)
+    public async Task<bool> AddWord(Word word)
     {
-        throw new NotImplementedException();
+        using (var conn = new SqlConnection(DefaultConnection))
+        {
+            await conn.OpenAsync();
+            SqlCommand cmd = new SqlCommand("INSERT INTO Words (Word, Translation,User_Id) VALUES (@textWord ,@translate,@userId )", conn);
+            cmd.Parameters.Add(new SqlParameter("@textWord", word.WordText.ToLower()));
+            cmd.Parameters.Add(new SqlParameter("@translate", word.Translation.ToLower()));
+            cmd.Parameters.Add(new SqlParameter("@userId", new Guid(word.User_id.ToString())));
+
+            return await cmd.ExecuteNonQueryAsync() > 0;
+
+        }
     }
 
     public async Task<bool> DeleteWordById(int id)

@@ -46,6 +46,13 @@ public class WordService : HttpServiceBase
         await AddAuthorizationAsync();
         var result = await _client.GetAsync(Url($"Delete/{id}"));
         return result.IsSuccessStatusCode;
+    }
 
+    public async Task<bool> AddWord(Word word)
+    {
+        await AddAuthorizationAsync();
+        var result = await _client.PostAsync(Url("AddWord"),
+            new StringContent(JsonConvert.SerializeObject(word), Encoding.UTF8, "application/json"));
+        return result.IsSuccessStatusCode;
     }
 } 

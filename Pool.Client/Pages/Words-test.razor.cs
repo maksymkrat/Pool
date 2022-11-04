@@ -18,16 +18,12 @@ public class Words_test_razor : ComponentBase
 
     protected async override Task OnInitializedAsync()
     {
-        await base.OnInitializedAsync();
+        //await base.OnInitializedAsync();
         Words = await _wordService.GetFourRandomWords(userId);
         MainWord = Words.ElementAt(rnd.Next(0, Words.Count));
     }
 
-    protected override void OnInitialized()
-    {
-          
-        
-    }
+    
     
 
     protected void ChangeStyleMainWord(string style)
