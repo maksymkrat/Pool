@@ -64,5 +64,19 @@ public class WordController : ControllerBase
             return StatusCode(500);
         }
     }
+    [HttpGet("Delete/{id}")]
+    public async Task<IActionResult> DeleteById(int id)
+    {
+        try
+        {
+            var result = await _wordService.DeleteWordById(id);
+            return Ok(result);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            return StatusCode(500);
+        }
+    }
 
 }

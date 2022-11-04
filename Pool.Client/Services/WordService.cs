@@ -24,7 +24,6 @@ public class WordService : HttpServiceBase
         if (!result.IsSuccessStatusCode || string.IsNullOrEmpty(result.Content.ToString()))
             return new List<Word>();
         return await DeserializeFromStream<List<Word>>(result.Content);
-            
     }
     public async Task<List<Word>> GetFourRandomWords(Guid userId)
     {
@@ -33,7 +32,6 @@ public class WordService : HttpServiceBase
         if (!result.IsSuccessStatusCode || string.IsNullOrEmpty(result.Content.ToString()))
             return new List<Word>();
         return await DeserializeFromStream<List<Word>>(result.Content);
-            
     }
     public async Task<Word> GetRandomWord(Guid userId)
     {
@@ -42,6 +40,12 @@ public class WordService : HttpServiceBase
         if (!result.IsSuccessStatusCode || string.IsNullOrEmpty(result.Content.ToString()))
             return new Word();
         return await DeserializeFromStream<Word>(result.Content);
-            
+    }
+    public async Task<bool> DeleteById(int id)
+    {
+        await AddAuthorizationAsync();
+        var result = await _client.GetAsync(Url($"Delete/{id}"));
+        return result.IsSuccessStatusCode;
+
     }
 } 

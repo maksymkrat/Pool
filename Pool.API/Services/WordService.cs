@@ -27,4 +27,9 @@ public class WordService : IWordService
     {
         return _wordRepository.GetRandomWord(userId);
     }
+
+    public Task<bool> DeleteWordById(int id)
+    {
+        return _wordRepository.DeleteWordById(id);
+    }
 }

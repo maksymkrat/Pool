@@ -16,14 +16,11 @@
                 <td >
                     <div class="col">
                         <span>@item.WordText</span>
-                      
-                            <button class="btn btn-success float-end" @onclick="(() => SayWord.InvokeAsync(item))">
-                                <i class="fas fa-volume-up"></i>
-                            </button>
-                        </div>
-                   
 
-
+                        <button class="btn btn-success float-end" @onclick="(() => SayWord.InvokeAsync(item))">
+                            <i class="fas fa-volume-up"></i>
+                        </button>
+                    </div>
                 </td>
 
                 <td >@item.Translation</td>

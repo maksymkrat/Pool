@@ -1,7 +1,5 @@
-﻿using System.ComponentModel;
-using Microsoft.AspNetCore.Components;
+﻿using Microsoft.AspNetCore.Components;
 using Pool.Client.Components;
-using Pool.Client.Pages;
 using Pool.Client.Services;
 using Pool.Shared.Models;
 using Pool.Shared.Models.DeserializeTranslation;
@@ -37,7 +35,7 @@ public class Vocabulary_razor : ComponentBase
 
     protected async override Task OnInitializedAsync()
     {
-        await base.OnInitializedAsync();
+         await base.OnInitializedAsync();
         UpdateWords();
     }
 
@@ -45,7 +43,7 @@ public class Vocabulary_razor : ComponentBase
     {
         // var userId = _accountService.UserSession.Id;
         Words = await _wordService.GetAllWords(new Guid("23A2DCB7-38B5-44B4-85E9-9E6AF7F4646F")); //hardcode
-        StateHasChanged();
+        InvokeAsync(StateHasChanged);
     }
 
     protected async void AddWord()
@@ -88,13 +86,13 @@ public class Vocabulary_razor : ComponentBase
     protected void DeleteWord(Word word)
     {
         WordToBeDelated = word;
-        // Confirmation.Show();
+         Confirmation.Show();
     }
 
     protected void onConfirm()
     {
-        // _repository.DeleteWordById(WordToBeDelated.Id);
-        // Confirmation.Hide();
+         _wordService.DeleteById(WordToBeDelated.Id);
+         Confirmation.Hide();
         UpdateWords();
         StateHasChanged();
         WordToBeDelated = null;
@@ -102,7 +100,7 @@ public class Vocabulary_razor : ComponentBase
 
     protected void onCancel()
     {
-        //Confirmation.Hide();
+        Confirmation.Hide();
         WordToBeDelated = null;
     }
 

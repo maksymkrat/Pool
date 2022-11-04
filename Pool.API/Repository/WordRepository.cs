@@ -53,8 +53,8 @@ public class WordRepository : IWordRepository
         using (var conn = new SqlConnection(DefaultConnection))
         {
             await conn.OpenAsync();
-            SqlCommand cmd = new SqlCommand("DELETE FROM Words WHERE Id=@wordId", conn);
-            cmd.Parameters.Add(new SqlParameter("@wordId", SqlDbType.Int) {Value = id});
+            SqlCommand cmd = new SqlCommand("DELETE FROM Words WHERE Id=@id", conn);
+            cmd.Parameters.Add(new SqlParameter("@id", SqlDbType.Int) {Value = id});
 
             return await cmd.ExecuteNonQueryAsync() > 0;
         }
