@@ -27,6 +27,7 @@ public class Compose_words_razor : ComponentBase
     }
     
     
+    
     protected void ResetWord()
     {
         OnInitializedAsync();

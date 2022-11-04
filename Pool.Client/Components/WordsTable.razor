@@ -9,36 +9,41 @@
             <th scope="col"> @Words.Count my words</th>
         </tr>
         </thead>
-            <tbody >
-            @foreach (var item in Words)
-            {
-                <tr class="word">
-                    <td >
-                        @item.WordText
-                        <div class="float-right">
-                            <button class="btn btn-success" @onclick="(() => SayWord.InvokeAsync(item))">
+        <tbody >
+        @foreach (var item in Words)
+        {
+            <tr class="word">
+                <td >
+                    <div class="col">
+                        <span>@item.WordText</span>
+                      
+                            <button class="btn btn-success float-end" @onclick="(() => SayWord.InvokeAsync(item))">
                                 <i class="fas fa-volume-up"></i>
                             </button>
                         </div>
-                    </td>
+                   
 
-                    <td >@item.Translation</td>
-                    <td>
-                        <button class="btn btn-primary ">
-                            <i class="fas fa-edit"></i>
-                        </button>
-                        <button class="btn btn-danger" @onclick="(() => DeleteWord.InvokeAsync(item))">
-                            <i class="fas fa-trash-alt"></i>
-                        </button>
-                    </td>
-                </tr>
-            }
-            </tbody>
+
+                </td>
+
+                <td >@item.Translation</td>
+                <td>
+                    <button class="btn btn-primary ">
+                        <i class="fas fa-edit"></i>
+                    </button>
+                    <button class="btn btn-danger" @onclick="(() => DeleteWord.InvokeAsync(item))">
+                        <i class="fas fa-trash-alt"></i>
+                    </button>
+                </td>
+            </tr>
+        }
+        </tbody>
     </table>
 </div>
 
 
 @code {
+
     [Parameter]
     public List<Word> Words { get; set; }
 
