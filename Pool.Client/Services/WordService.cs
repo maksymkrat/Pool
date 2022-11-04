@@ -1,5 +1,7 @@
-﻿using Blazored.LocalStorage;
+﻿using System.Text;
+using Blazored.LocalStorage;
 using Microsoft.AspNetCore.Components.Authorization;
+using Newtonsoft.Json;
 using Pool.Shared.Models;
 
 namespace Pool.Client.Services;
@@ -15,10 +17,10 @@ public class WordService : HttpServiceBase
 
     protected override string _apiControllerName { get; set; }
 
-    public async Task<List<Word>> GetAllWords()
+    public async Task<List<Word>> GetAllWords(Guid userId)
     {
          await AddAuthorizationAsync();
-        var result = await _client.GetAsync(Url("GetAllUsersWords"));
+        var result = await _client.GetAsync(Url($"GetAllUsersWords/{userId}"));
         if (!result.IsSuccessStatusCode || string.IsNullOrEmpty(result.Content.ToString()))
             return new List<Word>();
         return await DeserializeFromStream<List<Word>>(result.Content);

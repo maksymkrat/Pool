@@ -73,8 +73,9 @@ public class CustomAuthenticationStateProvider : AuthenticationStateProvider
                 if (userSession != null)
                     result = userSession.Token;
             }
-            catch
+            catch(Exception e)
             {
+                Console.WriteLine(e);
                 
             }
             return result;

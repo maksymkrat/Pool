@@ -1,6 +1,7 @@
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using Pool.API.Authentication;
 using Pool.API.Repository;
 using Pool.API.Repository.IRepository;
@@ -12,6 +13,10 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+// builder.Services.AddSwaggerGen(c =>
+// {
+//     c.SwaggerDoc("v1", new OpenApiInfo {Title = "Pool.API", Version = "v1"});
+// });
 builder.Services.AddHttpClient();
 
 builder.Services.AddSingleton<IUserRepository,UserRepository>();
@@ -43,14 +48,18 @@ builder.Services.AddSingleton<UserAccountService>();
 
 var app = builder.Build();
 
-app.MapGet("/", () => "api ran");
+//app.MapGet("/", () => "api ran");
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
+    // app.UseDeveloperExceptionPage();
     app.UseSwagger();
     app.UseSwaggerUI();
+    // app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger", "Pool.API v1"));
 }
+
+
 
 app.UseAuthentication();
 app.UseAuthorization();     

@@ -10,6 +10,7 @@ namespace Pool.Client.Pages;
 
 public class Vocabulary_razor : ComponentBase
 {
+    [Inject] private AccountService _accountService { get; set; }
      [Inject] private ILogger<Vocabulary> _logger { get; set; }
      [Inject] private WordService _wordService { get; set; }
 
@@ -33,14 +34,18 @@ public class Vocabulary_razor : ComponentBase
         protected DeleteConfiraation Confirmation { get; set; }
         protected Word WordToBeDelated { get; set; }
 
-        protected override void OnInitialized()
+       
+
+        protected async override Task OnInitializedAsync()
         {
+            await base.OnInitializedAsync();
             UpdateWords();
         }
 
         protected async void UpdateWords()
         {
-             Words = await _wordService.GetAllWords();
+            // var userId = _accountService.UserSession.Id;
+             Words = await _wordService.GetAllWords(new Guid("23A2DCB7-38B5-44B4-85E9-9E6AF7F4646F")); //hardcode
              StateHasChanged();
         }
         protected async void AddWord()
