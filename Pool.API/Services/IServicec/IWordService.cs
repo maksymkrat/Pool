@@ -9,4 +9,5 @@ public interface IWordService
     Task<Word> GetRandomWord(Guid userId);
     Task<bool> DeleteWordById(int id);
     Task<bool> AddWord( Word word);
+    Task<bool> Update( Word word);
 }

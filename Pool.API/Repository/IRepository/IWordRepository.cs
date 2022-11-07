@@ -9,6 +9,6 @@ public interface IWordRepository
     Task<bool> DeleteWordById(int id);
     Task<List<Word>> GetFourRandomWords(Guid userId);
     Task<Word> GetRandomWord(Guid userId);
-    void UpdateWord(Word word,Guid userId);
+    Task<bool> Update( Word word);
     
 }

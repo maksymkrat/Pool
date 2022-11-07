@@ -28,7 +28,7 @@ public class Vocabulary_razor : ComponentBase
     protected string newTranslate;
     protected string wordTranslation;
     protected string WordForTranslation;
-    protected DeleteConfiraation DeleteConfiramtion { get; set; }
+    protected DeleteConfiraation DeleteConfirmation { get; set; }
     protected UpdateWord UpdatedWord { get; set; }
     protected Word WordToBeDeleted { get; set; }
     protected Word WordToBeUpdated { get; set; }
@@ -89,7 +89,7 @@ public class Vocabulary_razor : ComponentBase
     protected void DeleteWord(Word word)
     {
         WordToBeDeleted = word;
-        DeleteConfiramtion.Show();
+        DeleteConfirmation.Show();
     }
 
     protected void UpdateWord(Word word)
@@ -101,7 +101,7 @@ public class Vocabulary_razor : ComponentBase
     protected void ConfirmDelete()
     {
          _wordService.DeleteById(WordToBeDeleted.Id);
-         DeleteConfiramtion.Hide();
+         DeleteConfirmation.Hide();
         UpdateWords();
         InvokeAsync(StateHasChanged);
         WordToBeDeleted = null;
@@ -109,13 +109,19 @@ public class Vocabulary_razor : ComponentBase
 
     protected void ConfirmUpdate()
     {
+        _wordService.UpdateWord(WordToBeUpdated);
         
+        UpdatedWord.Hide();
+        UpdateWords();
+        WordToBeUpdated = null;
+        InvokeAsync(StateHasChanged);
+
     }
 
     protected void onCancel()
     {
         UpdatedWord.Hide();
-        DeleteConfiramtion.Hide();
+        DeleteConfirmation.Hide();
         WordToBeDeleted = null;
         WordToBeUpdated = null;
     }

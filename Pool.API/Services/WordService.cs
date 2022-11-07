@@ -37,4 +37,9 @@ public class WordService : IWordService
     {
         return _wordRepository.AddWord(word);
     }
+
+    public Task<bool> Update(Word word)
+    {
+        return _wordRepository.Update(word);
+    }
 }

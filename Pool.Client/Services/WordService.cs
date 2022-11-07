@@ -55,4 +55,12 @@ public class WordService : HttpServiceBase
             new StringContent(JsonConvert.SerializeObject(word), Encoding.UTF8, "application/json"));
         return result.IsSuccessStatusCode;
     }
+
+    public async Task<bool> UpdateWord(Word word)
+    {
+        await AddAuthorizationAsync();
+        var result = await _client.PostAsync(Url("Update"),
+            new StringContent(JsonConvert.SerializeObject(word), Encoding.UTF8, "application/json"));
+        return result.IsSuccessStatusCode;
+    }
 } 

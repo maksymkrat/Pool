@@ -95,5 +95,21 @@ public class WordController : ControllerBase
             return StatusCode(500);
         }
     }
+    
+    [HttpPost("Update")]
+    public async Task<IActionResult> Update([FromBody] Word word)
+    {
+        try
+        {
+            var result = _wordService.Update(word);
+            return Ok(result);
+
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            return StatusCode(500);
+        }
+    }
 
 }
