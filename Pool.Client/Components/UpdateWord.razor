@@ -1,4 +1,4 @@
-﻿@if (displayConfirmation)
+﻿@if (displayUpdate)
 {
     <div class="modal-backdrop show"></div>
 
@@ -9,14 +9,16 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title">@Title</h5>
-                     <button @onclick="onCancel" type="button" class="close"><span aria-hidden="true">&times;</span></button>
+                    <button @onclick="onCancel" type="button" class="close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
                 <div class="modal-body">
                     @ChildContent
                 </div>
                 <div class="modal-footer">
                     <button @onclick="onCancel" type="button" class="btn btn-primary">Cancel</button>
-                    <button @onclick="onConfirm" type="button" class="btn btn-danger">Delete</button>
+                    <button @onclick="Update" type="button" class="btn btn-danger">Update</button>
                 </div>
             </div>
         </div>
@@ -24,20 +26,20 @@
 }
 
 @code {
-    private bool displayConfirmation = false;
+    private bool displayUpdate = false;
 
-     [Parameter]
-     public string Title { get; set; } = "Confirm";
-     
-     [Parameter]
-     public RenderFragment ChildContent { get; set; }
-     
-     [Parameter]
-     public EventCallback onConfirm { get; set; }
-     
-     [Parameter]
-     public EventCallback onCancel { get; set; }
+    [Parameter]
+    public string Title { get; set; } = "Update";
 
-    public void Show() => displayConfirmation = true;
-    public void Hide() => displayConfirmation = false;
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+    [Parameter]
+    public EventCallback Update { get; set; }
+
+    [Parameter]
+    public EventCallback onCancel { get; set; }
+
+    public void Show() => displayUpdate = true;
+    public void Hide() => displayUpdate = false;
 }

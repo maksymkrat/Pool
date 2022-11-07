@@ -26,11 +26,12 @@ public class Vocabulary_razor : ComponentBase
 
     protected string newWord;
     protected string newTranslate;
-    protected Translater translater;
     protected string wordTranslation;
     protected string WordForTranslation;
-    protected DeleteConfiraation Confirmation { get; set; }
-    protected Word WordToBeDelated { get; set; }
+    protected DeleteConfiraation DeleteConfiramtion { get; set; }
+    protected UpdateWord UpdatedWord { get; set; }
+    protected Word WordToBeDeleted { get; set; }
+    protected Word WordToBeUpdated { get; set; }
     protected readonly Guid userId = new Guid("23A2DCB7-38B5-44B4-85E9-9E6AF7F4646F");
 
 
@@ -87,23 +88,36 @@ public class Vocabulary_razor : ComponentBase
 
     protected void DeleteWord(Word word)
     {
-        WordToBeDelated = word;
-         Confirmation.Show();
+        WordToBeDeleted = word;
+        DeleteConfiramtion.Show();
     }
 
-    protected void onConfirm()
+    protected void UpdateWord(Word word)
     {
-         _wordService.DeleteById(WordToBeDelated.Id);
-         Confirmation.Hide();
+        WordToBeUpdated = word;
+        UpdatedWord.Show();
+    }
+
+    protected void ConfirmDelete()
+    {
+         _wordService.DeleteById(WordToBeDeleted.Id);
+         DeleteConfiramtion.Hide();
         UpdateWords();
         InvokeAsync(StateHasChanged);
-        WordToBeDelated = null;
+        WordToBeDeleted = null;
+    }
+
+    protected void ConfirmUpdate()
+    {
+        
     }
 
     protected void onCancel()
     {
-        Confirmation.Hide();
-        WordToBeDelated = null;
+        UpdatedWord.Hide();
+        DeleteConfiramtion.Hide();
+        WordToBeDeleted = null;
+        WordToBeUpdated = null;
     }
 
     protected void SayWord(Word word)

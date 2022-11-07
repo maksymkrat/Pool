@@ -25,7 +25,7 @@
 
                 <td >@item.Translation</td>
                 <td>
-                    <button class="btn btn-primary ">
+                    <button class="btn btn-primary" @onclick="(() => UpdateWord.InvokeAsync(item))">
                         <i class="fas fa-edit"></i>
                     </button>
                     <button class="btn btn-danger" @onclick="(() => DeleteWord.InvokeAsync(item))">
@@ -46,6 +46,9 @@
 
     [Parameter]
     public EventCallback<Word> DeleteWord { get; set; }
+    
+    [Parameter]
+    public EventCallback<Word> UpdateWord { get; set; }
 
     [Parameter]
     public EventCallback<Word> SayWord { get; set; }

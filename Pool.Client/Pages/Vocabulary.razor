@@ -1,7 +1,6 @@
 ﻿@page "/vocabulary"
 @inherits Vocabulary_razor
 
-
 <AuthorizeView>
     <Authorized>
         <div class="container-fluid">
@@ -27,7 +26,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                         <div class="col-sm-12 col-md-6 border border-primary rounded ">
                             <p class="text-primary">Translation:</p>
                             <div class="pl-5 word">
@@ -39,14 +38,25 @@
 
                     </div>
 
-                    <WordsTable Words="Words" DeleteWord="DeleteWord" SayWord="SayWord"></WordsTable>
+                    <WordsTable Words="Words" DeleteWord="DeleteWord" UpdateWord="UpdateWord" SayWord="SayWord"></WordsTable>
 
                 </div>
             </div>
         </div>
-        <DeleteConfiraation @ref="Confirmation" onCancel="onCancel" onConfirm="onConfirm">
-            <div class="text-danger"> Do you want ot delete { @WordToBeDelated.WordText }?</div>
+        <DeleteConfiraation @ref="DeleteConfiramtion" onCancel="onCancel" onConfirm="ConfirmDelete">
+            <div class="text-danger"> Do you want ot delete { @WordToBeDeleted.WordText }?</div>
         </DeleteConfiraation>
+        
+        <UpdateWord @ref="UpdatedWord" onCancel="onCancel" Update="ConfirmUpdate">
+            <div class="mb-3">
+                <label>Word</label>
+                <input @bind="WordToBeUpdated.WordText" class="form-control" placeholder="word"/>
+            </div>
+            <div class="mb-3">
+                <label>Tranlation</label>
+                <input @bind="WordToBeUpdated.Translation" class="form-control" placeholder="translation"/>
+            </div>
+        </UpdateWord>
 
     </Authorized>
     <NotAuthorized>

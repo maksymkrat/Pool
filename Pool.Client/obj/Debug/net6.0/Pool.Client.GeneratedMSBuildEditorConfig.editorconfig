@@ -37,6 +37,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
+[D:/C/MainProjects/Pool/Pool.Client/Components/UpdateWord.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50c1xVcGRhdGVXb3JkLnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+
 [D:/C/MainProjects/Pool/Pool.Client/Pages/Compose_words.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ29tcG9zZV93b3Jkcy5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
