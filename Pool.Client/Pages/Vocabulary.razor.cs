@@ -94,7 +94,7 @@ public class Vocabulary_razor : ComponentBase
 
     protected void UpdateWord(Word word)
     {
-        WordToBeUpdated = word;
+        WordToBeUpdated = (Word)word.Clone();
         UpdatedWord.Show();
     }
 
