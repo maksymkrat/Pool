@@ -26,13 +26,13 @@ public class WordService : HttpServiceBase
             return new List<Word>();
         return await DeserializeFromStream<List<Word>>(result.Content);
     }
-    public async Task<List<Word>> GetFourRandomWords(Guid userId)
+    public  List<Word> GetFourRandomWords(Guid userId)
     {
-        await AddAuthorizationAsync();
-        var result = await _client.GetAsync(Url($"GetFourRandomWords/{userId}"));
+         AddAuthorizationAsync();
+        var result =  _client.GetAsync(Url($"GetFourRandomWords/{userId}")).Result;
         if (!result.IsSuccessStatusCode || string.IsNullOrEmpty(result.Content.ToString()))
             return new List<Word>();
-        return await DeserializeFromStream<List<Word>>(result.Content);
+        return  DeserializeFromStream<List<Word>>(result.Content).Result;
     }
    
     public async Task<bool> DeleteById(int id)

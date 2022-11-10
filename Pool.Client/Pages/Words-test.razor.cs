@@ -16,10 +16,10 @@ public class Words_test_razor : ComponentBase
     private readonly Guid userId = new Guid("23a2dcb7-38b5-44b4-85e9-9e6af7f4646f");
 
 
-    protected async override void OnInitialized()
+    protected  override void OnInitialized()
     {
       
-        Words = await _wordService.GetFourRandomWords(userId);
+        Words =  _wordService.GetFourRandomWords(userId);
         MainWord = Words.ElementAt(rnd.Next(0, Words.Count));
     }
 
@@ -32,9 +32,9 @@ public class Words_test_razor : ComponentBase
         
     }
 
-    protected async void ResetWord()
+    protected  void ResetWord()
     {
-        Words = await _wordService.GetFourRandomWords(userId);
+        Words =  _wordService.GetFourRandomWords(userId);
         MainWord = Words.ElementAt(rnd.Next(0, Words.Count));
         resultStyle = "light";
         mainWordStyle = resultStyle;
