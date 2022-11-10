@@ -16,9 +16,9 @@ public class Words_test_razor : ComponentBase
     private readonly Guid userId = new Guid("23a2dcb7-38b5-44b4-85e9-9e6af7f4646f");
 
 
-    protected async override Task OnInitializedAsync()
+    protected async override void OnInitialized()
     {
-        //await base.OnInitializedAsync();
+      
         Words = await _wordService.GetFourRandomWords(userId);
         MainWord = Words.ElementAt(rnd.Next(0, Words.Count));
     }

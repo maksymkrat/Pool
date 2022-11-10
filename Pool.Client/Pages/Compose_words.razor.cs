@@ -16,10 +16,9 @@ public class Compose_words_razor : ComponentBase
     private readonly Guid userId = new Guid("23a2dcb7-38b5-44b4-85e9-9e6af7f4646f");
 
 
-    protected async override Task OnInitializedAsync()
+    protected  override void OnInitialized()
     {
-        await base.OnInitializedAsync();
-        MainWord = await _wordService.GetRandomWord(userId);
+        MainWord =  _wordService.GetRandomWord(userId);
         char[] arrayChars = MainWord.WordText.ToCharArray();
         mixedСharacters = arrayChars.OrderBy(x => random.Next()).ToList();
         resultWord.Clear();
@@ -30,7 +29,7 @@ public class Compose_words_razor : ComponentBase
     
     protected void ResetWord()
     {
-        OnInitializedAsync();
+       OnInitialized();
     }
     
     protected void AddCharForResult(char selectChar)

@@ -21,6 +21,7 @@ public class Vocabulary_razor : ComponentBase
         {
             words = value;
             InvokeAsync(StateHasChanged);
+            
         }
     }
 
@@ -28,6 +29,7 @@ public class Vocabulary_razor : ComponentBase
     protected string newTranslate;
     protected string wordTranslation;
     protected string WordForTranslation;
+    protected Translater translater;
     protected DeleteConfiraation DeleteConfirmation { get; set; }
     protected UpdateWord UpdatedWord { get; set; }
     protected Word WordToBeDeleted { get; set; }
@@ -45,7 +47,9 @@ public class Vocabulary_razor : ComponentBase
     {
         // var userId = _accountService.UserSession.Id;
         Words = await _wordService.GetAllWords(userId); //hardcode
-        InvokeAsync(StateHasChanged);
+        await InvokeAsync(StateHasChanged);
+       
+
     }
 
     protected async void AddWord()
@@ -65,7 +69,8 @@ public class Vocabulary_razor : ComponentBase
             if (result)
             {
                 UpdateWords();
-                InvokeAsync(StateHasChanged);
+                await InvokeAsync(StateHasChanged);
+                
             }
             else
             {
@@ -74,16 +79,16 @@ public class Vocabulary_razor : ComponentBase
         }
     }
 
-    protected void TranslateWord()
+    protected  async void TranslateWord()
     {
         _logger.LogInformation($"{DateTime.UtcNow.ToLongTimeString()} method: TranslateWord");
-        // if (!string.IsNullOrWhiteSpace(newWord))
-        // {
-        //     translater = _business.Translate(newWord);
-        //     wordTranslation = translater.Target.Text;
-        //     newTranslate = translater.Target.Text;
-        //     WordForTranslation = translater.Source.Text;
-        // }
+        if (!string.IsNullOrWhiteSpace(newWord))
+        {
+            translater = await _wordService.Translate(newWord);
+            wordTranslation = translater.Target.Text;
+            newTranslate = translater.Target.Text;
+            WordForTranslation = translater.Source.Text;
+        }
     }
 
     protected void DeleteWord(Word word)
@@ -104,6 +109,7 @@ public class Vocabulary_razor : ComponentBase
          DeleteConfirmation.Hide();
         UpdateWords();
         InvokeAsync(StateHasChanged);
+   
         WordToBeDeleted = null;
     }
 
@@ -115,7 +121,6 @@ public class Vocabulary_razor : ComponentBase
         UpdateWords();
         WordToBeUpdated = null;
         InvokeAsync(StateHasChanged);
-
     }
 
     protected void onCancel()

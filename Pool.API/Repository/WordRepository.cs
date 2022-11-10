@@ -134,19 +134,27 @@ public class WordRepository : IWordRepository
             return null;
         }
     }
+
     public async Task<bool> AddWord(Word word)
     {
-        using (var conn = new SqlConnection(DefaultConnection))
+        try
         {
-            await conn.OpenAsync();
-            SqlCommand cmd = new SqlCommand(
-                "INSERT INTO Words (Word, Translation,User_Id) VALUES (@textWord ,@translation,@userId )", conn);
-            cmd.Parameters.Add(new SqlParameter("@textWord", word.WordText.ToLower()));
-            cmd.Parameters.Add(new SqlParameter("@translation", word.Translation.ToLower()));
-            cmd.Parameters.Add(new SqlParameter("@userId", new Guid(word.User_id.ToString())));
+            using (var conn = new SqlConnection(DefaultConnection))
+            {
+                await conn.OpenAsync();
+                SqlCommand cmd = new SqlCommand(
+                    "INSERT INTO Words (Word, Translation,User_Id) VALUES (@textWord ,@translation,@userId )", conn);
+                cmd.Parameters.Add(new SqlParameter("@textWord", word.WordText.ToLower()));
+                cmd.Parameters.Add(new SqlParameter("@translation", word.Translation.ToLower()));
+                cmd.Parameters.Add(new SqlParameter("@userId", new Guid(word.User_id.ToString())));
 
-            return await cmd.ExecuteNonQueryAsync() > 0;
-
+                return await cmd.ExecuteNonQueryAsync() > 0;
+            }
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
         }
     }
 
@@ -162,8 +170,6 @@ public class WordRepository : IWordRepository
             cmd.Parameters.Add(new SqlParameter("@Id", word.Id));
 
             return await cmd.ExecuteNonQueryAsync() > 0;
-
         }
     }
-    
 }

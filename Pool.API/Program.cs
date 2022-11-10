@@ -9,6 +9,10 @@ using Pool.API.Services;
 using Pool.API.Services.IServicec;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Logging.ClearProviders();
+builder.Logging.AddConsole();
+
 // Add services to the container.
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
@@ -24,6 +28,7 @@ builder.Services.AddSingleton<IWordRepository,WordRepository>();
 
 builder.Services.AddSingleton<IUserService, UserService>();
 builder.Services.AddSingleton<IWordService, WordService>();
+builder.Services.AddSingleton<ITranslatorService, TranslatorService>();
 
 
 builder.Services.AddAuthentication(o =>
@@ -43,6 +48,8 @@ builder.Services.AddAuthentication(o =>
     };
 
 });
+
+
 
 var app = builder.Build();
 

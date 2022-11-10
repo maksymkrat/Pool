@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Pool.API.Services.IServicec;
 using Pool.Shared.Models;
+using Pool.Shared.Models.DeserializeTranslation;
 
 namespace Pool.API.Controllers;
 //[Authorize]
@@ -11,10 +12,12 @@ public class WordController : ControllerBase
 {
 
     private readonly IWordService _wordService;
+    private readonly ITranslatorService _translatorService;
 
-    public WordController(IWordService service)
+    public WordController(IWordService service, ITranslatorService translatorService)
     {
         _wordService = service;
+        _translatorService = translatorService;
     }
 
     private readonly Guid UserId = new Guid("23a2dcb7-38b5-44b4-85e9-9e6af7f4646f"); //need delete
@@ -34,23 +37,8 @@ public class WordController : ControllerBase
         }
     }
     
-    [HttpGet("GetRandomWord/{userId}")]
-    //[HttpGet("GetRandomWord")]
-    public async Task<IActionResult> GetRandomWord(Guid userId)
-    {
-        try
-        {
-            var result = await _wordService.GetRandomWord(userId);
-            return Ok(result);
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine(e);
-            return StatusCode(500);
-        }
-    }
+   
     [HttpGet("GetFourRandomWords/{userId}")]
-    //[HttpGet("GetFourRandomWords")]
     public async Task<IActionResult> GetFourRandomWords(Guid userId)
     {
         
@@ -71,6 +59,35 @@ public class WordController : ControllerBase
         try
         {
             var result = await _wordService.DeleteWordById(id);
+            return Ok(result);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            return StatusCode(500);
+        }
+    }
+    [HttpGet("GetRandomWord/{userId}")]
+    public async Task<IActionResult> GetRandomWord(Guid userId)
+    {
+        try
+        {
+            var result = await _wordService.GetRandomWord(userId);
+            return Ok(result);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            return StatusCode(500);
+        }
+    }
+
+    [HttpGet("Translate/{word}")]
+    public async Task<IActionResult> Translate(string word)
+    {
+        try
+        {
+            var result = await _translatorService.Translate(word);
             return Ok(result);
         }
         catch (Exception e)
