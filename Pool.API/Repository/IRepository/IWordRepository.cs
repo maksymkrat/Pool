@@ -6,7 +6,7 @@ public interface IWordRepository
 {
     Task<List<Word>> GetAllUsersWords(Guid userId); //Guid userId add in parametrs
     Task<bool> AddWord( Word word);
-    Task<bool> DeleteWordById(int id);
+    Task<bool> DeleteById(int id);
     Task<List<Word>> GetFourRandomWords(Guid userId);
     Task<Word> GetRandomWord(Guid userId);
     Task<bool> Update( Word word);

@@ -12,24 +12,23 @@ public class Vocabulary_razor : ComponentBase
     [Inject] private ILogger<Vocabulary> _logger { get; set; }
     [Inject] private WordService _wordService { get; set; }
 
-    protected List<Word> words = new List<Word>();
+    private List<Word> _words = new List<Word>();
 
     protected List<Word> Words
     {
-        get => words;
+        get => _words;
         set
         {
-            words = value;
+            _words = value;
             InvokeAsync(StateHasChanged);
-            
         }
     }
 
-    protected string newWord;
-    protected string newTranslate;
-    protected string wordTranslation;
-    protected string WordForTranslation;
-    protected Translater translater;
+    protected string NewWord{ get; set; }
+    protected string NewTranslate{ get; set; }
+    protected string WordTranslation{ get; set; }
+    protected string WordForTranslation{ get; set; }
+    protected Translater Translater{ get; set; }
     protected DeleteConfiraation DeleteConfirmation { get; set; }
     protected UpdateWord UpdatedWord { get; set; }
     protected Word WordToBeDeleted { get; set; }
@@ -37,40 +36,37 @@ public class Vocabulary_razor : ComponentBase
     protected readonly Guid userId = new Guid("23A2DCB7-38B5-44B4-85E9-9E6AF7F4646F");
 
 
-    protected async override Task OnInitializedAsync()
+    protected override void OnInitialized()
     {
-         //await base.OnInitializedAsync();
         UpdateWords();
     }
 
-    protected async void UpdateWords()
+    protected void UpdateWords()
     {
         // var userId = _accountService.UserSession.Id;
-        Words = await _wordService.GetAllWords(userId); //hardcode
-        await InvokeAsync(StateHasChanged);
-       
-
+        Words = _wordService.GetAllWords(userId); //hardcode
+        InvokeAsync(StateHasChanged);
     }
 
     protected async void AddWord()
     {
-        if (!string.IsNullOrWhiteSpace(newWord) && !String.IsNullOrWhiteSpace(newTranslate))
+        if (!string.IsNullOrWhiteSpace(NewWord) && !String.IsNullOrWhiteSpace(NewTranslate))
         {
             var result = await _wordService.AddWord(new Word()
             {
-                WordText = newWord.ToLower(),
-                Translation = newTranslate.ToLower(),
+                WordText = NewWord.ToLower(),
+                Translation = NewTranslate.ToLower(),
                 User_id = userId
             });
 
-            newWord = string.Empty;
-            newTranslate = string.Empty;
-            wordTranslation = string.Empty;
+            NewWord = string.Empty;
+            NewTranslate = string.Empty;
+            WordTranslation = string.Empty;
+            WordForTranslation = string.Empty;
             if (result)
             {
                 UpdateWords();
-                await InvokeAsync(StateHasChanged);
-                
+                InvokeAsync(StateHasChanged);
             }
             else
             {
@@ -79,15 +75,15 @@ public class Vocabulary_razor : ComponentBase
         }
     }
 
-    protected  async void TranslateWord()
+    protected void TranslateWord()
     {
         _logger.LogInformation($"{DateTime.UtcNow.ToLongTimeString()} method: TranslateWord");
-        if (!string.IsNullOrWhiteSpace(newWord))
+        if (!string.IsNullOrWhiteSpace(NewWord))
         {
-            translater = await _wordService.Translate(newWord);
-            wordTranslation = translater.Target.Text;
-            newTranslate = translater.Target.Text;
-            WordForTranslation = translater.Source.Text;
+            Translater = _wordService.Translate(NewWord);
+            WordTranslation = Translater.Target.Text;
+            NewTranslate = Translater.Target.Text;
+            WordForTranslation = Translater.Source.Text;
         }
     }
 
@@ -99,24 +95,23 @@ public class Vocabulary_razor : ComponentBase
 
     protected void UpdateWord(Word word)
     {
-        WordToBeUpdated = (Word)word.Clone();
+        WordToBeUpdated = (Word) word.Clone();
         UpdatedWord.Show();
     }
 
-    protected void ConfirmDelete()
+    protected async void ConfirmDelete()
     {
-         _wordService.DeleteById(WordToBeDeleted.Id);
-         DeleteConfirmation.Hide();
+        await _wordService.DeleteById(WordToBeDeleted.Id);
+        DeleteConfirmation.Hide();
         UpdateWords();
         InvokeAsync(StateHasChanged);
-   
         WordToBeDeleted = null;
     }
 
     protected void ConfirmUpdate()
     {
         _wordService.UpdateWord(WordToBeUpdated);
-        
+
         UpdatedWord.Hide();
         UpdateWords();
         WordToBeUpdated = null;

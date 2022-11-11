@@ -10,7 +10,7 @@ public class Compose_words_razor : ComponentBase
     [Inject] private WordService _wordService { get; set; }
     protected string ResultStyle { get; set; }
     protected Random random = new Random();
-    protected Word MainWord{ get; set; }
+    protected Word mainWord{ get; set; }
     protected List<char> resultWord = new List<char>();
     protected List<char> mixedСharacters = new List<char>();
     private readonly Guid userId = new Guid("23a2dcb7-38b5-44b4-85e9-9e6af7f4646f");
@@ -18,8 +18,8 @@ public class Compose_words_razor : ComponentBase
 
     protected  override void OnInitialized()
     {
-        MainWord =  _wordService.GetRandomWord(userId);
-        char[] arrayChars = MainWord.WordText.ToCharArray();
+        mainWord =  _wordService.GetRandomWord(userId);
+        char[] arrayChars = mainWord.WordText.ToCharArray();
         mixedСharacters = arrayChars.OrderBy(x => random.Next()).ToList();
         resultWord.Clear();
         ResultStyle = "light";
@@ -60,7 +60,7 @@ public class Compose_words_razor : ComponentBase
         {
             blindWord.Append(resultWord[i]);
         }
-        if (blindWord.ToString().Equals(MainWord.WordText))
+        if (blindWord.ToString().Equals(mainWord.WordText))
         {
             ResultStyle = "success";
         }else

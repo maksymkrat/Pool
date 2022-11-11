@@ -11,10 +11,13 @@ namespace Pool.API.Controllers;
 public class AccountController : ControllerBase
 {
     private readonly IUserService _userService;
+    private readonly ILogger _logger;
 
-    public AccountController( IUserService userService)
+
+    public AccountController( IUserService userService, ILogger<AccountController> logger)
     {
         _userService = userService;
+        _logger = logger;
     }
 
 
@@ -23,6 +26,7 @@ public class AccountController : ControllerBase
     [AllowAnonymous]
     public ActionResult Login([FromBody] LoginRequest loginRequest)
     {
+        _logger.LogInformation($"{DateTime.UtcNow.ToLongTimeString()} method: Login");
         try
         {
             var jwtAuthenticationManager = new JwtAuthenticationManager(_userService);

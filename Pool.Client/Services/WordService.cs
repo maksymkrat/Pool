@@ -18,13 +18,13 @@ public class WordService : HttpServiceBase
 
     protected override string _apiControllerName { get; set; }
 
-    public async Task<List<Word>> GetAllWords(Guid userId)
+    public  List<Word> GetAllWords(Guid userId)
     {
-         await AddAuthorizationAsync();
-        var result = await _client.GetAsync(Url($"GetAllUsersWords/{userId}"));
+          AddAuthorizationAsync();
+        var result =  _client.GetAsync(Url($"GetAllUsersWords/{userId}")).Result;
         if (!result.IsSuccessStatusCode || string.IsNullOrEmpty(result.Content.ToString()))
             return new List<Word>();
-        return await DeserializeFromStream<List<Word>>(result.Content);
+        return  DeserializeFromStream<List<Word>>(result.Content).Result;
     }
     public  List<Word> GetFourRandomWords(Guid userId)
     {
@@ -35,10 +35,10 @@ public class WordService : HttpServiceBase
         return  DeserializeFromStream<List<Word>>(result.Content).Result;
     }
    
-    public async Task<bool> DeleteById(int id)
+    public async  Task<bool> DeleteById(int id)
     {
         await AddAuthorizationAsync();
-        var result = await _client.GetAsync(Url($"Delete/{id}"));
+        var result = await  _client.GetAsync(Url($"Delete/{id}"));
         return result.IsSuccessStatusCode;
     }
 
@@ -66,15 +66,15 @@ public class WordService : HttpServiceBase
         return  DeserializeFromStream<Word>(result.Content).Result;
     }
 
-    public async Task<Translater> Translate(string word)
+    public  Translater Translate(string word)
     {
         try
         {
-            await AddAuthorizationAsync();
-            var result = await _client.GetAsync(Url($"Translate/{word}"));
+             AddAuthorizationAsync();
+            var result =  _client.GetAsync(Url($"Translate/{word}")).Result;
             if (!result.IsSuccessStatusCode || string.IsNullOrEmpty(result.Content.ToString()))
                 return new Translater();
-            return await DeserializeFromStream<Translater>(result.Content);
+            return  DeserializeFromStream<Translater>(result.Content).Result;
         }
         catch (Exception e)
         {

@@ -30,7 +30,7 @@ public class WordService : IWordService
 
     public Task<bool> DeleteWordById(int id)
     {
-        return _wordRepository.DeleteWordById(id);
+        return _wordRepository.DeleteById(id);
     }
 
     public Task<bool> AddWord(Word word)

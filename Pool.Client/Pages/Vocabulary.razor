@@ -10,7 +10,7 @@
                         <div class="col-sm-12 col-md-6">
                             <div class="row ">
                                 <div class="col-8">
-                                    <input class="word form-control  border border-dark " placeholder="some word" @bind="newWord"/>
+                                    <input class="word form-control  border border-dark " placeholder="some word" @bind="NewWord"/>
                                 </div>
                                 <div class="col-4">
                                     <button type="button" class="word btn btn-primary form-control " @onclick="TranslateWord">translate</button>
@@ -18,7 +18,7 @@
                             </div>
                             <div class="row mt-2">
                                 <div class="col-8">
-                                    <input class="word form-control border border-dark " placeholder="some translate" @bind="newTranslate"/>
+                                    <input class="word form-control border border-dark " placeholder="some translate" @bind="NewTranslate"/>
                                 </div>
 
                                 <div class="col-4">
@@ -28,11 +28,11 @@
                         </div>
 
                         <div class="col-sm-12 col-md-6 border border-primary rounded ">
-                            <p class="text-primary">Translation:</p>
+                            <p class="text-primary">Translation :</p>
                             <div class="pl-5 word">
                                 @WordForTranslation
                                 <br/>
-                                @wordTranslation
+                                @WordTranslation
                             </div>
                         </div>
 

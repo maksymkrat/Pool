@@ -9,39 +9,36 @@ using Pool.Shared.Models;
 
 namespace Pool.Client.Pages;
 
-public  class Login_razor : ComponentBase
+public class Login_razor : ComponentBase
 {
     //[Inject]  HttpClient httpClient { get; set; }
-    [Inject]  AccountService accountService { get; set; }
-    [Inject] private IJSRuntime js { get; set; }
-    [Inject] private AuthenticationStateProvider authStateProvider { get; set; }
-    [Inject] private NavigationManager navManager { get; set; }
-    
+    [Inject] private AccountService _accountService { get; set; }
+    [Inject] private IJSRuntime _js { get; set; }
+    [Inject] private AuthenticationStateProvider _authStateProvider { get; set; }
+    [Inject] private NavigationManager _navManager { get; set; }
+
     protected LoginRequest loginRequest = new LoginRequest();
 
     protected async Task Authentication()
     {
         try
         {
-            var LoginResponse =  await accountService.Login(loginRequest);
+            var LoginResponse = await _accountService.Login(loginRequest);
             if (LoginResponse != null)
             {
                 var userSession = LoginResponse;
-                var customAuthStateProvider = (CustomAuthenticationStateProvider)authStateProvider;
+                var customAuthStateProvider = (CustomAuthenticationStateProvider) _authStateProvider;
                 await customAuthStateProvider.UpdateAuthenticationState(userSession);
-                navManager.NavigateTo("/", true);
+                _navManager.NavigateTo("/", true);
             }
-            else 
+            else
             {
-                await js.InvokeVoidAsync("alert", "Invalid User Name or Password");
+                await _js.InvokeVoidAsync("alert", "Invalid User Name or Password");
             }
         }
         catch (Exception e)
         {
             Console.WriteLine(e);
-            
         }
-       
     }
-    
 }

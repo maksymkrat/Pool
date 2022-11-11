@@ -9,15 +9,18 @@ public class UserRepository : IUserRepository
 {
     private readonly IConfiguration _configuration;
     private readonly string _defaultConnection;
+    private readonly ILogger _logger;
 
-    public UserRepository(IConfiguration configuration)
+    public UserRepository(IConfiguration configuration, ILogger<UserRepository> logger)
     {
         _configuration = configuration;
+        _logger = logger;
         _defaultConnection = _configuration.GetConnectionString("DefaultConnection");
     }
 
     public async Task<UserAccount> GetUserAccountByEmail(string email)
     {
+        _logger.LogInformation($"{DateTime.UtcNow.ToLongTimeString()} method: GetUserAccountByEmail");
         try
         {
             using (var conn = new SqlConnection(_defaultConnection))
