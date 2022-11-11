@@ -11,7 +11,6 @@ namespace Pool.Client.Pages;
 
 public class Login_razor : ComponentBase
 {
-    //[Inject]  HttpClient httpClient { get; set; }
     [Inject] private AccountService _accountService { get; set; }
     [Inject] private IJSRuntime _js { get; set; }
     [Inject] private AuthenticationStateProvider _authStateProvider { get; set; }

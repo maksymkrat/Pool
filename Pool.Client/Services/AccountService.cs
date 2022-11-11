@@ -2,20 +2,23 @@
 using Blazored.LocalStorage;
 using Microsoft.AspNetCore.Components.Authorization;
 using Newtonsoft.Json;
+using Pool.Client.Authentication;
 using Pool.Shared.Models;
 
 namespace Pool.Client.Services;
 
 public class AccountService : HttpServiceBase
 {
+    private readonly AuthenticationStateProvider _authStateProvider; 
     protected sealed override string _apiControllerName { get; set; }
-    public UserSession UserSession { get; set; }
+   
 
     public AccountService(
-            AuthenticationStateProvider authenticationStateProvider, 
+        AuthenticationStateProvider authenticationStateProvider, 
             ILocalStorageService localStorageService) : base(authenticationStateProvider, localStorageService)
     {
         _apiControllerName = "account";
+        _authStateProvider = authenticationStateProvider;
     }
 
     public async Task<UserSession> Login(LoginRequest loginRequest)
@@ -30,8 +33,9 @@ public class AccountService : HttpServiceBase
             new StringContent(JsonConvert.SerializeObject(loginRequest), Encoding.UTF8, "application/json"));
         if (!result.IsSuccessStatusCode || string.IsNullOrEmpty(result.Content.ToString()))
             return null;
-        UserSession = await DeserializeFromStream<UserSession>(result.Content);
-        return UserSession;
+        return ((CustomAuthenticationStateProvider)_authStateProvider).UserSession = await DeserializeFromStream<UserSession>(result.Content);
+        
     }
 
+    
 }

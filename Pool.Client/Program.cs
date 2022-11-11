@@ -12,7 +12,7 @@ builder.Services.AddServerSideBlazor();
 builder.Services.AddBlazoredLocalStorage();
 builder.Services.AddAuthenticationCore();
 
-builder.Services.AddScoped<AccountService>();
+builder.Services.AddTransient<AccountService>();
 builder.Services.AddScoped<WordService>();
 builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthenticationStateProvider>();
 

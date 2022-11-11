@@ -1,5 +1,7 @@
 ﻿using System.Text;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Authorization;
+using Pool.Client.Authentication;
 using Pool.Client.Services;
 using Pool.Shared.Models;
 
@@ -8,16 +10,18 @@ namespace Pool.Client.Pages;
 public class Compose_words_razor : ComponentBase
 {
     [Inject] private WordService _wordService { get; set; }
+    [Inject] private AuthenticationStateProvider  _authStateProvider { get; set; }
     protected string ResultStyle { get; set; }
     protected Random random = new Random();
     protected Word mainWord{ get; set; }
     protected List<char> resultWord = new List<char>();
     protected List<char> mixedСharacters = new List<char>();
-    private readonly Guid userId = new Guid("23a2dcb7-38b5-44b4-85e9-9e6af7f4646f");
+    
 
 
     protected  override void OnInitialized()
     {
+        var userId = ((CustomAuthenticationStateProvider)_authStateProvider).UserSession.Id;
         mainWord =  _wordService.GetRandomWord(userId);
         char[] arrayChars = mainWord.WordText.ToCharArray();
         mixedСharacters = arrayChars.OrderBy(x => random.Next()).ToList();

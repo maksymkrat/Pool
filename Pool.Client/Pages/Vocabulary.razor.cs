@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Authorization;
+using Pool.Client.Authentication;
 using Pool.Client.Components;
 using Pool.Client.Services;
 using Pool.Shared.Models;
@@ -11,6 +13,8 @@ public class Vocabulary_razor : ComponentBase
     [Inject] private AccountService _accountService { get; set; }
     [Inject] private ILogger<Vocabulary> _logger { get; set; }
     [Inject] private WordService _wordService { get; set; }
+    [Inject] private AuthenticationStateProvider  _authStateProvider { get; set; }
+
 
     private List<Word> _words = new List<Word>();
 
@@ -33,7 +37,6 @@ public class Vocabulary_razor : ComponentBase
     protected UpdateWord UpdatedWord { get; set; }
     protected Word WordToBeDeleted { get; set; }
     protected Word WordToBeUpdated { get; set; }
-    protected readonly Guid userId = new Guid("23A2DCB7-38B5-44B4-85E9-9E6AF7F4646F");
 
 
     protected override void OnInitialized()
@@ -43,7 +46,7 @@ public class Vocabulary_razor : ComponentBase
 
     protected void UpdateWords()
     {
-        // var userId = _accountService.UserSession.Id;
+         var userId = ((CustomAuthenticationStateProvider)_authStateProvider).UserSession.Id;
         Words = _wordService.GetAllWords(userId); //hardcode
         InvokeAsync(StateHasChanged);
     }
@@ -56,7 +59,7 @@ public class Vocabulary_razor : ComponentBase
             {
                 WordText = NewWord.ToLower(),
                 Translation = NewTranslate.ToLower(),
-                User_id = userId
+                User_id = ((CustomAuthenticationStateProvider)_authStateProvider).UserSession.Id
             });
 
             NewWord = string.Empty;
