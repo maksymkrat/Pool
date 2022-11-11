@@ -13,7 +13,7 @@ public class Compose_words_razor : ComponentBase
     [Inject] private AuthenticationStateProvider  _authStateProvider { get; set; }
     protected string ResultStyle { get; set; }
     protected Random random = new Random();
-    protected Word mainWord{ get; set; }
+    protected Word MainWord{ get; set; }
     protected List<char> resultWord = new List<char>();
     protected List<char> mixedСharacters = new List<char>();
     
@@ -22,11 +22,15 @@ public class Compose_words_razor : ComponentBase
     protected  override void OnInitialized()
     {
         var userId = ((CustomAuthenticationStateProvider)_authStateProvider).UserSession.Id;
-        mainWord =  _wordService.GetRandomWord(userId);
-        char[] arrayChars = mainWord.WordText.ToCharArray();
-        mixedСharacters = arrayChars.OrderBy(x => random.Next()).ToList();
-        resultWord.Clear();
-        ResultStyle = "light";
+        MainWord =  _wordService.GetRandomWord(userId);
+        if (MainWord != null)
+        {
+            char[] arrayChars = MainWord.WordText.ToCharArray();
+            mixedСharacters = arrayChars.OrderBy(x => random.Next()).ToList();
+            resultWord.Clear();
+            ResultStyle = "light";
+        }
+        
     }
     
     
@@ -64,7 +68,7 @@ public class Compose_words_razor : ComponentBase
         {
             blindWord.Append(resultWord[i]);
         }
-        if (blindWord.ToString().Equals(mainWord.WordText))
+        if (blindWord.ToString().Equals(MainWord.WordText))
         {
             ResultStyle = "success";
         }else

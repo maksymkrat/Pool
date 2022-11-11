@@ -23,7 +23,8 @@ public class Words_test_razor : ComponentBase
     {
         var userId = ((CustomAuthenticationStateProvider)_authStateProvider).UserSession.Id;
         Words =  _wordService.GetFourRandomWords(userId);
-        MainWord = Words.ElementAt(rnd.Next(0, Words.Count));
+        if(Words.Count >= 4)
+            MainWord = Words.ElementAt(rnd.Next(0, Words.Count)); //TODO: Notification You need to add at least 4 words
     }
 
     

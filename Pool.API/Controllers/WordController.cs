@@ -21,8 +21,7 @@ public class WordController : ControllerBase
         _translatorService = translatorService;
         _logger = logger;
     }
-
-    private readonly Guid UserId = new Guid("23a2dcb7-38b5-44b4-85e9-9e6af7f4646f"); //need delete
+    
 
     [HttpGet("GetAllUsersWords/{userId}")]
     public async Task<IActionResult> GetAllUsersWords(Guid userId)
