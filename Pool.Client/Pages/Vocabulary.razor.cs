@@ -13,6 +13,7 @@ public class Vocabulary_razor : ComponentBase
     [Inject] private AccountService _accountService { get; set; }
     [Inject] private ILogger<Vocabulary> _logger { get; set; }
     [Inject] private WordService _wordService { get; set; }
+    [Inject] private SpeechService _speechService { get; set; }
     [Inject] private AuthenticationStateProvider  _authStateProvider { get; set; }
 
 
@@ -131,6 +132,6 @@ public class Vocabulary_razor : ComponentBase
 
     protected void SayWord(Word word)
     {
-        // _business.Speech(word.WordText);
+         _speechService.Speech(word.WordText);
     }
 }

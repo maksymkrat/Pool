@@ -12,8 +12,9 @@ builder.Services.AddServerSideBlazor();
 builder.Services.AddBlazoredLocalStorage();
 builder.Services.AddAuthenticationCore();
 
-builder.Services.AddTransient<AccountService>();
+builder.Services.AddScoped<AccountService>();
 builder.Services.AddScoped<WordService>();
+builder.Services.AddScoped<SpeechService>();
 builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthenticationStateProvider>();
 
 var app = builder.Build();

@@ -41,3 +41,5 @@ D:\C\MainProjects\Pool\Pool.Client\bin\Debug\net6.0\Pool.Shared.pdb
 D:\C\MainProjects\Pool\Pool.Client\obj\Debug\net6.0\Pool.Client.csproj.CopyComplete
 D:\C\MainProjects\Pool\Pool.Client\bin\Debug\net6.0\NLog.dll
 D:\C\MainProjects\Pool\Pool.Client\bin\Debug\net6.0\NLog.Extensions.Logging.dll
+D:\C\MainProjects\Pool\Pool.Client\bin\Debug\net6.0\System.Speech.dll
+D:\C\MainProjects\Pool\Pool.Client\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Speech.dll

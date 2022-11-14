@@ -11,7 +11,8 @@
           "Blazored.LocalStorage": "4.3.0-preview.1",
           "Microsoft.AspNetCore.Components.Authorization": "6.0.8",
           "NLog.Extensions.Logging": "5.1.0",
-          "Pool.Shared": "1.0.0"
+          "Pool.Shared": "1.0.0",
+          "System.Speech": "7.0.0"
         },
         "runtime": {
           "Pool.Client.dll": {}
@@ -191,6 +192,22 @@
         }
       },
       "System.Runtime.CompilerServices.Unsafe/6.0.0": {},
+      "System.Speech/7.0.0": {
+        "runtime": {
+          "lib/net6.0/System.Speech.dll": {
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "7.0.22.51805"
+          }
+        },
+        "runtimeTargets": {
+          "runtimes/win/lib/net6.0/System.Speech.dll": {
+            "rid": "win",
+            "assetType": "runtime",
+            "assemblyVersion": "4.0.0.0",
+            "fileVersion": "7.0.22.51805"
+          }
+        }
+      },
       "Pool.Shared/1.0.0": {
         "dependencies": {
           "Microsoft.AspNetCore.Components.Web": "6.0.8",
@@ -361,6 +378,13 @@
       "sha512": "sha512-/iUeP3tq1S0XdNNoMz5C9twLSrM/TH+qElHkXWaPvuNOt+99G75NrV0OS2EqHx5wMN7popYjpc8oTjC1y16DLg==",
       "path": "system.runtime.compilerservices.unsafe/6.0.0",
       "hashPath": "system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
+    },
+    "System.Speech/7.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-7E0uB92Cx2sXR67HW9rMKJqDACdLuz9t3I3OwZUFDzAgwKXWuY6CYeRT/NiypHcyZO2be9+0H0w0M6fn7HQtgQ==",
+      "path": "system.speech/7.0.0",
+      "hashPath": "system.speech.7.0.0.nupkg.sha512"
     },
     "Pool.Shared/1.0.0": {
       "type": "project",
