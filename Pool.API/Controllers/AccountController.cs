@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Pool.API.Authentication;
-using Pool.API.Services;
 using Pool.API.Services.IServicec;
 using Pool.Shared.Models;
 

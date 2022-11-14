@@ -1,7 +1,6 @@
 ﻿using System.Net;
 using System.Text.Json;
 using Pool.API.Services.IServicec;
-using Microsoft.Extensions.Logging;
 using Pool.Shared.Models.DeserializeTranslation;
 
 namespace Pool.API.Services;
