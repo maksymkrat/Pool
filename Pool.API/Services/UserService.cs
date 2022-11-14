@@ -1,4 +1,5 @@
-﻿using Pool.API.Models;
+﻿using System.Text;
+using Pool.API.Models;
 using Pool.API.Repository.IRepository;
 using Pool.API.Services.IServicec;
 
@@ -7,6 +8,7 @@ namespace Pool.API.Services;
 public class UserService : IUserService
 {
     private readonly IUserRepository _userRepository;
+    private const string KEY = "some_secret_key";
 
     public UserService(IUserRepository userRepository)
     {
@@ -16,5 +18,23 @@ public class UserService : IUserService
     public Task<UserAccount> GetUserAccountByEmail(string email)
     {
         return _userRepository.GetUserAccountByEmail(email);
+    }
+    
+    public  string EncryptPassword(string password)
+    {
+        if (string.IsNullOrEmpty(password)) return "";
+        password += KEY;
+        var passwordBytes = Encoding.UTF8.GetBytes(password);
+        return Convert.ToBase64String(passwordBytes);
+
+    }
+
+    public  string DecryptPassword(string base64EncodeDate)
+    {
+        if (string.IsNullOrEmpty(base64EncodeDate)) return "";
+        var base64EncodeBytes = Convert.FromBase64String(base64EncodeDate);
+        var result = Encoding.UTF8.GetString(base64EncodeBytes);
+        result = result.Substring(0, result.Length - KEY.Length);
+        return result;
     }
 }

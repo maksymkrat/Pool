@@ -27,7 +27,7 @@ public class JwtAuthenticationManager
 
             //validating the user credentials
              var userAccount = _userService.GetUserAccountByEmail(userName).Result;
-            if (userAccount == null || userAccount.PasswordH != password)
+            if (userAccount == null || userAccount.PasswordH != _userService.EncryptPassword(password))
                 return null;
 
             //generating jwt token
