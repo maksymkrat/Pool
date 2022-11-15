@@ -9,7 +9,7 @@ namespace Pool.Client.Authentication;
 public class CustomAuthenticationStateProvider : AuthenticationStateProvider
 {
     private readonly ILocalStorageService _localStorageService;
-    public UserSession UserSession { get; set; }
+    public UserSessionModel UserSession { get; set; }
 
 
     private ClaimsPrincipal _anonymous = new ClaimsPrincipal(new ClaimsIdentity());
@@ -24,7 +24,7 @@ public class CustomAuthenticationStateProvider : AuthenticationStateProvider
     {
         try
         {
-            var userSession = await _localStorageService.ReadEncryptedItemAsync<UserSession>("UserSessionJWT");
+            var userSession = await _localStorageService.ReadEncryptedItemAsync<UserSessionModel>("UserSessionJWT");
             if (userSession == null)
                 return await Task.FromResult(new AuthenticationState(_anonymous));
             else
@@ -47,7 +47,7 @@ public class CustomAuthenticationStateProvider : AuthenticationStateProvider
         }
     }
 
-    public async Task UpdateAuthenticationState(UserSession? userSession)
+    public async Task UpdateAuthenticationState(UserSessionModel? userSession)
     {
         ClaimsPrincipal claimsPrincipal;
         if (userSession != null)
@@ -75,7 +75,7 @@ public class CustomAuthenticationStateProvider : AuthenticationStateProvider
         var result = string.Empty;
         try
         {
-            var userSession = await _localStorageService.ReadEncryptedItemAsync<UserSession>("UserSessionJWT");
+            var userSession = await _localStorageService.ReadEncryptedItemAsync<UserSessionModel>("UserSessionJWT");
             if (userSession != null)
                 result = userSession.Token;
         }

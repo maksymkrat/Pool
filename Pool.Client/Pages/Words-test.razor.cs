@@ -10,8 +10,8 @@ public class Words_test_razor : ComponentBase
 {
     [Inject] private WordService _wordService { get; set; }
     [Inject] private AuthenticationStateProvider  _authStateProvider { get; set; }
-    protected Word MainWord { get; set; }
-    protected List<Word> Words{ get; set; }
+    protected WordModel MainWord { get; set; }
+    protected List<WordModel> Words{ get; set; }
     protected Random rnd = new Random();
     protected string resultStyle = "light";
     protected string mainWordStyle = "light";

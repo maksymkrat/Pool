@@ -13,7 +13,7 @@ public class Compose_words_razor : ComponentBase
     [Inject] private AuthenticationStateProvider  _authStateProvider { get; set; }
     protected string ResultStyle { get; set; }
     protected Random random = new Random();
-    protected Word MainWord{ get; set; }
+    protected WordModel MainWord{ get; set; }
     protected List<char> resultWord = new List<char>();
     protected List<char> mixedСharacters = new List<char>();
     

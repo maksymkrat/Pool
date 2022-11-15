@@ -17,9 +17,9 @@ public class Vocabulary_razor : ComponentBase
     [Inject] private AuthenticationStateProvider  _authStateProvider { get; set; }
 
 
-    private List<Word> _words = new List<Word>();
+    private List<WordModel> _words = new List<WordModel>();
 
-    protected List<Word> Words
+    protected List<WordModel> Words
     {
         get => _words;
         set
@@ -36,8 +36,8 @@ public class Vocabulary_razor : ComponentBase
     protected Translater Translater{ get; set; }
     protected DeleteConfiraation DeleteConfirmation { get; set; }
     protected UpdateWord UpdatedWord { get; set; }
-    protected Word WordToBeDeleted { get; set; }
-    protected Word WordToBeUpdated { get; set; }
+    protected WordModel WordToBeDeleted { get; set; }
+    protected WordModel WordToBeUpdated { get; set; }
 
 
     protected override void OnInitialized()
@@ -56,7 +56,7 @@ public class Vocabulary_razor : ComponentBase
     {
         if (!string.IsNullOrWhiteSpace(NewWord) && !String.IsNullOrWhiteSpace(NewTranslate))
         {
-            var result = await _wordService.AddWord(new Word()
+            var result = await _wordService.AddWord(new WordModel()
             {
                 WordText = NewWord.ToLower(),
                 Translation = NewTranslate.ToLower(),
@@ -91,15 +91,15 @@ public class Vocabulary_razor : ComponentBase
         }
     }
 
-    protected void DeleteWord(Word word)
+    protected void DeleteWord(WordModel word)
     {
         WordToBeDeleted = word;
         DeleteConfirmation.Show();
     }
 
-    protected void UpdateWord(Word word)
+    protected void UpdateWord(WordModel word)
     {
-        WordToBeUpdated = (Word) word.Clone();
+        WordToBeUpdated = (WordModel) word.Clone();
         UpdatedWord.Show();
     }
 
@@ -130,7 +130,7 @@ public class Vocabulary_razor : ComponentBase
         WordToBeUpdated = null;
     }
 
-    protected void SayWord(Word word)
+    protected void SayWord(WordModel word)
     {
          _speechService.Speech(word.WordText);
     }

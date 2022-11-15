@@ -19,7 +19,7 @@ public class JwtAuthenticationManager
             _userService = userService;
         }
 
-        public UserSession? GenerateJwtToken(string userName, string password)
+        public UserSessionModel? GenerateJwtToken(string userName, string password)
         {
             if (string.IsNullOrWhiteSpace(userName) || string.IsNullOrWhiteSpace(password))
                 return null;
@@ -51,7 +51,7 @@ public class JwtAuthenticationManager
             var token = jwtSecurityTokenHandler.WriteToken(securityToken); 
 
             //returning the user session object
-            var userSession = new UserSession
+            var userSession = new UserSessionModel
             {
                 Id = userAccount.Id,
                 FirstName = userAccount.FirstName,

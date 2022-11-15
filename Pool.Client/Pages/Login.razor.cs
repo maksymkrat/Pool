@@ -16,7 +16,7 @@ public class Login_razor : ComponentBase
     [Inject] private AuthenticationStateProvider _authStateProvider { get; set; }
     [Inject] private NavigationManager _navManager { get; set; }
 
-    protected LoginRequest loginRequest = new LoginRequest();
+    protected LoginRequestModel loginRequest = new LoginRequestModel();
 
     protected async Task Authentication()
     {

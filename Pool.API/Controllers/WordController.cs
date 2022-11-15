@@ -104,7 +104,7 @@ public class WordController : ControllerBase
     }
 
     [HttpPost("AddWord")]
-    public async Task<IActionResult> AddWord([FromBody] Word word)
+    public async Task<IActionResult> AddWord([FromBody] WordModel word)
     {
         _logger.LogInformation($"{DateTime.UtcNow.ToLongTimeString()} method: AddWord");
         try
@@ -121,7 +121,7 @@ public class WordController : ControllerBase
     }
     
     [HttpPost("Update")]
-    public async Task<IActionResult> Update([FromBody] Word word)
+    public async Task<IActionResult> Update([FromBody] WordModel word)
     {
         _logger.LogInformation($"{DateTime.UtcNow.ToLongTimeString()} method: Update");
         try

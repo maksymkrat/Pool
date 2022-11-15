@@ -18,21 +18,21 @@ public class WordService : HttpServiceBase
 
     protected override string _apiControllerName { get; set; }
 
-    public  List<Word> GetAllWords(Guid userId)
+    public  List<WordModel> GetAllWords(Guid userId)
     {
           AddAuthorizationAsync();
         var result =  _client.GetAsync(Url($"GetAllUsersWords/{userId}")).Result;
         if (!result.IsSuccessStatusCode || string.IsNullOrEmpty(result.Content.ToString()))
-            return new List<Word>();
-        return  DeserializeFromStream<List<Word>>(result.Content).Result;
+            return new List<WordModel>();
+        return  DeserializeFromStream<List<WordModel>>(result.Content).Result;
     }
-    public  List<Word> GetFourRandomWords(Guid userId)
+    public  List<WordModel> GetFourRandomWords(Guid userId)
     {
          AddAuthorizationAsync();
         var result =  _client.GetAsync(Url($"GetFourRandomWords/{userId}")).Result;
         if (!result.IsSuccessStatusCode || string.IsNullOrEmpty(result.Content.ToString()))
-            return new List<Word>();
-        return  DeserializeFromStream<List<Word>>(result.Content).Result;
+            return new List<WordModel>();
+        return  DeserializeFromStream<List<WordModel>>(result.Content).Result;
     }
    
     public async  Task<bool> DeleteById(int id)
@@ -42,7 +42,7 @@ public class WordService : HttpServiceBase
         return result.IsSuccessStatusCode;
     }
 
-    public async Task<bool> AddWord(Word word)
+    public async Task<bool> AddWord(WordModel word)
     {
         await AddAuthorizationAsync();
         var result = await _client.PostAsync(Url("AddWord"),
@@ -50,20 +50,20 @@ public class WordService : HttpServiceBase
         return result.IsSuccessStatusCode;
     }
 
-    public async Task<bool> UpdateWord(Word word)
+    public async Task<bool> UpdateWord(WordModel word)
     {
         await AddAuthorizationAsync();
         var result = await _client.PostAsync(Url("Update"),
             new StringContent(JsonConvert.SerializeObject(word), Encoding.UTF8, "application/json"));
         return result.IsSuccessStatusCode;
     }
-    public  Word GetRandomWord(Guid userId)
+    public  WordModel GetRandomWord(Guid userId)
     {
          AddAuthorizationAsync();
         var result =  _client.GetAsync(Url($"GetRandomWord/{userId}")).Result;
         if (!result.IsSuccessStatusCode || string.IsNullOrEmpty(result.Content.ToString()))
-            return new Word();
-        return  DeserializeFromStream<Word>(result.Content).Result;
+            return new WordModel();
+        return  DeserializeFromStream<WordModel>(result.Content).Result;
     }
 
     public  Translater Translate(string word)

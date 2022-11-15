@@ -2,7 +2,7 @@
 
 namespace Pool.Shared.Models;
 
-public class LoginRequest
+public class LoginRequestModel
 {
     [Required(ErrorMessage = "enter email")]
     [StringLength(100, ErrorMessage = "min 4 symbols", MinimumLength = 4)]

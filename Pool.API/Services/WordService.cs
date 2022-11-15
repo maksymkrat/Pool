@@ -13,17 +13,17 @@ public class WordService : IWordService
         _wordRepository = wordRepository;
     }
 
-    public Task<List<Word>> GetAllUsersWords(Guid userId)
+    public Task<List<WordModel>> GetAllUsersWords(Guid userId)
     {
         return _wordRepository.GetAllUsersWords(userId);
     }
 
-    public Task<List<Word>> GetFourRandomWords(Guid userId)
+    public Task<List<WordModel>> GetFourRandomWords(Guid userId)
     {
         return _wordRepository.GetFourRandomWords(userId);
     }
 
-    public Task<Word> GetRandomWord(Guid userId)
+    public Task<WordModel> GetRandomWord(Guid userId)
     {
         return _wordRepository.GetRandomWord(userId);
     }
@@ -33,12 +33,12 @@ public class WordService : IWordService
         return _wordRepository.DeleteById(id);
     }
 
-    public Task<bool> AddWord(Word word)
+    public Task<bool> AddWord(WordModel word)
     {
         return _wordRepository.AddWord(word);
     }
 
-    public Task<bool> Update(Word word)
+    public Task<bool> Update(WordModel word)
     {
         return _wordRepository.Update(word);
     }

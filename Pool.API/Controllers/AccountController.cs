@@ -23,7 +23,7 @@ public class AccountController : ControllerBase
     [HttpPost]
     [Route("Login")]
     [AllowAnonymous]
-    public ActionResult Login([FromBody] LoginRequest loginRequest)
+    public ActionResult Login([FromBody] LoginRequestModel loginRequest)
     {
         _logger.LogInformation($"{DateTime.UtcNow.ToLongTimeString()} method: Login");
         try

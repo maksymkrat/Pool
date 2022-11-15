@@ -21,7 +21,7 @@ public class AccountService : HttpServiceBase
         _authStateProvider = authenticationStateProvider;
     }
 
-    public async Task<UserSession> Login(LoginRequest loginRequest)
+    public async Task<UserSessionModel> Login(LoginRequestModel loginRequest)
     {
         if (loginRequest == null)
         {
@@ -33,7 +33,7 @@ public class AccountService : HttpServiceBase
             new StringContent(JsonConvert.SerializeObject(loginRequest), Encoding.UTF8, "application/json"));
         if (!result.IsSuccessStatusCode || string.IsNullOrEmpty(result.Content.ToString()))
             return null;
-        return ((CustomAuthenticationStateProvider)_authStateProvider).UserSession = await DeserializeFromStream<UserSession>(result.Content);
+        return ((CustomAuthenticationStateProvider)_authStateProvider).UserSession = await DeserializeFromStream<UserSessionModel>(result.Content);
         
     }
 

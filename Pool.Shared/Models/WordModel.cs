@@ -1,6 +1,6 @@
 ﻿namespace Pool.Shared.Models;
 
-public class Word : ICloneable
+public class WordModel : ICloneable
 {
     public int Id { get; set; }
     public string WordText { get; set; }
@@ -8,13 +8,13 @@ public class Word : ICloneable
     public DateTime DateTime { get; set; }
     public Guid User_id { get; set; }
 
-    public Word()
+    public WordModel()
     {
     }
 
 
 
-    public Word(int id, string wordText, string translation, DateTime dateTime, Guid userId)
+    public WordModel(int id, string wordText, string translation, DateTime dateTime, Guid userId)
     {
         Id = id;
         WordText = wordText;
@@ -25,6 +25,6 @@ public class Word : ICloneable
 
     public object Clone()
     {
-        return new Word(Id,WordText,Translation,DateTime, User_id);
+        return new WordModel(Id,WordText,Translation,DateTime, User_id);
     }
 }

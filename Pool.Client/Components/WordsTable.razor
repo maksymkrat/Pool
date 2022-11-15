@@ -42,15 +42,15 @@
 @code {
 
     [Parameter]
-    public List<Word> Words { get; set; }
+    public List<WordModel> Words { get; set; }
 
     [Parameter]
-    public EventCallback<Word> DeleteWord { get; set; }
+    public EventCallback<WordModel> DeleteWord { get; set; }
     
     [Parameter]
-    public EventCallback<Word> UpdateWord { get; set; }
+    public EventCallback<WordModel> UpdateWord { get; set; }
 
     [Parameter]
-    public EventCallback<Word> SayWord { get; set; }
+    public EventCallback<WordModel> SayWord { get; set; }
 
 }

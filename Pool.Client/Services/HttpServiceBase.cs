@@ -82,7 +82,7 @@ public abstract class HttpServiceBase
         if (jwt == null)
             return string.Empty;
 
-        var deserializedToken = JsonConvert.DeserializeObject<UserSession>(jwt.ToString());
+        var deserializedToken = JsonConvert.DeserializeObject<UserSessionModel>(jwt.ToString());
 
         if (deserializedToken == null)
             return string.Empty;

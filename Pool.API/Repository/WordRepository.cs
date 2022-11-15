@@ -18,11 +18,11 @@ public class WordRepository : IWordRepository
         DefaultConnection = _configuration.GetConnectionString("DefaultConnection");
     }
 
-    public async Task<List<Word>> GetAllUsersWords(Guid userId) //Guid userId add in parametrs
+    public async Task<List<WordModel>> GetAllUsersWords(Guid userId) //Guid userId add in parametrs
     {
         _logger.LogInformation($"{DateTime.UtcNow.ToLongTimeString()} method: GetAllUsersWords");
 
-        List<Word> words = new List<Word>();
+        List<WordModel> words = new List<WordModel>();
         using (var conn = new SqlConnection(DefaultConnection))
         {
             conn.Open();
@@ -35,7 +35,7 @@ public class WordRepository : IWordRepository
             {
                 while (reader.Read())
                 {
-                    Word word = new Word()
+                    WordModel word = new WordModel()
                     {
                         Id = Int32.Parse(reader["Id"].ToString()),
                         WordText = reader["Word"].ToString(),
@@ -64,7 +64,7 @@ public class WordRepository : IWordRepository
             return await cmd.ExecuteNonQueryAsync() > 0;
         }
     }
-    public async Task<bool> AddWord(Word word)
+    public async Task<bool> AddWord(WordModel word)
     {
         _logger.LogInformation($"{DateTime.UtcNow.ToLongTimeString()} method: AddWord");
         try
@@ -89,13 +89,13 @@ public class WordRepository : IWordRepository
     }
 
 
-    public async Task<List<Word>> GetFourRandomWords(Guid userId)
+    public async Task<List<WordModel>> GetFourRandomWords(Guid userId)
     {
         _logger.LogInformation($"{DateTime.UtcNow.ToLongTimeString()} method: GetFourRandomWords");
 
         try
         {
-            List<Word> words = new List<Word>();
+            List<WordModel> words = new List<WordModel>();
             using (var conn = new SqlConnection(DefaultConnection))
             {
                 conn.Open();
@@ -109,7 +109,7 @@ public class WordRepository : IWordRepository
                 {
                     while (reader.Read())
                     {
-                        Word word = new Word()
+                        WordModel word = new WordModel()
                         {
                             Id = Int32.Parse(reader["Id"].ToString()),
                             WordText = reader["Word"].ToString(),
@@ -131,7 +131,7 @@ public class WordRepository : IWordRepository
     }
 
 
-    public async Task<Word> GetRandomWord(Guid userId)
+    public async Task<WordModel> GetRandomWord(Guid userId)
     {
         _logger.LogInformation($"{DateTime.UtcNow.ToLongTimeString()} method: GetRandomWord");
         try
@@ -149,7 +149,7 @@ public class WordRepository : IWordRepository
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
                     reader.Read();
-                    Word word = new Word()
+                    WordModel word = new WordModel()
                     {
                         Id = Int32.Parse(reader["Id"].ToString()),
                         WordText = reader["Word"].ToString(),
@@ -169,7 +169,7 @@ public class WordRepository : IWordRepository
     }
 
 
-    public async Task<bool> Update(Word word)
+    public async Task<bool> Update(WordModel word)
     {
         _logger.LogInformation($"{DateTime.UtcNow.ToLongTimeString()} method: Update");
         using (var conn = new SqlConnection(DefaultConnection))
