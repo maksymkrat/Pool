@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "G3X8WTeZ5hgQGmZ37U+KcQw4JKpk2ehv0BKFVwEchkjxfUyEBrrQLWdu5BktZwCD9+5urAX5KXoGW/PrCxwV9g==",
+  "dgSpecHash": "qs6EVlTjeDF2kHbGhAytWt8iqo5q1Mf6tCFzpAAlLRDL9x9DLe5OxYoFi2WVOcASxTpGGnIUNSY7YTHPc+2YZw==",
   "success": true,
   "projectFilePath": "D:\\C\\MainProjects\\Pool\\Pool.API\\Pool.API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\User\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
+    "C:\\Users\\User\\.nuget\\packages\\dapper\\2.0.123\\dapper.2.0.123.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\6.0.8\\microsoft.aspnetcore.authentication.jwtbearer.6.0.8.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\microsoft.aspnetcore.authorization\\6.0.8\\microsoft.aspnetcore.authorization.6.0.8.nupkg.sha512",
     "C:\\Users\\User\\.nuget\\packages\\microsoft.aspnetcore.components\\6.0.8\\microsoft.aspnetcore.components.6.0.8.nupkg.sha512",
