@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "jgQj2rSmFZj5YRXU5EmkOsJDexkPHSqAqlrdqxXgnhE=",
+  "Hash": "ZSVxjNG1faMCtTtgFl8GvSmrw4rBfZsOsCV86GVnmbQ=",
   "Source": "Pool.Client",
   "BasePath": "_content/Pool.Client",
   "Mode": "Default",
@@ -114,23 +114,6 @@
       "OriginalItemSpec": "wwwroot\\css\\myStyle.css"
     },
     {
-      "Identity": "D:\\C\\MainProjects\\Pool\\Pool.Client\\wwwroot\\css\\open-iconic\\FONT-LICENSE",
-      "SourceId": "Pool.Client",
-      "SourceType": "Discovered",
-      "ContentRoot": "D:\\C\\MainProjects\\Pool\\Pool.Client\\wwwroot\\",
-      "BasePath": "_content/Pool.Client",
-      "RelativePath": "css/open-iconic/FONT-LICENSE",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\css\\open-iconic\\FONT-LICENSE"
-    },
-    {
       "Identity": "D:\\C\\MainProjects\\Pool\\Pool.Client\\wwwroot\\css\\open-iconic\\font\\css\\open-iconic-bootstrap.min.css",
       "SourceId": "Pool.Client",
       "SourceType": "Discovered",
@@ -231,6 +214,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.woff"
+    },
+    {
+      "Identity": "D:\\C\\MainProjects\\Pool\\Pool.Client\\wwwroot\\css\\open-iconic\\FONT-LICENSE",
+      "SourceId": "Pool.Client",
+      "SourceType": "Discovered",
+      "ContentRoot": "D:\\C\\MainProjects\\Pool\\Pool.Client\\wwwroot\\",
+      "BasePath": "_content/Pool.Client",
+      "RelativePath": "css/open-iconic/FONT-LICENSE",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\open-iconic\\FONT-LICENSE"
     },
     {
       "Identity": "D:\\C\\MainProjects\\Pool\\Pool.Client\\wwwroot\\css\\open-iconic\\ICON-LICENSE",

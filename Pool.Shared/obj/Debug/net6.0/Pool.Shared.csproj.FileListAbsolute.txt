@@ -25,6 +25,6 @@ D:\C\MainProjects\Pool\Pool.Shared\obj\Debug\net6.0\staticwebassets.build.json
 D:\C\MainProjects\Pool\Pool.Shared\obj\Debug\net6.0\staticwebassets.development.json
 D:\C\MainProjects\Pool\Pool.Shared\obj\Debug\net6.0\scopedcss\bundle\Pool.Shared.styles.css
 D:\C\MainProjects\Pool\Pool.Shared\obj\Debug\net6.0\Pool.Shared.dll
-D:\C\MainProjects\Pool\Pool.Shared\obj\Debug\net6.0\refint\Pool.Shared.dll
 D:\C\MainProjects\Pool\Pool.Shared\obj\Debug\net6.0\Pool.Shared.pdb
 D:\C\MainProjects\Pool\Pool.Shared\obj\Debug\net6.0\ref\Pool.Shared.dll
+D:\C\MainProjects\Pool\Pool.Shared\bin\Debug\net6.0\ref\Pool.Shared.dll
