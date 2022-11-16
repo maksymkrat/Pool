@@ -1,40 +1,64 @@
 ﻿@page "/registration"
 @inherits Registration_razor;
 
+<EditForm Model="@newUser" OnValidSubmit="HandleValidationSubmit">
+    <DataAnnotationsValidator/>
+    
 
-<div class="row">
-    <div class="col-lg-4 offset-lg-4 pt-4 pb-4 border">
-        <div class="mb-3 text-center">
-            <h3>REGISTRATION</h3>
-        </div>
-        <div class="mb-3">
-            <label>First Name</label>
-            <input  class="form-control" placeholder="Firs Name"/>
-        </div>
-        <div class="mb-3">
-            <label>Last Name</label>
-            <input  class="form-control" placeholder="Last Name"/>
-        </div>
-        
-        <div class="mb-3">
-            <label>Username</label>
-            <input  class="form-control" placeholder="Username"/>
-        </div>
-        <div class="mb-3">
-            <label>Email</label>
-            <input  class="form-control" placeholder="Email"/>
-        </div>
-        <div class="mb-3">
-            <label>Phone</label>
-            <input  class="form-control" placeholder="Phone"/>
-        </div>
-        
-        <div class="mb-3">
-            <label>Password</label>
-            <input  type="password" class="form-control" placeholder="Password"/>
-        </div>
-        <div class="mb-3 d-grid gap-20">
-            <button  class="btn btn-primary">Register</button>
+    <div class="row">
+        <div class="col-lg-4 offset-lg-4 pt-4 pb-4 border">
+            <div class="mb-3 text-center">
+                <h3>REGISTRATION</h3>
+            </div>
+            <div class="mb-3 d-grid gap-20">
+                <label>
+                    First Name
+
+                    <InputText @bind-Value="newUser.FirstName" class="form-control" placeholder="Firs Name"/>
+                </label>
+            </div>
+            <div class="mb-3 d-grid gap-20">
+                <label>
+                    Last Name
+                    <InputText @bind-Value="newUser.LastName" class="form-control" placeholder="Last Name"/>
+                </label>
+            </div>
+
+            <div class="mb-3 d-grid gap-20">
+                <label>
+                    Username
+                    <InputText @bind-Value="newUser.Username" class="form-control" placeholder="Username"/>
+                </label>
+            </div>
+            <div class="mb-3 d-grid gap-20">
+                <label>
+                    Email
+                    <InputText @bind-Value="newUser.Email" class="form-control" placeholder="Email"/>
+                </label>
+            </div>
+            <div class="mb-3 d-grid gap-20">
+                <label>
+                    Phone
+                    <InputText @bind-Value="newUser.Phone" class="form-control" placeholder="Phone"/>
+                </label>
+            </div>
+
+            <div class="mb-3 d-grid gap-20">
+                <label>
+                    Password
+                    <InputText @bind-Value="newUser.Password" type="password" class="form-control" placeholder="Password"/>
+                </label>
+            </div>
+            <div class="mb-3 d-grid gap-20">
+                <label>
+                    Confirm Password
+                    <InputText @bind-Value="newUser.PasswordConfirm" type="password" class="form-control" placeholder="Confirm Password"/>
+                </label>
+            </div>
+            <div class="mb-3 d-grid gap-20">
+                <button @bind="newUser.PasswordConfirm" class="btn btn-primary" type="submit">Register</button>
+            </div>
+            <ValidationSummary/>
         </div>
     </div>
-</div>
+</EditForm>
