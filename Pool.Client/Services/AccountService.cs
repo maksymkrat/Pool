@@ -37,5 +37,12 @@ public class AccountService : HttpServiceBase
         
     }
 
-    
+    public async Task<bool> Create(RegistrationModel newUser)
+    {
+        var result = await _client.PostAsync(Url("Create"),
+            new StringContent(JsonConvert.SerializeObject(newUser), Encoding.UTF8, "application/json"));
+        return result.IsSuccessStatusCode;
+    }
+
+
 }

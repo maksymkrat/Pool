@@ -5,4 +5,5 @@ namespace Pool.API.Repository.IRepository;
 public interface IUserRepository
 {
     Task<UserAccount> GetUserAccountByEmail(string email);
+    Task<bool> CreateUser(UserAccount user);
 }

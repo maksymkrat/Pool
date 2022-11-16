@@ -2,6 +2,7 @@
 using Pool.API.Models;
 using Pool.API.Repository.IRepository;
 using Pool.API.Services.IServicec;
+using Pool.Shared.Models;
 
 namespace Pool.API.Services;
 
@@ -19,7 +20,24 @@ public class UserService : IUserService
     {
         return _userRepository.GetUserAccountByEmail(email);
     }
-    
+
+    public async Task<bool> CreateUser(RegistrationModel newUser)
+    {
+        var userAccount = new UserAccount()
+        {
+            Id = Guid.NewGuid(),
+            Email = newUser.Email,
+            FirstName = newUser.FirstName,
+            LastName = newUser.LastName,
+            Username = newUser.Username,
+            PhoneNumber = newUser.Phone,
+            PasswordH = EncryptPassword(newUser.PasswordConfirm)
+        };
+        var result = await _userRepository.CreateUser(userAccount);
+        return result;
+
+    }
+
     public  string EncryptPassword(string password)
     {
         if (string.IsNullOrEmpty(password)) return "";

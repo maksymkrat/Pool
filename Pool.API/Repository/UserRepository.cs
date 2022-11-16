@@ -63,4 +63,36 @@ public class UserRepository : IUserRepository
             throw;
         }
     }
+
+    public async Task<bool> CreateUser(UserAccount user)
+    {
+        _logger.LogInformation($"{DateTime.UtcNow.ToLongTimeString()} method: CreateUser");
+        try
+        {
+            using (var conn = new SqlConnection(_defaultConnection))
+            {
+                await conn.OpenAsync();
+                SqlCommand cmd = new SqlCommand(
+                    "INSERT INTO Users (Id, First_name, Last_name,Username, Email, Phone_number, PasswordHash)" +
+                            "VALUES (@id, @FirstName, @LastName, @Username, @Email, @Phone, @PassH)" +
+                            "INSERT INTO Users_Roles(User_id, Role_id)" +
+                            "VALUES (@id, (SELECT r.Id FROM Roles r WHERE r.[Name] = N'USER'))", conn);
+                
+                cmd.Parameters.Add(new SqlParameter("@id", new Guid(user.Id.ToString())));
+                cmd.Parameters.Add(new SqlParameter("@FirstName", user.FirstName));
+                cmd.Parameters.Add(new SqlParameter("@LastName", user.LastName));
+                cmd.Parameters.Add(new SqlParameter("@Username", user.Username));
+                cmd.Parameters.Add(new SqlParameter("@Email", user.Email));
+                cmd.Parameters.Add(new SqlParameter("@Phone", user.PhoneNumber));
+                cmd.Parameters.Add(new SqlParameter("@PassH", user.PasswordH));
+
+                return await cmd.ExecuteNonQueryAsync() > 0;
+            }
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
 }

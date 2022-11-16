@@ -32,7 +32,7 @@ public class Login_razor : ComponentBase
             }
             else
             {
-                await _js.InvokeVoidAsync("alert", "Invalid User Name or Password");
+                await _js.InvokeVoidAsync("alert", "Invalid User Name or Password");  //TODO: Change on blazor
             }
         }
         catch (Exception e)

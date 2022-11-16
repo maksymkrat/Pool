@@ -23,7 +23,7 @@ public class AccountController : ControllerBase
     [HttpPost]
     [Route("Login")]
     [AllowAnonymous]
-    public ActionResult Login([FromBody] LoginRequestModel loginRequest)
+    public IActionResult Login([FromBody] LoginRequestModel loginRequest)
     {
         _logger.LogInformation($"{DateTime.UtcNow.ToLongTimeString()} method: Login");
         try
@@ -43,8 +43,17 @@ public class AccountController : ControllerBase
         }
         
     }
-    
-    
+
+    [HttpPost]
+    [Route("Create")]
+    [AllowAnonymous]
+    public async Task<IActionResult> Create([FromBody] RegistrationModel newUser)
+    {
+        var result = await _userService.CreateUser(newUser);
+        return Ok(result);
+    }
+
+
     [HttpGet("test")]
     public IActionResult Test()
     {
