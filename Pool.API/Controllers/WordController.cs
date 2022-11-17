@@ -5,7 +5,7 @@ using Pool.Shared.Models;
 using Pool.Shared.Models.DeserializeTranslation;
 
 namespace Pool.API.Controllers;
-//[Authorize]
+[Authorize]
 [Route("api/[controller]")]
 [ApiController]
 public class WordController : ControllerBase

@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Net.Http.Headers;
+using System.Text;
 using Blazored.LocalStorage;
 using Microsoft.AspNetCore.Components.Authorization;
 using Newtonsoft.Json;
@@ -18,10 +19,11 @@ public class WordService : HttpServiceBase
 
     protected override string _apiControllerName { get; set; }
 
-    public  List<WordModel> GetAllWords(Guid userId)
+    public  List<WordModel> GetAllWords(UserSessionModel user)
     {
-          AddAuthorizationAsync();
-        var result =  _client.GetAsync(Url($"GetAllUsersWords/{userId}")).Result;
+          //AddAuthorizationAsync();
+          _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", user.Token);
+        var result =  _client.GetAsync(Url($"GetAllUsersWords/{user.Id}")).Result;
         if (!result.IsSuccessStatusCode || string.IsNullOrEmpty(result.Content.ToString()))
             return new List<WordModel>();
         return  DeserializeFromStream<List<WordModel>>(result.Content).Result;

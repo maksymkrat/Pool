@@ -10,7 +10,7 @@
             <h3>LOGIN</h3>
         </div>
         <div class="mb-3">
-            <label>User name</label>
+            <label>Email</label>
             <input @bind="loginRequest.UserName" class="form-control" placeholder="User Name"/>
         </div>
         <div class="mb-3">
@@ -22,5 +22,7 @@
         </div>
     </div>
 </div>
+
+<Notification @ref="Notification" Text="@NotificationText" StyleType="@NotificationType"></Notification>
 
 

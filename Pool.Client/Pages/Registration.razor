@@ -1,4 +1,5 @@
 ﻿@page "/registration"
+@using Pool.Shared
 @inherits Registration_razor;
 
 <EditForm Model="@newUser" OnValidSubmit="HandleValidationSubmit">
@@ -62,3 +63,7 @@
         </div>
     </div>
 </EditForm>
+
+<button @onclick="test">gsdfsddfg</button>
+
+<Notification @ref="Notification" Text="@NotificationText" StyleType="@NotificationType"></Notification>

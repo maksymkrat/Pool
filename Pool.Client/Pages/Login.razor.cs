@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.JSInterop;
 using Pool.Client.Authentication;
+using Pool.Client.Components;
 using Pool.Client.Services;
 using Pool.Shared.Models;
 
@@ -15,6 +16,9 @@ public class Login_razor : ComponentBase
     [Inject] private IJSRuntime _js { get; set; }
     [Inject] private AuthenticationStateProvider _authStateProvider { get; set; }
     [Inject] private NavigationManager _navManager { get; set; }
+    protected NotificationType NotificationType { get; set; }
+    protected string NotificationText { get; set; }
+    protected Notification Notification { get; set; }
 
     protected LoginRequestModel loginRequest = new LoginRequestModel();
 
@@ -32,7 +36,12 @@ public class Login_razor : ComponentBase
             }
             else
             {
-                await _js.InvokeVoidAsync("alert", "Invalid User Name or Password");  //TODO: Change on blazor
+                //await _js.InvokeVoidAsync("alert", "Invalid User Name or Password");  //TODO: Change on blazor
+                NotificationType = NotificationType.Danger;
+                NotificationText = "Invalid Email or Password";
+                Notification.Show();
+                await Task.Delay(3000);
+                Notification.Hide();
             }
         }
         catch (Exception e)

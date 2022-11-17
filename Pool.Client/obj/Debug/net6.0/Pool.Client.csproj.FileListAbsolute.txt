@@ -89,3 +89,5 @@ D:\C\MainProjects\Pool\Pool.Client\obj\Debug\net6.0\Razor\Pages\_Layout.cshtml.g
 D:\C\MainProjects\Pool\Pool.Client\obj\Debug\net6.0\Pool.Client.RazorTargetAssemblyInfo.cache
 D:\C\MainProjects\Pool\Pool.Client\obj\Debug\net6.0\Pool.Client.RazorTargetAssemblyInfo.cs
 D:\C\MainProjects\Pool\Pool.Client\obj\Debug\net6.0\Pool.Client.Views.pdb
+D:\C\MainProjects\Pool\Pool.Client\obj\Debug\net6.0\RazorDeclaration\Components\Notification.razor.g.cs
+D:\C\MainProjects\Pool\Pool.Client\obj\Debug\net6.0\Razor\Components\Notification.razor.g.cs

@@ -47,8 +47,9 @@ public class Vocabulary_razor : ComponentBase
 
     protected void UpdateWords()
     {
-         var userId = ((CustomAuthenticationStateProvider)_authStateProvider).UserSession.Id;
-        Words = _wordService.GetAllWords(userId); //hardcode
+         var user = ((CustomAuthenticationStateProvider)_authStateProvider).UserSession;
+        Words = _wordService.GetAllWords(user); 
+        
         InvokeAsync(StateHasChanged);
     }
 

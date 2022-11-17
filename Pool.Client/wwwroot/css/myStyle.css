@@ -1,8 +1,9 @@
-.word{
+.word {
     font-size: 35px;
     color: black;
 }
-.btn-next-test{
+
+.btn-next-test {
     background-color: #3A0647;
     color: white;
     font-size: 20px;
@@ -25,12 +26,13 @@ th {
     background: #05163D;
     text-align: left;
 }
+
 table {
     width: 100%;
 }
 
 
-.hovered-word:hover{
+.hovered-word:hover {
     /*background-color: white;*/
     color: black;
     transform: scale(1.1);
@@ -38,6 +40,7 @@ table {
     box-shadow: 10px 5px 5px #0B2464;
     border-radius: 10px;
 }
+
 .hovered-word {
     /*background-color: white;*/
     color: black;
@@ -49,11 +52,11 @@ table {
     font-size: 40px;
     /*background:  #F8D7DA*/
     /*background: #D4EDDA*/
-    
+
 }
 
-.main-word{
-  
+.main-word {
+
     color: black;
     transform: scale(1.1);
     border: 3px solid #0B2464;
@@ -64,17 +67,20 @@ table {
     margin-bottom: 40px;
     font-size: 40px;
 }
-.result-word{
+
+.result-word {
     font-size: 45px;
     border: 3px solid #0B2464;
     height: 80px;
     width: 80px;
     color: black;
 }
-.empty-div-result-word{
+
+.empty-div-result-word {
     height: 80px;
 }
-.empty-div-mixed-chars{
+
+.empty-div-mixed-chars {
     margin: 25px;
     font-size: 40px;
 }
@@ -114,108 +120,120 @@ table {
 
 .stars1 {
 
-    background-image:
-            radial-gradient(
-                    1px 1px at 25px 5px,
-                    white,
-                    rgba(255, 255, 255, 0)
-            ),
-            radial-gradient(
-                    1px 1px at 50px 25px,
-                    white,
-                    rgba(255, 255, 255, 0)
-            ),
-            radial-gradient(
-                    1px 1px at 125px 20px,
-                    white,
-                    rgba(255, 255, 255, 0)
-            ),
-            radial-gradient(
-                    1.5px 1.5px at 50px 75px,
-                    white,
-                    rgba(255, 255, 255, 0)
-            ),
-            radial-gradient(
-                    2px 2px at 15px 125px,
-                    white,
-                    rgba(255, 255, 255, 0)
-            ),
-            radial-gradient(
-                    2.5px 2.5px at 110px 80px,
-                    white,
-                    rgba(255, 255, 255, 0)
-            );
+    background-image: radial-gradient(
+            1px 1px at 25px 5px,
+            white,
+            rgba(255, 255, 255, 0)
+    ),
+    radial-gradient(
+            1px 1px at 50px 25px,
+            white,
+            rgba(255, 255, 255, 0)
+    ),
+    radial-gradient(
+            1px 1px at 125px 20px,
+            white,
+            rgba(255, 255, 255, 0)
+    ),
+    radial-gradient(
+            1.5px 1.5px at 50px 75px,
+            white,
+            rgba(255, 255, 255, 0)
+    ),
+    radial-gradient(
+            2px 2px at 15px 125px,
+            white,
+            rgba(255, 255, 255, 0)
+    ),
+    radial-gradient(
+            2.5px 2.5px at 110px 80px,
+            white,
+            rgba(255, 255, 255, 0)
+    );
 }
+
 .stars2 {
     animation: space 350s ease-in-out infinite;
-    background-image:
-            radial-gradient(
-                    1px 1px at 75px 125px,
-                    white,
-                    rgba(255, 255, 255, 0)
-            ),
-            radial-gradient(
-                    1px 1px at 100px 75px,
-                    white,
-                    rgba(255, 255, 255, 0)
-            ),
-            radial-gradient(
-                    1.5px 1.5px at 199px 100px,
-                    white,
-                    rgba(255, 255, 255, 0)
-            ),
-            radial-gradient(
-                    2px 2px at 20px 50px,
-                    white,
-                    rgba(255, 255, 255, 0)
-            ),
-            radial-gradient(
-                    2.5px 2.5px at 100px 5px,
-                    white,
-                    rgba(255, 255, 255, 0)
-            ),
-            radial-gradient(
-                    2.5px 2.5px at 5px 5px,
-                    white,
-                    rgba(255, 255, 255, 0)
-            );
+    background-image: radial-gradient(
+            1px 1px at 75px 125px,
+            white,
+            rgba(255, 255, 255, 0)
+    ),
+    radial-gradient(
+            1px 1px at 100px 75px,
+            white,
+            rgba(255, 255, 255, 0)
+    ),
+    radial-gradient(
+            1.5px 1.5px at 199px 100px,
+            white,
+            rgba(255, 255, 255, 0)
+    ),
+    radial-gradient(
+            2px 2px at 20px 50px,
+            white,
+            rgba(255, 255, 255, 0)
+    ),
+    radial-gradient(
+            2.5px 2.5px at 100px 5px,
+            white,
+            rgba(255, 255, 255, 0)
+    ),
+    radial-gradient(
+            2.5px 2.5px at 5px 5px,
+            white,
+            rgba(255, 255, 255, 0)
+    );
 
 }
+
 .stars3 {
     animation: space 500s ease-in-out infinite;
-    background-image:
-            radial-gradient(
-                    1px 1px at 10px 10px,
-                    white,
-                    rgba(255, 255, 255, 0)
-            ),
-            radial-gradient(
-                    1px 1px at 150px 150px,
-                    white,
-                    rgba(255, 255, 255, 0)
-            ),
-            radial-gradient(
-                    1.5px 1.5px at 60px 170px,
-                    white,
-                    rgba(255, 255, 255, 0)
-            ),
-            radial-gradient(
-                    1.5px 1.5px at 175px 180px,
-                    white,
-                    rgba(255, 255, 255, 0)
-            ),
-            radial-gradient(
-                    2px 2px at 195px 95px,
-                    white,
-                    rgba(255, 255, 255, 0)
-            ),
-            radial-gradient(
-                    2.5px 2.5px at 95px 145px,
-                    white,
-                    rgba(255, 255, 255, 0)
-            );
+    background-image: radial-gradient(
+            1px 1px at 10px 10px,
+            white,
+            rgba(255, 255, 255, 0)
+    ),
+    radial-gradient(
+            1px 1px at 150px 150px,
+            white,
+            rgba(255, 255, 255, 0)
+    ),
+    radial-gradient(
+            1.5px 1.5px at 60px 170px,
+            white,
+            rgba(255, 255, 255, 0)
+    ),
+    radial-gradient(
+            1.5px 1.5px at 175px 180px,
+            white,
+            rgba(255, 255, 255, 0)
+    ),
+    radial-gradient(
+            2px 2px at 195px 95px,
+            white,
+            rgba(255, 255, 255, 0)
+    ),
+    radial-gradient(
+            2.5px 2.5px at 95px 145px,
+            white,
+            rgba(255, 255, 255, 0)
+    );
 }
 
-.test {
+.test-border {
     border: 5px solid red;
+}
+
+.notification {
+    height: 70px;
+    width: 340px;
+    display: flex;
+    align-items: center;
+    padding-left: 25px;
+    font-size: 25px;
+    bottom:25px;
+    position: fixed;
+    right: 25px;
+    border-radius: 10px;
 }
