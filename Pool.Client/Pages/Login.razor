@@ -23,6 +23,8 @@
     </div>
 </div>
 
-<Notification @ref="Notification" Text="@NotificationText" StyleType="@NotificationType"></Notification>
-
+@if (!String.IsNullOrEmpty(NotificationText))
+{
+    <Notification @ref="Notification" Text="@NotificationText" StyleType="@NotificationType" DisplayNotification="@DisplayNotification"></Notification>
+}
 

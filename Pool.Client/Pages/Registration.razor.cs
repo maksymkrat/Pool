@@ -17,6 +17,8 @@ public class Registration_razor : ComponentBase
     protected NotificationType NotificationType { get; set; }
     protected string NotificationText { get; set; }
     protected Notification Notification { get; set; }
+    protected bool DisplayNotification { get; set; }
+
 
     public void test()
     {
@@ -25,14 +27,15 @@ public class Registration_razor : ComponentBase
 
     protected async void HandleValidationSubmit()
     {
-        //var result = await _accountService.Create(newUser);
-        if (true)
+        var result = await _accountService.Create(newUser);
+        if (result)
         {
             NotificationType = NotificationType.Success;
             NotificationText = "Success";
-            Notification.Show();
+            DisplayNotification = true;
+            InvokeAsync(StateHasChanged);
             await Task.Delay(2000);
-            Notification.Hide();
+            DisplayNotification = false;
             _navManager.NavigateTo("/Login", true);
         }
     }

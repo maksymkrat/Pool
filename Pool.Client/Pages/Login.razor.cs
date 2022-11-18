@@ -19,6 +19,7 @@ public class Login_razor : ComponentBase
     protected NotificationType NotificationType { get; set; }
     protected string NotificationText { get; set; }
     protected Notification Notification { get; set; }
+    protected bool DisplayNotification { get; set; }
 
     protected LoginRequestModel loginRequest = new LoginRequestModel();
 
@@ -39,9 +40,10 @@ public class Login_razor : ComponentBase
                 //await _js.InvokeVoidAsync("alert", "Invalid User Name or Password");  //TODO: Change on blazor
                 NotificationType = NotificationType.Danger;
                 NotificationText = "Invalid Email or Password";
-                Notification.Show();
+                DisplayNotification = true;
+                InvokeAsync(StateHasChanged);
                 await Task.Delay(3000);
-                Notification.Hide();
+                DisplayNotification = false;
             }
         }
         catch (Exception e)

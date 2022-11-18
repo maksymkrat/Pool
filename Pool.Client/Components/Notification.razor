@@ -1,5 +1,5 @@
 ﻿
-@if (_displayNotification)
+@if (DisplayNotification)
 {
     <div class="@_classStyle notification">
         <span class="ml-2">@Text</span>
@@ -10,13 +10,16 @@
 
     [Parameter]
     public string Text { get; set; }
-
-    [Parameter]
+    
+    [Parameter] 
     public NotificationType StyleType { get; set; }
+    
+    [Parameter]
+    public bool DisplayNotification { get; set; } = false;
 
     private string _classStyle;
     private string _textStyle;
-    private bool _displayNotification = false;
+   
 
     protected override void OnInitialized()
     {
@@ -25,23 +28,33 @@
 
     private void setClassStele()
     {
-        switch (StyleType)
-        {
-            case NotificationType.Success:
-                _classStyle = "bg-success text-white ";
-                break;
-            case NotificationType.Danger:
-                _classStyle = "bg-danger text-white ";
-                break;
-            case NotificationType.Warning:
-                _classStyle = "bg-warning text-dark ";
-                break;
-            case NotificationType.Info:
-                _classStyle = "bg-info text-dark ";
-                break;
-        }
+        
+            switch (StyleType)
+            {
+                case NotificationType.Success:
+                    _classStyle = "bg-success text-white ";
+                    break;
+                case NotificationType.Danger:
+                    _classStyle = "bg-danger text-white ";
+                    break;
+                case NotificationType.Warning:
+                    _classStyle = "bg-warning text-dark ";
+                    break;
+                case NotificationType.Info:
+                    _classStyle = "bg-info text-dark ";
+                    break;
+            }
+            
+            InvokeAsync(StateHasChanged);
+        
+        
     }
-    public void Show() => _displayNotification = true;
-    public void Hide() => _displayNotification = false;
+    // public void Show()
+    // {
+    //     setClassStele();
+    //     DisplayNotification = true;
+    // }
+    //
+    // public void Hide() => DisplayNotification = false;
 
 }
