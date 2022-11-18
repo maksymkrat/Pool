@@ -37,7 +37,6 @@ public class Login_razor : ComponentBase
             }
             else
             {
-                //await _js.InvokeVoidAsync("alert", "Invalid User Name or Password");  //TODO: Change on blazor
                 NotificationType = NotificationType.Danger;
                 NotificationText = "Invalid Email or Password";
                 DisplayNotification = true;

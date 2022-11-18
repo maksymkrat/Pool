@@ -21,6 +21,7 @@ public class TranslatorService : ITranslatorService
 
     public async Task<Translater> Translate(string word)
     {
+        _logger.LogInformation($"{DateTime.UtcNow.ToLongTimeString()} method: Translate");
         try
         {
             var httpRequest = (HttpWebRequest) WebRequest.Create(URL);
@@ -50,7 +51,7 @@ public class TranslatorService : ITranslatorService
         }
         catch (Exception e)
         {
-            _logger.LogInformation($"{DateTime.UtcNow.ToLongTimeString()} method: Translate");
+           
             return new Translater();
         }
     }

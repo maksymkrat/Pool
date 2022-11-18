@@ -71,6 +71,7 @@ public class WordController : ControllerBase
             return StatusCode(500);
         }
     }
+    
     [HttpGet("GetRandomWord/{userId}")]
     public async Task<IActionResult> GetRandomWord(Guid userId)
     {

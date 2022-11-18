@@ -23,7 +23,7 @@ public class Compose_words_razor : ComponentBase
     {
         var userId = ((CustomAuthenticationStateProvider)_authStateProvider).UserSession.Id;
         MainWord =  _wordService.GetRandomWord(userId);
-        if (MainWord != null)
+        if (MainWord.WordText != null)
         {
             char[] arrayChars = MainWord.WordText.ToCharArray();
             mixedСharacters = arrayChars.OrderBy(x => random.Next()).ToList();

@@ -48,11 +48,9 @@ builder.Services.AddAuthentication(o =>
 
 });
 
-
-
 var app = builder.Build();
 
-//app.MapGet("/", () => "api ran");
+app.MapGet("/", () => "api ran");
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -73,7 +71,7 @@ app.MapControllers();
 app.UseCors(x => x
     .AllowAnyMethod()
     .AllowAnyHeader()
-    .SetIsOriginAllowed(origin => true) // allow any origin
-    .AllowCredentials()); // allow credentials
+    .SetIsOriginAllowed(origin => true) 
+    .AllowCredentials()); 
 
 app.Run();

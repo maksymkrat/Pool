@@ -4,7 +4,7 @@ namespace Pool.API.Repository.IRepository;
 
 public interface IWordRepository
 {
-    Task<List<WordModel>> GetAllUsersWords(Guid userId); //Guid userId add in parametrs
+    Task<List<WordModel>> GetAllUsersWords(Guid userId); 
     Task<bool> AddWord( WordModel word);
     Task<bool> DeleteById(int id);
     Task<List<WordModel>> GetFourRandomWords(Guid userId);

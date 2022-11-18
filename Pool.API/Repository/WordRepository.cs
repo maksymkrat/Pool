@@ -8,14 +8,14 @@ namespace Pool.API.Repository;
 public class WordRepository : IWordRepository
 {
     private readonly IConfiguration _configuration;
-    private readonly string DefaultConnection;
+    private readonly string _defaultConnection;
     private readonly ILogger _logger;
 
     public WordRepository(IConfiguration configuration, ILogger<WordRepository> logger)
     {
         _configuration = configuration;
         _logger = logger;
-        DefaultConnection = _configuration.GetConnectionString("DefaultConnection");
+        _defaultConnection = _configuration.GetConnectionString("DefaultConnection");
     }
 
     public async Task<List<WordModel>> GetAllUsersWords(Guid userId) //Guid userId add in parametrs
@@ -23,7 +23,7 @@ public class WordRepository : IWordRepository
         _logger.LogInformation($"{DateTime.UtcNow.ToLongTimeString()} method: GetAllUsersWords");
 
         List<WordModel> words = new List<WordModel>();
-        using (var conn = new SqlConnection(DefaultConnection))
+        using (var conn = new SqlConnection(_defaultConnection))
         {
             conn.Open();
             SqlCommand cmd = new SqlCommand("SELECT * FROM Words" +
@@ -54,22 +54,30 @@ public class WordRepository : IWordRepository
     public async Task<bool> DeleteById(int id)
     {
         _logger.LogInformation($"{DateTime.UtcNow.ToLongTimeString()} method: DeleteWordById");
-
-        using (var conn = new SqlConnection(DefaultConnection))
+        try
         {
-            await conn.OpenAsync();
-            SqlCommand cmd = new SqlCommand("DELETE FROM Words WHERE Id=@id", conn);
-            cmd.Parameters.Add(new SqlParameter("@id", SqlDbType.Int) {Value = id});
+            using (var conn = new SqlConnection(_defaultConnection))
+            {
+                await conn.OpenAsync();
+                SqlCommand cmd = new SqlCommand("DELETE FROM Words WHERE Id=@id", conn);
+                cmd.Parameters.Add(new SqlParameter("@id", SqlDbType.Int) {Value = id});
 
-            return await cmd.ExecuteNonQueryAsync() > 0;
+                return await cmd.ExecuteNonQueryAsync() > 0;
+            }
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
         }
     }
+
     public async Task<bool> AddWord(WordModel word)
     {
         _logger.LogInformation($"{DateTime.UtcNow.ToLongTimeString()} method: AddWord");
         try
         {
-            using (var conn = new SqlConnection(DefaultConnection))
+            using (var conn = new SqlConnection(_defaultConnection))
             {
                 await conn.OpenAsync();
                 SqlCommand cmd = new SqlCommand(
@@ -96,7 +104,7 @@ public class WordRepository : IWordRepository
         try
         {
             List<WordModel> words = new List<WordModel>();
-            using (var conn = new SqlConnection(DefaultConnection))
+            using (var conn = new SqlConnection(_defaultConnection))
             {
                 conn.Open();
                 SqlCommand cmd = new SqlCommand("SELECT TOP 4 Id,Word,Translation, User_Id " +
@@ -126,7 +134,7 @@ public class WordRepository : IWordRepository
         catch (Exception e)
         {
             Console.WriteLine(e);
-            return null;
+            throw;
         }
     }
 
@@ -136,7 +144,7 @@ public class WordRepository : IWordRepository
         _logger.LogInformation($"{DateTime.UtcNow.ToLongTimeString()} method: GetRandomWord");
         try
         {
-            using (var conn = new SqlConnection(DefaultConnection))
+            using (var conn = new SqlConnection(_defaultConnection))
             {
                 conn.Open();
                 SqlCommand cmd = new SqlCommand("SELECT TOP 1 Id,Word,Translation,User_Id" +
@@ -164,7 +172,7 @@ public class WordRepository : IWordRepository
         catch (Exception e)
         {
             Console.WriteLine(e);
-            return null;
+            throw;
         }
     }
 
@@ -172,16 +180,24 @@ public class WordRepository : IWordRepository
     public async Task<bool> Update(WordModel word)
     {
         _logger.LogInformation($"{DateTime.UtcNow.ToLongTimeString()} method: Update");
-        using (var conn = new SqlConnection(DefaultConnection))
+        try
         {
-            await conn.OpenAsync();
-            SqlCommand cmd = new SqlCommand(
-                "UPDATE Words SET Word = @textWord, Translation = @translation WHERE Id = @Id", conn);
-            cmd.Parameters.Add(new SqlParameter("@textWord", word.WordText.ToLower()));
-            cmd.Parameters.Add(new SqlParameter("@translation", word.Translation.ToLower()));
-            cmd.Parameters.Add(new SqlParameter("@Id", word.Id));
+            using (var conn = new SqlConnection(_defaultConnection))
+            {
+                await conn.OpenAsync();
+                SqlCommand cmd = new SqlCommand(
+                    "UPDATE Words SET Word = @textWord, Translation = @translation WHERE Id = @Id", conn);
+                cmd.Parameters.Add(new SqlParameter("@textWord", word.WordText.ToLower()));
+                cmd.Parameters.Add(new SqlParameter("@translation", word.Translation.ToLower()));
+                cmd.Parameters.Add(new SqlParameter("@Id", word.Id));
 
-            return await cmd.ExecuteNonQueryAsync() > 0;
+                return await cmd.ExecuteNonQueryAsync() > 0;
+            }
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
         }
     }
 }

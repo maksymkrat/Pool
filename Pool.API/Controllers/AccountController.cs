@@ -12,14 +12,12 @@ public class AccountController : ControllerBase
     private readonly IUserService _userService;
     private readonly ILogger _logger;
 
-
     public AccountController( IUserService userService, ILogger<AccountController> logger)
     {
         _userService = userService;
         _logger = logger;
     }
-
-
+    
     [HttpPost]
     [Route("Login")]
     [AllowAnonymous]
@@ -49,8 +47,19 @@ public class AccountController : ControllerBase
     [AllowAnonymous]
     public async Task<IActionResult> Create([FromBody] RegistrationModel newUser)
     {
-        var result = await _userService.CreateUser(newUser);
-        return Ok(result);
+        _logger.LogInformation($"{DateTime.UtcNow.ToLongTimeString()} method: Create");
+
+        try
+        {
+            var result = await _userService.CreateUser(newUser);
+            return Ok(result);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            return StatusCode(500);
+        }
+       
     }
 
 
