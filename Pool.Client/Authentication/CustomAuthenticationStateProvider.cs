@@ -9,19 +9,23 @@ namespace Pool.Client.Authentication;
 public class CustomAuthenticationStateProvider : AuthenticationStateProvider
 {
     private readonly ILocalStorageService _localStorageService;
+    private readonly ILogger _logger;
     public UserSessionModel UserSession { get; set; }
 
 
     private ClaimsPrincipal _anonymous = new ClaimsPrincipal(new ClaimsIdentity());
 
-    public CustomAuthenticationStateProvider(ILocalStorageService localStorageService)
+    public CustomAuthenticationStateProvider(ILocalStorageService localStorageService, ILogger<CustomAuthenticationStateProvider> logger)
     {
         _localStorageService = localStorageService;
+        _logger = logger;
     }
 
 
     public override async Task<AuthenticationState> GetAuthenticationStateAsync()
     {
+        _logger.LogInformation($"{DateTime.UtcNow.ToLongTimeString()} method: GetAuthenticationStateAsync");
+
         try
         {
             var userSession = await _localStorageService.ReadEncryptedItemAsync<UserSessionModel>("UserSessionJWT");
@@ -49,6 +53,8 @@ public class CustomAuthenticationStateProvider : AuthenticationStateProvider
 
     public async Task UpdateAuthenticationState(UserSessionModel? userSession)
     {
+        _logger.LogInformation($"{DateTime.UtcNow.ToLongTimeString()} method: UpdateAuthenticationState");
+
         ClaimsPrincipal claimsPrincipal;
         if (userSession != null)
         {
@@ -72,6 +78,8 @@ public class CustomAuthenticationStateProvider : AuthenticationStateProvider
 
     public async Task<String> GetToken()
     {
+        _logger.LogInformation($"{DateTime.UtcNow.ToLongTimeString()} method: GetToken");
+
         var result = string.Empty;
         try
         {
