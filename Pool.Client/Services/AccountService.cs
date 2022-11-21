@@ -9,16 +9,18 @@ namespace Pool.Client.Services;
 
 public class AccountService : HttpServiceBase
 {
-    private readonly AuthenticationStateProvider _authStateProvider; 
+    private readonly AuthenticationStateProvider _authStateProvider;
+    private readonly SessionService _sessionService;
     protected sealed override string _apiControllerName { get; set; }
    
 
     public AccountService(
         AuthenticationStateProvider authenticationStateProvider, 
-            ILocalStorageService localStorageService) : base(authenticationStateProvider, localStorageService)
+            ILocalStorageService localStorageService, SessionService sessionService) : base(authenticationStateProvider, localStorageService)
     {
         _apiControllerName = "account";
         _authStateProvider = authenticationStateProvider;
+        _sessionService = sessionService;
     }
 
     public async Task<UserSessionModel> Login(LoginRequestModel loginRequest)
@@ -33,7 +35,7 @@ public class AccountService : HttpServiceBase
             new StringContent(JsonConvert.SerializeObject(loginRequest), Encoding.UTF8, "application/json"));
         if (!result.IsSuccessStatusCode || string.IsNullOrEmpty(result.Content.ToString()))
             return null;
-        return ((CustomAuthenticationStateProvider)_authStateProvider).UserSession = await DeserializeFromStream<UserSessionModel>(result.Content);
+        return _sessionService.UserSession = await DeserializeFromStream<UserSessionModel>(result.Content);
         
     }
 

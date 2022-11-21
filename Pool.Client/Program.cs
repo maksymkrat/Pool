@@ -13,6 +13,7 @@ builder.Services.AddBlazoredLocalStorage();
 builder.Services.AddAuthenticationCore();
 
 builder.Services.AddScoped<AccountService>();
+builder.Services.AddSingleton<SessionService>();
 builder.Services.AddScoped<WordService>();
 builder.Services.AddScoped<SpeechService>();
 builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthenticationStateProvider>();

@@ -10,6 +10,7 @@ namespace Pool.Client.Pages;
 public class Compose_words_razor : ComponentBase
 {
     [Inject] private WordService _wordService { get; set; }
+    [Inject] private SessionService _sessionService { get; set; }
     [Inject] private AuthenticationStateProvider  _authStateProvider { get; set; }
     protected string ResultStyle { get; set; }
     protected Random random = new Random();
@@ -21,8 +22,8 @@ public class Compose_words_razor : ComponentBase
 
     protected  override void OnInitialized()
     {
-        var userId = ((CustomAuthenticationStateProvider)_authStateProvider).UserSession.Id;
-        MainWord =  _wordService.GetRandomWord(userId);
+        var user = _sessionService.UserSession;
+        MainWord =  _wordService.GetRandomWord(user);
         if (MainWord.WordText != null)
         {
             char[] arrayChars = MainWord.WordText.ToCharArray();

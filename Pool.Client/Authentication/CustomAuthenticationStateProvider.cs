@@ -10,15 +10,16 @@ public class CustomAuthenticationStateProvider : AuthenticationStateProvider
 {
     private readonly ILocalStorageService _localStorageService;
     private readonly ILogger _logger;
-    public UserSessionModel UserSession { get; set; }
+    private readonly SessionService _sessionService;
 
 
     private ClaimsPrincipal _anonymous = new ClaimsPrincipal(new ClaimsIdentity());
 
-    public CustomAuthenticationStateProvider(ILocalStorageService localStorageService, ILogger<CustomAuthenticationStateProvider> logger)
+    public CustomAuthenticationStateProvider(ILocalStorageService localStorageService, ILogger<CustomAuthenticationStateProvider> logger, SessionService sessionService)
     {
         _localStorageService = localStorageService;
         _logger = logger;
+        _sessionService = sessionService;
     }
 
 
@@ -33,7 +34,7 @@ public class CustomAuthenticationStateProvider : AuthenticationStateProvider
                 return await Task.FromResult(new AuthenticationState(_anonymous));
             else
             {
-                UserSession = userSession;
+                _sessionService.UserSession = userSession;
             }
             
             var claimsPrincipal = new ClaimsPrincipal(new ClaimsIdentity(new List<Claim>

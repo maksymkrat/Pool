@@ -28,10 +28,11 @@ public class WordService : HttpServiceBase
             return new List<WordModel>();
         return  DeserializeFromStream<List<WordModel>>(result.Content).Result;
     }
-    public  List<WordModel> GetFourRandomWords(Guid userId)
+    public  List<WordModel> GetFourRandomWords(UserSessionModel user)
     {
-         AddAuthorizationAsync();
-        var result =  _client.GetAsync(Url($"GetFourRandomWords/{userId}")).Result;
+         //AddAuthorizationAsync();
+         _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", user.Token);
+        var result =  _client.GetAsync(Url($"GetFourRandomWords/{user.Id}")).Result;
         if (!result.IsSuccessStatusCode || string.IsNullOrEmpty(result.Content.ToString()))
             return new List<WordModel>();
         return  DeserializeFromStream<List<WordModel>>(result.Content).Result;
@@ -59,10 +60,11 @@ public class WordService : HttpServiceBase
             new StringContent(JsonConvert.SerializeObject(word), Encoding.UTF8, "application/json"));
         return result.IsSuccessStatusCode;
     }
-    public  WordModel GetRandomWord(Guid userId)
+    public  WordModel GetRandomWord(UserSessionModel user)
     {
-         AddAuthorizationAsync();
-        var result =  _client.GetAsync(Url($"GetRandomWord/{userId}")).Result;
+         //AddAuthorizationAsync();
+         _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", user.Token);
+        var result =  _client.GetAsync(Url($"GetRandomWord/{user.Id}")).Result;
         if (!result.IsSuccessStatusCode || string.IsNullOrEmpty(result.Content.ToString()))
             return new WordModel();
         return  DeserializeFromStream<WordModel>(result.Content).Result;

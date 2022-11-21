@@ -15,6 +15,8 @@ public class Vocabulary_razor : ComponentBase
     [Inject] private WordService _wordService { get; set; }
     [Inject] private SpeechService _speechService { get; set; }
     [Inject] private AuthenticationStateProvider  _authStateProvider { get; set; }
+    [Inject] private SessionService _sessionService { get; set; }
+
 
 
     private List<WordModel> _words = new List<WordModel>();
@@ -47,7 +49,7 @@ public class Vocabulary_razor : ComponentBase
 
     protected void UpdateWords()
     {
-         var user = ((CustomAuthenticationStateProvider)_authStateProvider).UserSession;
+         var user = _sessionService.UserSession;
         Words = _wordService.GetAllWords(user); 
         
         InvokeAsync(StateHasChanged);
@@ -61,7 +63,7 @@ public class Vocabulary_razor : ComponentBase
             {
                 WordText = NewWord.ToLower(),
                 Translation = NewTranslate.ToLower(),
-                User_id = ((CustomAuthenticationStateProvider)_authStateProvider).UserSession.Id
+                User_id = _sessionService.UserSession.Id
             });
 
             NewWord = string.Empty;

@@ -10,6 +10,8 @@ public class Words_test_razor : ComponentBase
 {
     [Inject] private WordService _wordService { get; set; }
     [Inject] private AuthenticationStateProvider  _authStateProvider { get; set; }
+    [Inject] private SessionService _sessionService { get; set; }
+
     protected WordModel MainWord { get; set; }
     protected List<WordModel> Words{ get; set; }
     protected Random rnd = new Random();
@@ -21,10 +23,11 @@ public class Words_test_razor : ComponentBase
 
     protected  override void OnInitialized()
     {
-        var userId = ((CustomAuthenticationStateProvider)_authStateProvider).UserSession.Id;
-        Words =  _wordService.GetFourRandomWords(userId);
+        var user = _sessionService.UserSession;
+        Words =  _wordService.GetFourRandomWords(user);
         if(Words.Count >= 4)
             MainWord = Words.ElementAt(rnd.Next(0, Words.Count)); //TODO: Notification You need to add at least 4 words
+        InvokeAsync(StateHasChanged);
     }
 
     
