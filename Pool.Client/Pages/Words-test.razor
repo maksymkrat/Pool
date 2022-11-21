@@ -24,8 +24,14 @@
             <div class="col-6">
             </div>
             <div class="col-6 text-center">
+                <button class="btn-for-test " @onclick="ShowHint">?</button>
                 <button class="btn-for-test " @onclick="ResetWord">Next test</button>
             </div>
         </div>
     </div>
+
+    @if (!String.IsNullOrEmpty(NotificationText))
+    {
+        <Notification @ref="Notification" Text="@NotificationText" StyleType="@NotificationType" DisplayNotification="@DisplayNotification"></Notification>
+    }
 }

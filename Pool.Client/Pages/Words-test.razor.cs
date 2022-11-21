@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using Pool.Client.Authentication;
+using Pool.Client.Components;
 using Pool.Client.Services;
 using Pool.Shared.Models;
 
@@ -11,9 +12,12 @@ public class Words_test_razor : ComponentBase
     [Inject] private WordService _wordService { get; set; }
     [Inject] private AuthenticationStateProvider  _authStateProvider { get; set; }
     [Inject] private SessionService _sessionService { get; set; }
-
     protected WordModel MainWord { get; set; }
     protected List<WordModel> Words{ get; set; }
+    protected NotificationType NotificationType { get; set; }
+    protected string NotificationText { get; set; }
+    protected Notification Notification { get; set; }
+    protected bool DisplayNotification { get; set; }
     protected Random rnd = new Random();
     protected string resultStyle = "light";
     protected string mainWordStyle = "light";
@@ -44,5 +48,15 @@ public class Words_test_razor : ComponentBase
         OnInitialized();
         resultStyle = "light";
         mainWordStyle = resultStyle;
+    }
+    protected async void ShowHint()
+    {
+        NotificationType = NotificationType.Info;
+        NotificationText = MainWord.Translation;
+        DisplayNotification = true;
+        InvokeAsync(StateHasChanged);
+        await Task.Delay(3000);
+        DisplayNotification = false;
+        InvokeAsync(StateHasChanged);
     }
 }

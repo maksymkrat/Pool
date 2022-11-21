@@ -13,17 +13,17 @@ public class Compose_words_razor : ComponentBase
     [Inject] private WordService _wordService { get; set; }
     [Inject] private SessionService _sessionService { get; set; }
     [Inject] private AuthenticationStateProvider  _authStateProvider { get; set; }
+    
     protected string ResultStyle { get; set; }
     protected WordModel MainWord{ get; set; }
     protected NotificationType NotificationType { get; set; }
     protected string NotificationText { get; set; }
     protected Notification Notification { get; set; }
     protected bool DisplayNotification { get; set; }
+    
     protected Random random = new Random();
     protected List<char> resultWord = new List<char>();
     protected List<char> mixedСharacters = new List<char>();
-    
-
 
     protected  override void OnInitialized()
     {
