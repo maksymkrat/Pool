@@ -48,6 +48,8 @@ builder.Services.AddAuthentication(o =>
 
 });
 
+builder.Host.UseWindowsService();
+
 var app = builder.Build();
 
 app.MapGet("/", () => "api ran");
@@ -65,6 +67,8 @@ if (app.Environment.IsDevelopment())
 
 app.UseAuthentication();
 app.UseAuthorization();     
+
+
 
 app.MapControllers();
 
