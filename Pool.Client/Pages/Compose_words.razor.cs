@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using Pool.Client.Authentication;
+using Pool.Client.Components;
 using Pool.Client.Services;
 using Pool.Shared.Models;
 
@@ -13,8 +14,12 @@ public class Compose_words_razor : ComponentBase
     [Inject] private SessionService _sessionService { get; set; }
     [Inject] private AuthenticationStateProvider  _authStateProvider { get; set; }
     protected string ResultStyle { get; set; }
-    protected Random random = new Random();
     protected WordModel MainWord{ get; set; }
+    protected NotificationType NotificationType { get; set; }
+    protected string NotificationText { get; set; }
+    protected Notification Notification { get; set; }
+    protected bool DisplayNotification { get; set; }
+    protected Random random = new Random();
     protected List<char> resultWord = new List<char>();
     protected List<char> mixedСharacters = new List<char>();
     
@@ -39,6 +44,17 @@ public class Compose_words_razor : ComponentBase
     protected void ResetWord()
     {
        OnInitialized();
+    }
+
+    protected async void ShowHint()
+    {
+        NotificationType = NotificationType.Info;
+        NotificationText = MainWord.WordText;
+        DisplayNotification = true;
+        InvokeAsync(StateHasChanged);
+        await Task.Delay(3000);
+        DisplayNotification = false;
+        InvokeAsync(StateHasChanged);
     }
     
     protected void AddCharForResult(char selectChar)
