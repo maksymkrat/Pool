@@ -18,7 +18,7 @@ public class WordRepository : IWordRepository
         _defaultConnection = _configuration.GetConnectionString("DefaultConnection");
     }
 
-    public async Task<List<WordModel>> GetAllUsersWords(Guid userId) //Guid userId add in parametrs
+    public async Task<List<WordModel>> GetAllUsersWords(Guid userId)
     {
         _logger.LogInformation($"{DateTime.UtcNow.ToLongTimeString()} method: GetAllUsersWords");
 
@@ -30,6 +30,36 @@ public class WordRepository : IWordRepository
                                             " WHERE User_Id = @userId " +
                                             " ORDER BY Id DESC", conn);
             cmd.Parameters.Add(new SqlParameter("@userId", userId));
+            cmd.CommandType = CommandType.Text;
+            using (SqlDataReader reader = cmd.ExecuteReader())
+            {
+                while (reader.Read())
+                {
+                    WordModel word = new WordModel()
+                    {
+                        Id = Int32.Parse(reader["Id"].ToString()),
+                        WordText = reader["Word"].ToString(),
+                        Translation = reader["Translation"].ToString(),
+                        User_id = new Guid(reader["User_Id"].ToString())
+                    };
+                    words.Add(word);
+                }
+            }
+
+            return words;
+        }
+    }
+
+    public async Task<List<WordModel>> SearchWords(string searchWord)
+    {
+        _logger.LogInformation($"{DateTime.UtcNow.ToLongTimeString()} method: SearchWords");
+
+        List<WordModel> words = new List<WordModel>();
+        using (var conn = new SqlConnection(_defaultConnection))
+        {
+            conn.Open();
+            SqlCommand cmd = new SqlCommand("SELECT * FROM Words  WHERE Word LIKE '%' + @searchWord + '%'", conn);
+            cmd.Parameters.Add(new SqlParameter("@searchWord", searchWord));
             cmd.CommandType = CommandType.Text;
             using (SqlDataReader reader = cmd.ExecuteReader())
             {

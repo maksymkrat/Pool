@@ -137,4 +137,16 @@ public class Vocabulary_razor : ComponentBase
     {
          _speechService.Speech(word.WordText);
     }
+
+    protected async Task SearchWord(string word)
+    {
+        if (!string.IsNullOrEmpty(word))
+        {
+            Words = await _wordService.SearchWords(word);
+        }
+        else
+        {
+            UpdateWords();
+        }
+    }
 }

@@ -38,6 +38,21 @@ public class WordController : ControllerBase
             return StatusCode(500);
         }
     }
+    [HttpGet("SearchWords/{word}")]
+    public async Task<IActionResult> SearchWords(string word)
+    {
+        _logger.LogInformation($"{DateTime.UtcNow.ToLongTimeString()} method: SearchWords");
+        try
+        {
+            var result = await _wordService.SearchWords(word);
+            return Ok(result);
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            return StatusCode(500);
+        }
+    }
     
    
     [HttpGet("GetFourRandomWords/{userId}")]

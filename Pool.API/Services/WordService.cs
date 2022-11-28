@@ -18,6 +18,11 @@ public class WordService : IWordService
         return _wordRepository.GetAllUsersWords(userId);
     }
 
+    public Task<List<WordModel>> SearchWords(string word)
+    {
+        return _wordRepository.SearchWords(word);
+    }
+
     public Task<List<WordModel>> GetFourRandomWords(Guid userId)
     {
         return _wordRepository.GetFourRandomWords(userId);

@@ -4,7 +4,11 @@
     <table class="table table-striped p-0 ">
         <thead class="table-dark">
         <tr>
-            <th scope="col">Word</th>
+            <th scope="col">
+                Word
+                <input class="" type="text" placeholder="search"  @oninput="SearchWords"/>
+                
+            </th>
             <th scope="col">Translate</th>
             <th scope="col"> @Words.Count my words</th>
         </tr>
@@ -46,11 +50,24 @@
 
     [Parameter]
     public EventCallback<WordModel> DeleteWord { get; set; }
-    
+
     [Parameter]
     public EventCallback<WordModel> UpdateWord { get; set; }
 
     [Parameter]
     public EventCallback<WordModel> SayWord { get; set; }
+
+    protected string searchWord;
+    
+    [Parameter]
+    public EventCallback<string> SearchWord { get; set; }
+
+    protected async Task SearchWords(ChangeEventArgs e)
+    {
+        searchWord = (string)e.Value;
+        await SearchWord.InvokeAsync(searchWord);
+    }
+
+   
 
 }
