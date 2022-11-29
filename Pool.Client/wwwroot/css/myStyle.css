@@ -237,3 +237,49 @@ table {
     right: 25px;
     border-radius: 10px;
 }
+
+/*ligin*/
+.login-page {
+    width: 500px;
+    height: 350px;
+    margin: auto;
+}
+.form {
+    position: relative;
+    background: #191C20;
+    background-image: linear-gradient(180deg, rgb(5, 39, 103) 0%, #3a0647 70%);
+    max-width: 500px;
+    height: 350px;
+    margin: 0 auto 100px;
+    padding: 80px 45px;
+    text-align: center;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+.form_input {
+    background: #131313;
+    color: white;
+    outline: 0;
+    width: 100%;
+    border: 0;
+    margin: 0 0 15px;
+    padding: 15px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+.form_button_login {
+    text-transform: uppercase;
+    outline: 0;
+    background: #05163D;
+    width: 100%;
+    border: 0;
+    padding: 15px;
+    color: #FFFFFF;
+    font-size: 14px;
+    cursor: pointer;
+    margin-bottom: 15px;
+}
+.form_button_login:hover,.form_button_login:active,.form_button_login:focus {
+    background: #030D25;
+}
+
+/*login_End*/
