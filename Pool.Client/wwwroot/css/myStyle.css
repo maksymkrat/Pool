@@ -281,5 +281,9 @@ table {
 .form_button_login:hover,.form_button_login:active,.form_button_login:focus {
     background: #030D25;
 }
+.message{
+    color: white;
+    cursor: pointer;
+}
 
 /*login_End*/

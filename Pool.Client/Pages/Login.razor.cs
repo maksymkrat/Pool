@@ -16,6 +16,7 @@ public class Login_razor : ComponentBase
     [Inject] private IJSRuntime _js { get; set; }
     [Inject] private AuthenticationStateProvider _authStateProvider { get; set; }
     [Inject] private NavigationManager _navManager { get; set; }
+    [Inject]  NavigationManager navManager { get; set; }
     protected NotificationType NotificationType { get; set; }
     protected string NotificationText { get; set; }
     protected Notification Notification { get; set; }
@@ -49,5 +50,10 @@ public class Login_razor : ComponentBase
         {
             Console.WriteLine(e);
         }
+    }
+    
+    protected void RestorePassword()
+    {
+        navManager.NavigateTo("/Restore", true);
     }
 }

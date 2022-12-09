@@ -10,6 +10,7 @@
     <ItemGroup>
       <PackageReference Include="Blazored.LocalStorage" Version="4.3.0-preview.1" />
       <PackageReference Include="Microsoft.AspNetCore.Components.Authorization" Version="6.0.8" />
+      <PackageReference Include="Microsoft.Extensions.Hosting.WindowsServices" Version="7.0.0" />
       <PackageReference Include="NLog.Extensions.Logging" Version="5.1.0" />
       <PackageReference Include="System.Speech" Version="7.0.0" />
     </ItemGroup>

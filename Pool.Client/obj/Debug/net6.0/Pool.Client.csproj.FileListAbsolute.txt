@@ -91,3 +91,5 @@ D:\C\MainProjects\Pool\Pool.Client\obj\Debug\net6.0\Pool.Client.dll
 D:\C\MainProjects\Pool\Pool.Client\obj\Debug\net6.0\ref\Pool.Client.dll
 D:\C\MainProjects\Pool\Pool.Client\obj\Debug\net6.0\Pool.Client.pdb
 D:\C\MainProjects\Pool\Pool.Client\obj\Debug\net6.0\Pool.Client.genruntimeconfig.cache
+D:\C\MainProjects\Pool\Pool.Client\obj\Debug\net6.0\RazorDeclaration\Pages\RestorePass.razor.g.cs
+D:\C\MainProjects\Pool\Pool.Client\obj\Debug\net6.0\Razor\Pages\RestorePass.razor.g.cs

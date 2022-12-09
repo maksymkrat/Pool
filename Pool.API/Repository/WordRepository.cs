@@ -52,13 +52,17 @@ public class WordRepository : IWordRepository
 
     public async Task<List<WordModel>> SearchWords(string searchWord)
     {
+        try
+        {
+
+       
         _logger.LogInformation($"{DateTime.UtcNow.ToLongTimeString()} method: SearchWords");
 
         List<WordModel> words = new List<WordModel>();
         using (var conn = new SqlConnection(_defaultConnection))
         {
             conn.Open();
-            SqlCommand cmd = new SqlCommand("SELECT * FROM Words  WHERE Word LIKE '%' + @searchWord + '%'", conn);
+            SqlCommand cmd = new SqlCommand("SELECT * FROM Words  WHERE [Word] LIKE '%' + @searchWord + '%'", conn);
             cmd.Parameters.Add(new SqlParameter("@searchWord", searchWord));
             cmd.CommandType = CommandType.Text;
             using (SqlDataReader reader = cmd.ExecuteReader())
@@ -77,6 +81,12 @@ public class WordRepository : IWordRepository
             }
 
             return words;
+        }
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            return new List<WordModel>();
         }
     }
 

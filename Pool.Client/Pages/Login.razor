@@ -11,6 +11,7 @@
             <InputText class="form_input" @bind-Value="loginRequest.UserName" type="text" placeholder="email"/>
             <InputText class="form_input" @bind-Value="loginRequest.Password" type="password" placeholder="password"/>
             <button class="form_button_login" type="submit">login</button>
+             <p class="message"><a @onclick="RestorePassword">Forgot password? </a></p>
             <DataAnnotationsValidator/>
             <ValidationSummary/>
         </div>

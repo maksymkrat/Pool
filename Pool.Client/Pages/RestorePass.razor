@@ -1,0 +1,30 @@
+﻿@page "/Restore"
+
+<div class="login-page">
+    <div class="form">
+        @if (Sent)
+        {
+            if (TrueCode)
+            {
+                <input class="form_input" @bind="Password" type="text" placeholder="password"/>
+                <input class="form_input" @bind="ConfirmPassword" type="text" placeholder="confirm password"/>
+                <button class="form_button_login" @onclick="ChangePassword" type="submit">Submit</button>
+            }
+            else
+            {
+                <input class="form_input" @bind="Code" type="text" placeholder="code"/>
+                <button class="form_button_login" @onclick="VerifyCode" type="submit">Verify</button>
+            }
+        }
+        else
+        {
+            <input class="form_input" @bind="Email" type="text" placeholder="email"/>
+            <button class="form_button_login" @onclick="SendCode" type="submit">Send</button>
+        }
+        <p class="message">
+            <a @onclick="LogIn">Log in</a>
+        </p>
+
+
+    </div>
+</div>

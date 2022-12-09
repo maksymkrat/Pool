@@ -18,6 +18,8 @@ builder.Services.AddScoped<WordService>();
 builder.Services.AddScoped<SpeechService>();
 builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthenticationStateProvider>();
 
+builder.Host.UseWindowsService();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
