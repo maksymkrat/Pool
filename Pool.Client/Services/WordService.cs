@@ -28,10 +28,10 @@ public class WordService : HttpServiceBase
             return new List<WordModel>();
         return  DeserializeFromStream<List<WordModel>>(result.Content).Result;
     }
-    public async  Task<List<WordModel>> SearchWords(string word)
+    public async  Task<List<WordModel>> SearchWords(string word, Guid id)
     {
         await AddAuthorizationAsync();
-        var result =  await _client.GetAsync(Url($"SearchWords/{word}"));
+        var result =  await _client.GetAsync(Url($"SearchWords/{word}/{id.ToString()}"));
         if (!result.IsSuccessStatusCode || string.IsNullOrEmpty(result.Content.ToString()))
             return new List<WordModel>();
         return  await DeserializeFromStream<List<WordModel>>(result.Content);

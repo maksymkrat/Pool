@@ -7,7 +7,7 @@ using Pool.Shared.Models;
 
 namespace Pool.Client.Pages;
 
-public class Words_test_razor : ComponentBase
+public partial class Words_test : ComponentBase
 {
     [Inject] private WordService _wordService { get; set; }
     [Inject] private AuthenticationStateProvider  _authStateProvider { get; set; }

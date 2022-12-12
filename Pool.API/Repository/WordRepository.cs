@@ -50,20 +50,19 @@ public class WordRepository : IWordRepository
         }
     }
 
-    public async Task<List<WordModel>> SearchWords(string searchWord)
+    public async Task<List<WordModel>> SearchWords(string searchWord, Guid userId)
     {
         try
         {
-
-       
         _logger.LogInformation($"{DateTime.UtcNow.ToLongTimeString()} method: SearchWords");
 
         List<WordModel> words = new List<WordModel>();
         using (var conn = new SqlConnection(_defaultConnection))
         {
             conn.Open();
-            SqlCommand cmd = new SqlCommand("SELECT * FROM Words  WHERE [Word] LIKE '%' + @searchWord + '%'", conn);
+            SqlCommand cmd = new SqlCommand("SELECT * FROM Words  WHERE [User_Id] = @userId AND [Word] LIKE '%' + @searchWord + '%'", conn);
             cmd.Parameters.Add(new SqlParameter("@searchWord", searchWord));
+            cmd.Parameters.Add(new SqlParameter("@userId", userId));
             cmd.CommandType = CommandType.Text;
             using (SqlDataReader reader = cmd.ExecuteReader())
             {

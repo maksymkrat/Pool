@@ -38,13 +38,13 @@ public class WordController : ControllerBase
             return StatusCode(500);
         }
     }
-    [HttpGet("SearchWords/{word}")]
-    public async Task<IActionResult> SearchWords(string word)
+    [HttpGet("SearchWords/{word}/{id}")]
+    public async Task<IActionResult> SearchWords(string word, string id)
     {
         _logger.LogInformation($"{DateTime.UtcNow.ToLongTimeString()} method: SearchWords");
         try
         {
-            var result = await _wordService.SearchWords(word);
+            var result = await _wordService.SearchWords(word, new Guid(id));
             return Ok(result);
         }
         catch (Exception e)

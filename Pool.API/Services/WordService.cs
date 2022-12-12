@@ -18,9 +18,9 @@ public class WordService : IWordService
         return _wordRepository.GetAllUsersWords(userId);
     }
 
-    public Task<List<WordModel>> SearchWords(string word)
+    public Task<List<WordModel>> SearchWords(string word, Guid userId)
     {
-        return _wordRepository.SearchWords(word);
+        return _wordRepository.SearchWords(word, userId);
     }
 
     public Task<List<WordModel>> GetFourRandomWords(Guid userId)

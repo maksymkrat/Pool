@@ -142,7 +142,7 @@ public class Vocabulary_razor : ComponentBase
     {
         if (!string.IsNullOrEmpty(word))
         {
-            Words = await _wordService.SearchWords(word);
+            Words = await _wordService.SearchWords(word, _sessionService.UserSession.Id);
         }
         else
         {
