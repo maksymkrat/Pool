@@ -35,7 +35,7 @@ public class Vocabulary_razor : ComponentBase
     protected string NewTranslate{ get; set; }
     protected string WordTranslation{ get; set; }
     protected string WordForTranslation{ get; set; }
-    protected Translater Translater{ get; set; }
+    protected Translator Translator{ get; set; }
     protected DeleteConfiraation DeleteConfirmation { get; set; }
     protected UpdateWord UpdatedWord { get; set; }
     protected WordModel WordToBeDeleted { get; set; }
@@ -87,10 +87,10 @@ public class Vocabulary_razor : ComponentBase
         _logger.LogInformation($"{DateTime.UtcNow.ToLongTimeString()} method: TranslateWord");
         if (!string.IsNullOrWhiteSpace(NewWord))
         {
-            Translater = _wordService.Translate(NewWord);
-            WordTranslation = Translater.Target.Text;
-            NewTranslate = Translater.Target.Text;
-            WordForTranslation = Translater.Source.Text;
+            Translator = _wordService.Translate(NewWord);
+            WordTranslation = Translator.Target.Text;
+            NewTranslate = Translator.Target.Text;
+            WordForTranslation = Translator.Source.Text;
         }
     }
 
@@ -143,6 +143,17 @@ public class Vocabulary_razor : ComponentBase
         if (!string.IsNullOrEmpty(word))
         {
             Words = await _wordService.SearchWords(word, _sessionService.UserSession.Id);
+        }
+        else
+        {
+            UpdateWords();
+        }
+    }
+    protected async Task SearchTranslatedWord(string word)
+    {
+        if (!string.IsNullOrEmpty(word))
+        {
+            Words = await _wordService.SearchTranslatedWords(word, _sessionService.UserSession.Id);
         }
         else
         {

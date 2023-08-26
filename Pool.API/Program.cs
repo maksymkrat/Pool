@@ -24,9 +24,11 @@ builder.Services.AddHttpClient();
 
 builder.Services.AddSingleton<IUserRepository,UserRepository>();
 builder.Services.AddSingleton<IWordRepository,WordRepository>();
+builder.Services.AddSingleton<IIrregularVerbRepository,IrregularVerbRepository>();
 
 builder.Services.AddSingleton<IUserService, UserService>();
 builder.Services.AddSingleton<IWordService, WordService>();
+builder.Services.AddSingleton<IIrregularVerbService, IrregularVerbService>();
 builder.Services.AddSingleton<ITranslatorService, TranslatorService>();
 
 

@@ -4,5 +4,5 @@ namespace Pool.API.Services.IServicec;
 
 public interface ITranslatorService
 {
-    Task<Translater> Translate(string word);
+    Task<Translator> Translate(string word);
 }

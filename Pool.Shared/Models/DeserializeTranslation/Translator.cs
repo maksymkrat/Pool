@@ -2,7 +2,7 @@
 
 namespace Pool.Shared.Models.DeserializeTranslation;
 
-public class Translater
+public class Translator
 {
     [JsonPropertyName("source")]
     public Source Source { get; set; }

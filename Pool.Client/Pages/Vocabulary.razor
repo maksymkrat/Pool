@@ -6,39 +6,37 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col">
+
                     <div class="row mr-0">
-                        <div class="col-sm-12 col-md-6">
-                            <div class="row ">
-                                <div class="col-8">
-                                    <input class="word form-control  border border-dark " placeholder="some word" @bind="NewWord"/>
-                                </div>
-                                <div class="col-4">
-                                    <button type="button" class="word btn btn-primary form-control " @onclick="TranslateWord">translate</button>
-                                </div>
-                            </div>
-                            <div class="row mt-2">
-                                <div class="col-8">
-                                    <input class="word form-control border border-dark " placeholder="some translate" @bind="NewTranslate"/>
+                        <div class="col-sm-4">
+                            <div class="row">
+                                <div class="col-9 d-flex">
+                                    <input class="word border border-dark rounded-3" placeholder="word" @bind="NewWord"/>
+                                    <button type="button" class="btn btn-primary btn-word-operation rounded-3" @onclick="TranslateWord">translate</button>
                                 </div>
 
-                                <div class="col-4">
-                                    <button type="button" class="word btn btn-success form-control  " @onclick="AddWord">add word</button>
+                            </div>
+                            <div class="row mt-2">
+                                <div class="col d-flex">
+                                    <input class="word  border border-dark rounded-3" placeholder="translate" @bind="NewTranslate"/>
+                                    <button type="button" class=" btn btn-success btn-word-operation rounded-3" @onclick="AddWord">add</button>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="col-sm-12 col-md-6 border border-primary rounded ">
-                            <p class="text-primary">Translation :</p>
-                            <div class="pl-5 word">
+                        <div class="col-sm-8 border border-dark rounded-3">
+                            <p class="text-dark">Translation :</p>
+                            <div class="">
                                 @WordForTranslation
                                 <br/>
                                 @WordTranslation
                             </div>
                         </div>
+                       
 
                     </div>
 
-                    <WordsTable Words="Words" DeleteWord="DeleteWord" UpdateWord="UpdateWord" SayWord="SayWord" SearchWord="SearchWord"></WordsTable>
+                    <WordsTable Words="Words" DeleteWord="DeleteWord" UpdateWord="UpdateWord" SayWord="SayWord" SearchWord="SearchWord" SearchTranslatedWord="SearchTranslatedWord"></WordsTable>
 
                 </div>
             </div>
@@ -46,7 +44,7 @@
         <DeleteConfiraation @ref="DeleteConfirmation" onCancel="onCancel" onConfirm="ConfirmDelete">
             <div class="text-danger"> Do you want ot delete { @WordToBeDeleted.WordText }?</div>
         </DeleteConfiraation>
-        
+
         <UpdateWord @ref="UpdatedWord" onCancel="onCancel" Update="ConfirmUpdate">
             <div class="mb-3">
                 <label>Word</label>

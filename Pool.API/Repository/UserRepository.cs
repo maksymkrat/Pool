@@ -77,7 +77,7 @@ public class UserRepository : IUserRepository
                             "VALUES (@id, @FirstName, @LastName, @Username, @Email, @Phone, @PassH)" +
                             "INSERT INTO Users_Roles(User_id, Role_id)" +
                             "VALUES (@id, (SELECT r.Id FROM Roles r WHERE r.[Name] = N'USER'))", conn);
-                
+
                 cmd.Parameters.Add(new SqlParameter("@id", new Guid(user.Id.ToString())));
                 cmd.Parameters.Add(new SqlParameter("@FirstName", user.FirstName));
                 cmd.Parameters.Add(new SqlParameter("@LastName", user.LastName));

@@ -28,6 +28,14 @@ public class WordService : HttpServiceBase
             return new List<WordModel>();
         return  DeserializeFromStream<List<WordModel>>(result.Content).Result;
     }
+    public async  Task<List<WordModel>> SearchTranslatedWords(string word, Guid id)
+    {
+        await AddAuthorizationAsync();
+        var result =  await _client.GetAsync(Url($"SearchTranslatedWords/{word}/{id.ToString()}"));
+        if (!result.IsSuccessStatusCode || string.IsNullOrEmpty(result.Content.ToString()))
+            return new List<WordModel>();
+        return  await DeserializeFromStream<List<WordModel>>(result.Content);
+    }
     public async  Task<List<WordModel>> SearchWords(string word, Guid id)
     {
         await AddAuthorizationAsync();
@@ -80,15 +88,15 @@ public class WordService : HttpServiceBase
         return  DeserializeFromStream<WordModel>(result.Content).Result;
     }
 
-    public  Translater Translate(string word)
+    public  Translator Translate(string word)
     {
         try
         {
              AddAuthorizationAsync();
             var result =  _client.GetAsync(Url($"Translate/{word}")).Result;
             if (!result.IsSuccessStatusCode || string.IsNullOrEmpty(result.Content.ToString()))
-                return new Translater();
-            return  DeserializeFromStream<Translater>(result.Content).Result;
+                return new Translator();
+            return  DeserializeFromStream<Translator>(result.Content).Result;
         }
         catch (Exception e)
         {

@@ -19,7 +19,7 @@ public class TranslatorService : ITranslatorService
         _logger = logger;
     }
 
-    public async Task<Translater> Translate(string word)
+    public async Task<Translator> Translate(string word)
     {
         _logger.LogInformation($"{DateTime.UtcNow.ToLongTimeString()} method: Translate");
         try
@@ -44,15 +44,15 @@ public class TranslatorService : ITranslatorService
             {
                 var result = streamReader.ReadToEnd();
 
-                Translater translater = JsonSerializer.Deserialize<Translater>(result);
+                Translator translator = JsonSerializer.Deserialize<Translator>(result);
 
-                return translater;
+                return translator;
             }
         }
         catch (Exception e)
         {
            
-            return new Translater();
+            return new Translator();
         }
     }
 }

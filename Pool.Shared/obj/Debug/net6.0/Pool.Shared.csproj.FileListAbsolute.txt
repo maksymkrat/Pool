@@ -15,7 +15,6 @@ D:\C\MainProjects\BlazorServerProject\Pool\Pool.Shared\obj\Debug\net6.0\Pool.Sha
 D:\C\MainProjects\BlazorServerProject\Pool\Pool.Shared\obj\Debug\net6.0\ref\Pool.Shared.dll
 D:\C\MainProjects\Pool\Pool.Shared\bin\Debug\net6.0\Pool.Shared.deps.json
 D:\C\MainProjects\Pool\Pool.Shared\bin\Debug\net6.0\Pool.Shared.dll
-D:\C\MainProjects\Pool\Pool.Shared\bin\Debug\net6.0\ref\Pool.Shared.dll
 D:\C\MainProjects\Pool\Pool.Shared\bin\Debug\net6.0\Pool.Shared.pdb
 D:\C\MainProjects\Pool\Pool.Shared\obj\Debug\net6.0\Pool.Shared.csproj.AssemblyReference.cache
 D:\C\MainProjects\Pool\Pool.Shared\obj\Debug\net6.0\Pool.Shared.GeneratedMSBuildEditorConfig.editorconfig
@@ -28,3 +27,4 @@ D:\C\MainProjects\Pool\Pool.Shared\obj\Debug\net6.0\scopedcss\bundle\Pool.Shared
 D:\C\MainProjects\Pool\Pool.Shared\obj\Debug\net6.0\Pool.Shared.dll
 D:\C\MainProjects\Pool\Pool.Shared\obj\Debug\net6.0\ref\Pool.Shared.dll
 D:\C\MainProjects\Pool\Pool.Shared\obj\Debug\net6.0\Pool.Shared.pdb
+D:\C\MainProjects\Pool\Pool.Shared\bin\Debug\net6.0\ref\Pool.Shared.dll

@@ -1,15 +1,18 @@
 ﻿@using Pool.Shared.Models
 
-<div class="tableWrap mt-5">
+<div class="tableWrap mt-3">
     <table class="table table-striped p-0 ">
         <thead class="table-dark">
         <tr>
             <th scope="col">
                 Word
-                <input class="" type="text" placeholder="search"  @oninput="SearchWords"/>
-                
+                <input class="" type="text" placeholder="search" @oninput="SearchWords"/>
+
             </th>
-            <th scope="col">Translate</th>
+            <th scope="col">
+                Translate
+                @* <input class="" type="text" placeholder="search" @oninput="SearchTranslatedWords"/> *@
+            </th>
             <th scope="col"> @Words.Count my words</th>
         </tr>
         </thead>
@@ -18,7 +21,7 @@
         {
             <tr class="word">
                 <td >
-                    <div class="col">
+                    <div class="">
                         <span>@item.WordText</span>
 
                         <button class="btn btn-success float-end" @onclick="(() => SayWord.InvokeAsync(item))">
@@ -58,16 +61,30 @@
     public EventCallback<WordModel> SayWord { get; set; }
 
     protected string searchWord;
-    
+    protected string searchTranslatedWord;
+
     [Parameter]
     public EventCallback<string> SearchWord { get; set; }
+    [Parameter]
+    public EventCallback<string> SearchTranslatedWord { get; set; }
 
     protected async Task SearchWords(ChangeEventArgs e)
     {
-        searchWord = (string)e.Value;
+         searchTranslatedWord = string.Empty;
+        searchWord = (string) e.Value;
         await SearchWord.InvokeAsync(searchWord);
+        InvokeAsync(StateHasChanged);
+    }
+    
+    protected async Task SearchTranslatedWords(ChangeEventArgs e)
+    {
+        searchWord = string.Empty;
+        searchTranslatedWord = (string) e.Value;
+        await SearchTranslatedWord.InvokeAsync(searchTranslatedWord);
+        InvokeAsync(StateHasChanged);
+
     }
 
-   
 
-}
+
+} 
