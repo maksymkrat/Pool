@@ -125,4 +125,11 @@ D:\C\MainProjects\Pool\Pool.Client\bin\Debug\net6.0\runtimes\win\lib\net6.0\Syst
 D:\C\MainProjects\Pool\Pool.Client\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Diagnostics.EventLog.dll
 D:\C\MainProjects\Pool\Pool.Client\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.ServiceProcess.ServiceController.dll
 D:\C\MainProjects\Pool\Pool.Client\bin\Debug\net6.0\runtimes\browser\lib\net6.0\System.Text.Encodings.Web.dll
-D:\C\MainProjects\Pool\Pool.Client\bin\Debug\net6.0\ref\Pool.Client.dll
+D:\C\MainProjects\Pool\Pool.Client\obj\Debug\net6.0\RazorDeclaration\Pages\IrregularVerbTest.razor.g.cs
+D:\C\MainProjects\Pool\Pool.Client\obj\Debug\net6.0\Razor\Pages\IrregularVerbTest.razor.g.cs
+D:\C\MainProjects\Pool\Pool.Client\obj\Debug\net6.0\staticwebassets\msbuild.Pool.Client.Microsoft.AspNetCore.StaticWebAssets.props
+D:\C\MainProjects\Pool\Pool.Client\obj\Debug\net6.0\staticwebassets\msbuild.build.Pool.Client.props
+D:\C\MainProjects\Pool\Pool.Client\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.Pool.Client.props
+D:\C\MainProjects\Pool\Pool.Client\obj\Debug\net6.0\staticwebassets\msbuild.buildTransitive.Pool.Client.props
+D:\C\MainProjects\Pool\Pool.Client\obj\Debug\net6.0\staticwebassets.pack.json
+D:\C\MainProjects\Pool\Pool.Client\obj\Debug\net6.0\refint\Pool.Client.dll

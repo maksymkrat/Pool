@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "ZSVxjNG1faMCtTtgFl8GvSmrw4rBfZsOsCV86GVnmbQ=",
+  "Hash": "/hCTyuQbiV7cXI09fi4n8GdgP+CX3VF5npXyEWKx1eQ=",
   "Source": "Pool.Client",
   "BasePath": "_content/Pool.Client",
   "Mode": "Default",
@@ -12,10 +12,10 @@
       "Source": "Pool.Shared",
       "GetPublishAssetsTargets": "ComputeReferencedStaticWebAssetsPublishManifest;GetCurrentProjectPublishStaticWebAssetItems",
       "AdditionalPublishProperties": "Configuration=Debug;Platform=AnyCPU",
-      "AdditionalPublishPropertiesToRemove": "WebPublishProfileFile;TargetFramework;RuntimeIdentifier",
+      "AdditionalPublishPropertiesToRemove": "WebPublishProfileFile;TargetFramework;RuntimeIdentifier;SelfContained",
       "GetBuildAssetsTargets": "GetCurrentProjectBuildStaticWebAssetItems",
       "AdditionalBuildProperties": "Configuration=Debug;Platform=AnyCPU",
-      "AdditionalBuildPropertiesToRemove": "WebPublishProfileFile;TargetFramework;RuntimeIdentifier"
+      "AdditionalBuildPropertiesToRemove": "WebPublishProfileFile;TargetFramework;RuntimeIdentifier;SelfContained"
     }
   ],
   "DiscoveryPatterns": [

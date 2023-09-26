@@ -1,0 +1,57 @@
+﻿@page "/irregular-verb-test"
+@inherits IrregularVerbTest_razor;
+
+
+
+
+@if (Verb != null)
+{
+    <div class="container">
+
+        <div class="row  justify-content-start m-4">
+            <div class="col-6 main-word">
+                <span>@Verb.Translation</span>
+            </div>
+        </div>
+
+
+        <div class="row">
+            <div class="col px-1 mb-2">
+                <label for="infinitive" class="ms-2 position-absolute">
+                    <span class="h4  bg-white text-muted  px-1 ">Infinitive</span>
+                </label>
+                <input type="text" class="verb border border-@TextStyleInf form-control rounded-3 mt-2 text-@TextStyleInf" id="infinitive"@bind="Infinitive">
+            </div>
+            <div class="col px-1 mb-2">
+                <label for="past-simple" class="ms-2 position-absolute ">
+                    <span class="h4 bg-white text-muted px-1">Past Simple</span>
+                </label>
+                <input type="text" class="verb border border-@TextStylePS form-control rounded-3 mt-2 text-@TextStylePS" id="past-simple"@bind="PastSimple">
+            </div>
+            <div class="col px-1 mb-2">
+                <label for="past-participle" class="ms-2 position-absolute ">
+                    <span class="h4  bg-white text-muted px-1 ">Past Participle</span>
+                </label>
+                <input type="text" class="verb border border-@TextStylePP form-control rounded-3 mt-2 text-@TextStylePP" id="past-participle"@bind="PastParticiple">
+            </div>
+            <div class="col">
+                <button class="btn-for-test d-inline" @onclick="CheckVerb">check</button>
+            </div>
+        </div>
+
+        <div class="row ">
+            <div class="col-6">
+            </div>
+            <div class="col-6 text-center">
+                <button class="btn-for-test " @onclick="ShowHint">?</button>
+                <button class="btn-for-test " @onclick="ResetWord">Next test</button>
+            </div>
+        </div>
+    </div>
+
+
+    @if (!String.IsNullOrEmpty(NotificationText))
+    {
+        <Notification @ref="Notification" Text="@NotificationText" StyleType="@NotificationType" DisplayNotification="@DisplayNotification"></Notification>
+    }
+}

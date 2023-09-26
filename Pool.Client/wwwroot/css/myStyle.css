@@ -6,6 +6,12 @@
     padding-left: 10px;
 }
 
+.verb{
+    height: 60px;
+    font-size: 28px;
+}
+
+
 .btn-for-test {
     background-color: #3A0647;
     color: white;
