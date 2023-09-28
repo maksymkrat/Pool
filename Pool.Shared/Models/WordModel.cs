@@ -5,8 +5,8 @@ public class WordModel : ICloneable
     public int Id { get; set; }
     public string WordText { get; set; }
     public string Translation { get; set; }
-    public DateTime DateTime { get; set; }
-    public Guid User_id { get; set; }
+    public DateTime InsertDateTime { get; set; }
+    public Guid User_Id { get; set; }
 
     public WordModel()
     {
@@ -19,12 +19,12 @@ public class WordModel : ICloneable
         Id = id;
         WordText = wordText;
         Translation = translation;
-        DateTime = dateTime;
-        User_id = userId;
+        InsertDateTime = dateTime;
+        User_Id = userId;
     }
 
     public object Clone()
     {
-        return new WordModel(Id,WordText,Translation,DateTime, User_id);
+        return new WordModel(Id,WordText,Translation,InsertDateTime, User_Id);
     }
 }

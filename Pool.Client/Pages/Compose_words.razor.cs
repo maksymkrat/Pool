@@ -29,7 +29,7 @@ public class Compose_words_razor : ComponentBase
     {
         var user = _sessionService.UserSession;
         MainWord =  _wordService.GetRandomWord(user);
-        if (MainWord.WordText != null)
+        if (MainWord?.WordText != null)
         {
             char[] arrayChars = MainWord.WordText.ToCharArray();
             mixedСharacters = arrayChars.OrderBy(x => random.Next()).ToList();
@@ -85,6 +85,7 @@ public class Compose_words_razor : ComponentBase
         {
             blindWord.Append(resultWord[i]);
         }
+        
         if (blindWord.ToString().Equals(MainWord.WordText))
         {
             ResultStyle = "success";

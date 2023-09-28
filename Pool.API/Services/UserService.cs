@@ -37,7 +37,7 @@ public class UserService : IUserService
                 LastName = newUser.LastName,
                 Username = newUser.Username,
                 PhoneNumber = newUser.Phone,
-                PasswordH = EncryptPassword(newUser.PasswordConfirm)
+                PasswordHash = EncryptPassword(newUser.PasswordConfirm)
             };
             var result = await _userRepository.CreateUser(userAccount);
             return result;

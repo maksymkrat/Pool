@@ -26,7 +26,7 @@ public class JwtAuthenticationManager
 
             //validating the user credentials
              var userAccount = _userService.GetUserAccountByEmail(userName).Result;
-            if (userAccount == null || userAccount.PasswordH != _userService.EncryptPassword(password))
+            if (userAccount == null || userAccount.PasswordHash != _userService.EncryptPassword(password))
                 return null;
 
             //generating jwt token
@@ -56,9 +56,10 @@ public class JwtAuthenticationManager
                 Id = userAccount.Id,
                 FirstName = userAccount.FirstName,
                 LastName = userAccount.LastName,
+                Username = userAccount.Username,
                 Email = userAccount.Email,
                 PhoneNumber = userAccount.PhoneNumber,
-                Role = userAccount.Role,
+                Role = userAccount.Role.Trim(),
                 Token = token,
                 ExpiryIn = (int)tokenExpiryTimeStamp.Subtract(DateTime.Now).TotalSeconds
             };

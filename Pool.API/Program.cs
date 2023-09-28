@@ -57,13 +57,11 @@ var app = builder.Build();
 app.MapGet("/", () => "api ran");
 
 // Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    // app.UseDeveloperExceptionPage();
+// if (app.Environment.IsDevelopment())
+// {
     app.UseSwagger();
     app.UseSwaggerUI();
-    // app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger", "Pool.API v1"));
-}
+// }
 
 
 

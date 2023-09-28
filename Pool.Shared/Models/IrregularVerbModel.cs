@@ -7,4 +7,9 @@ public class IrregularVerbModel
     public string PastSimple { get; set; }
     public string PastParticiple { get; set; }
     public string Translation { get; set; }
+
+    public override string ToString()
+    {
+        return $"{Infinitive}, {PastSimple} {PastParticiple}";
+    }
 }

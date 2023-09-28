@@ -1,4 +1,5 @@
 ﻿using System.Data;
+using Dapper;
 using Microsoft.Data.SqlClient;
 using Pool.API.Repository.IRepository;
 using Pool.Shared.Models;
@@ -18,68 +19,27 @@ public class WordRepository : IWordRepository
         _defaultConnection = _configuration.GetConnectionString("DefaultConnection");
     }
 
-    public async Task<List<WordModel>> GetAllUsersWords(Guid userId)
+    public async Task<IEnumerable<WordModel>> GetAllUsersWords(Guid userId)
     {
         _logger.LogInformation($"{DateTime.UtcNow.ToLongTimeString()} method: GetAllUsersWords");
-
-        List<WordModel> words = new List<WordModel>();
-        using (var conn = new SqlConnection(_defaultConnection))
+        
+        using (IDbConnection db = new SqlConnection(_defaultConnection))
         {
-            conn.Open();
-            SqlCommand cmd = new SqlCommand("SELECT * FROM Words" +
-                                            " WHERE User_Id = @userId " +
-                                            " ORDER BY Id DESC", conn);
-            cmd.Parameters.Add(new SqlParameter("@userId", userId));
-            cmd.CommandType = CommandType.Text;
-            using (SqlDataReader reader = cmd.ExecuteReader())
-            {
-                while (reader.Read())
-                {
-                    WordModel word = new WordModel()
-                    {
-                        Id = Int32.Parse(reader["Id"].ToString()),
-                        WordText = reader["Word"].ToString(),
-                        Translation = reader["Translation"].ToString(),
-                        User_id = new Guid(reader["User_Id"].ToString())
-                    };
-                    words.Add(word);
-                }
-            }
-
-            return words;
+            var words = await db.QueryAsync<WordModel>("SELECT Id, Word as WordText, Translation, Date as UpdateDateTime, User_Id FROM Words WHERE User_Id = @userId ORDER BY Id DESC", new { userId });
+            return words.ToList();
         }
+        
     }
 
-    public async Task<List<WordModel>> SearchWords(string searchWord, Guid userId)
+    public async Task<IEnumerable<WordModel>> SearchWords( Guid userId, string searchWord)
     {
         try
         {
         _logger.LogInformation($"{DateTime.UtcNow.ToLongTimeString()} method: SearchWords");
-
-        List<WordModel> words = new List<WordModel>();
-        using (var conn = new SqlConnection(_defaultConnection))
+        using (IDbConnection db = new SqlConnection(_defaultConnection))
         {
-            conn.Open();
-            SqlCommand cmd = new SqlCommand("SELECT * FROM Words  WHERE [User_Id] = @userId AND [Word] LIKE '%' + @searchWord + '%'", conn);
-            cmd.Parameters.Add(new SqlParameter("@searchWord", searchWord));
-            cmd.Parameters.Add(new SqlParameter("@userId", userId));
-            cmd.CommandType = CommandType.Text;
-            using (SqlDataReader reader = cmd.ExecuteReader())
-            {
-                while (reader.Read())
-                {
-                    WordModel word = new WordModel()
-                    {
-                        Id = Int32.Parse(reader["Id"].ToString()),
-                        WordText = reader["Word"].ToString(),
-                        Translation = reader["Translation"].ToString(),
-                        User_id = new Guid(reader["User_Id"].ToString())
-                    };
-                    words.Add(word);
-                }
-            }
-
-            return words;
+            var words = await db.QueryAsync<WordModel>("SELECT Id, Word as WordText, Translation, Date as UpdateDateTime, User_Id FROM Words  WHERE [User_Id] = @userId AND [Word] LIKE '%' + @searchWord + '%'", new { userId,searchWord});
+            return words.ToList();
         }
         }
         catch (Exception e)
@@ -88,86 +48,19 @@ public class WordRepository : IWordRepository
             return new List<WordModel>();
         }
     }
-
-
-    public async Task<bool> DeleteById(int id)
-    {
-        _logger.LogInformation($"{DateTime.UtcNow.ToLongTimeString()} method: DeleteWordById");
-        try
-        {
-            using (var conn = new SqlConnection(_defaultConnection))
-            {
-                await conn.OpenAsync();
-                SqlCommand cmd = new SqlCommand("DELETE FROM Words WHERE Id=@id", conn);
-                cmd.Parameters.Add(new SqlParameter("@id", SqlDbType.Int) {Value = id});
-
-                return await cmd.ExecuteNonQueryAsync() > 0;
-            }
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine(e);
-            throw;
-        }
-    }
-
-    public async Task<bool> AddWord(WordModel word)
-    {
-        _logger.LogInformation($"{DateTime.UtcNow.ToLongTimeString()} method: AddWord");
-        try
-        {
-            using (var conn = new SqlConnection(_defaultConnection))
-            {
-                await conn.OpenAsync();
-                SqlCommand cmd = new SqlCommand(
-                    "INSERT INTO Words (Word, Translation,User_Id) VALUES (@textWord ,@translation,@userId )", conn);
-                cmd.Parameters.Add(new SqlParameter("@textWord", word.WordText.ToLower()));
-                cmd.Parameters.Add(new SqlParameter("@translation", word.Translation.ToLower()));
-                cmd.Parameters.Add(new SqlParameter("@userId", new Guid(word.User_id.ToString())));
-
-                return await cmd.ExecuteNonQueryAsync() > 0;
-            }
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine(e);
-            throw;
-        }
-    }
-
-
-    public async Task<List<WordModel>> GetFourRandomWords(Guid userId)
+    
+      public async Task<IEnumerable<WordModel>> GetFourRandomWords(Guid userId)
     {
         _logger.LogInformation($"{DateTime.UtcNow.ToLongTimeString()} method: GetFourRandomWords");
 
         try
         {
-            List<WordModel> words = new List<WordModel>();
-            using (var conn = new SqlConnection(_defaultConnection))
+            using (IDbConnection db = new SqlConnection(_defaultConnection))
             {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("SELECT TOP 4 Id,Word,Translation, User_Id " +
-                                                " FROM Words" +
-                                                " WHERE User_Id = @userId " +
-                                                " ORDER BY NEWID()", conn);
-                cmd.Parameters.Add(new SqlParameter("@userId", userId));
-                cmd.CommandType = CommandType.Text;
-                using (SqlDataReader reader = cmd.ExecuteReader())
-                {
-                    while (reader.Read())
-                    {
-                        WordModel word = new WordModel()
-                        {
-                            Id = Int32.Parse(reader["Id"].ToString()),
-                            WordText = reader["Word"].ToString(),
-                            Translation = reader["Translation"].ToString(),
-                            User_id = new Guid(reader["User_Id"].ToString()),
-                        };
-                        words.Add(word);
-                    }
-                }
-
-                return words;
+                var words = await db.QueryAsync<WordModel>(
+                    "SELECT TOP 4 Id, Word as WordText, Translation, Date as UpdateDateTime, User_Id " +
+                    "FROM Words WHERE User_Id = @userId ORDER BY NEWID()", new { userId});
+                return words.ToList();
             }
         }
         catch (Exception e)
@@ -183,29 +76,52 @@ public class WordRepository : IWordRepository
         _logger.LogInformation($"{DateTime.UtcNow.ToLongTimeString()} method: GetRandomWord");
         try
         {
-            using (var conn = new SqlConnection(_defaultConnection))
+            using (IDbConnection db = new SqlConnection(_defaultConnection))
             {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("SELECT TOP 1 Id,Word,Translation,User_Id" +
-                                                " FROM Words" +
-                                                " WHERE User_Id = @userId " +
-                                                " ORDER BY NEWID()", conn);
-                cmd.Parameters.Add(new SqlParameter("@userId", userId));
-                cmd.CommandType = CommandType.Text;
+                var words = await db.QueryAsync<WordModel>(
+                    "SELECT TOP 1 Id, Word as WordText, Translation, Date as UpdateDateTime, User_Id " +
+                    "FROM Words WHERE User_Id = @userId ORDER BY NEWID()", new { userId});
+                return words.FirstOrDefault();
+            }
 
-                using (SqlDataReader reader = cmd.ExecuteReader())
-                {
-                    reader.Read();
-                    WordModel word = new WordModel()
-                    {
-                        Id = Int32.Parse(reader["Id"].ToString()),
-                        WordText = reader["Word"].ToString(),
-                        Translation = reader["Translation"].ToString(),
-                        User_id = new Guid(reader["User_Id"].ToString()),
-                    };
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
 
-                    return word;
-                }
+
+    public async Task<bool> DeleteById(int id)
+    {
+        try
+        {
+            
+            using (IDbConnection db = new SqlConnection(_defaultConnection))
+            {
+                var sqlQuery = $"DELETE FROM Words WHERE Id=@id";
+                var reult = db.Execute(sqlQuery,new {id});
+                return reult > 0;
+            }
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
+
+    public async Task<bool> AddWord(WordModel word)
+    {
+        _logger.LogInformation($"{DateTime.UtcNow.ToLongTimeString()} method: AddWord");
+        try
+        {
+            using (IDbConnection  db = new SqlConnection(_defaultConnection))
+            {
+                var sqlQuery = $"INSERT INTO Words (Word, Translation,User_Id) VALUES (@WordText ,@Translation,@User_Id )";
+                var reult = db.Execute(sqlQuery, word);
+                return reult > 0;
             }
         }
         catch (Exception e)
@@ -216,21 +132,19 @@ public class WordRepository : IWordRepository
     }
 
 
+  
+
+
     public async Task<bool> Update(WordModel word)
     {
         _logger.LogInformation($"{DateTime.UtcNow.ToLongTimeString()} method: Update");
         try
         {
-            using (var conn = new SqlConnection(_defaultConnection))
+            using (IDbConnection  db = new SqlConnection(_defaultConnection))
             {
-                await conn.OpenAsync();
-                SqlCommand cmd = new SqlCommand(
-                    "UPDATE Words SET Word = @textWord, Translation = @translation WHERE Id = @Id", conn);
-                cmd.Parameters.Add(new SqlParameter("@textWord", word.WordText.ToLower()));
-                cmd.Parameters.Add(new SqlParameter("@translation", word.Translation.ToLower()));
-                cmd.Parameters.Add(new SqlParameter("@Id", word.Id));
-
-                return await cmd.ExecuteNonQueryAsync() > 0;
+                var sqlQuery = $"UPDATE Words SET Word = @WordText, Translation = @Translation WHERE Id = @Id";
+                var reult = db.Execute(sqlQuery, word);
+                return reult > 0;
             }
         }
         catch (Exception e)

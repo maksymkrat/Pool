@@ -63,7 +63,7 @@ public class Vocabulary_razor : ComponentBase
             {
                 WordText = NewWord.ToLower(),
                 Translation = NewTranslate.ToLower(),
-                User_id = _sessionService.UserSession.Id
+                User_Id = _sessionService.UserSession.Id
             });
 
             NewWord = string.Empty;

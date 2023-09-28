@@ -1,7 +1,9 @@
 ﻿using System.Data;
+using Dapper;
 using Microsoft.Data.SqlClient;
 using Pool.API.Models;
 using Pool.API.Repository.IRepository;
+using Pool.Shared.Models;
 
 namespace Pool.API.Repository;
 
@@ -16,6 +18,7 @@ public class UserRepository : IUserRepository
         _configuration = configuration;
         _logger = logger;
         _defaultConnection = _configuration.GetConnectionString("DefaultConnection");
+        Console.WriteLine(_defaultConnection);
     }
 
     public async Task<UserAccount> GetUserAccountByEmail(string email)
@@ -23,38 +26,23 @@ public class UserRepository : IUserRepository
         _logger.LogInformation($"{DateTime.UtcNow.ToLongTimeString()} method: GetUserAccountByEmail");
         try
         {
-            using (var conn = new SqlConnection(_defaultConnection))
+            using (IDbConnection db = new SqlConnection(_defaultConnection))
             {
-                conn.Open();
-                SqlCommand cmd = new SqlCommand("SELECT  [U].[Id]," +
-                                                "[U].[First_name]," +
-                                                "[U].[Last_name]," +
-                                                "[U].[Email]," +
-                                                "[U].[Phone_number]," +
-                                                "[U].[PasswordHash]," +
-                                                "R.[Name] AS [Role]" +
-                                                "FROM [Users] U" +
-                                                " LEFT JOIN Users_Roles AS UR  ON U.Id = UR.User_id" +
-                                                " LEFT JOIN Roles AS R ON UR.Role_id = R.Id" +
-                                                " WHERE U.Email = @email ", conn);
-                cmd.Parameters.Add(new SqlParameter("@email", email.ToLower())); // TODO When create user email ot lower
-                cmd.CommandType = CommandType.Text;
+                var users = await db.QueryAsync<UserAccount>(
+                    "SELECT  [U].[Id]," +
+                    "[U].[First_name] as FirstName," +
+                    "[U].[Last_name] as LastName," +
+                    "[U].[Email]," +
+                    "[U].[Username]," +
+                    "[U].[Phone_number] as PhoneNumber," +
+                    "[U].[PasswordHash]," +
+                    "R.[Name] AS [Role]" +
+                    "FROM [Users] U" +
+                    " LEFT JOIN Users_Roles AS UR  ON U.Id = UR.User_id" +
+                    " LEFT JOIN Roles AS R ON UR.Role_id = R.Id" +
+                    " WHERE U.Email = @email ", new {email});
 
-                using (SqlDataReader reader = cmd.ExecuteReader())
-                {
-                    reader.Read();
-                    UserAccount userAccount = new UserAccount()
-                    {
-                        Id = new Guid(reader["Id"].ToString()),
-                        Email = reader["Email"].ToString(),
-                        FirstName = reader["First_name"].ToString(),
-                        LastName = reader["Last_name"].ToString(),
-                        PhoneNumber = reader["Phone_number"].ToString(),
-                        PasswordH = reader["PasswordHash"].ToString(),
-                        Role = reader["Role"].ToString().Trim(),
-                    };
-                    return userAccount;
-                }
+                return users.FirstOrDefault();
             }
         }
         catch (Exception e)
@@ -69,24 +57,15 @@ public class UserRepository : IUserRepository
         _logger.LogInformation($"{DateTime.UtcNow.ToLongTimeString()} method: CreateUser");
         try
         {
-            using (var conn = new SqlConnection(_defaultConnection))
+            using (IDbConnection db = new SqlConnection(_defaultConnection))
             {
-                await conn.OpenAsync();
-                SqlCommand cmd = new SqlCommand(
-                    "INSERT INTO Users (Id, First_name, Last_name,Username, Email, Phone_number, PasswordHash)" +
-                            "VALUES (@id, @FirstName, @LastName, @Username, @Email, @Phone, @PassH)" +
-                            "INSERT INTO Users_Roles(User_id, Role_id)" +
-                            "VALUES (@id, (SELECT r.Id FROM Roles r WHERE r.[Name] = N'USER'))", conn);
-
-                cmd.Parameters.Add(new SqlParameter("@id", new Guid(user.Id.ToString())));
-                cmd.Parameters.Add(new SqlParameter("@FirstName", user.FirstName));
-                cmd.Parameters.Add(new SqlParameter("@LastName", user.LastName));
-                cmd.Parameters.Add(new SqlParameter("@Username", user.Username));
-                cmd.Parameters.Add(new SqlParameter("@Email", user.Email));
-                cmd.Parameters.Add(new SqlParameter("@Phone", user.PhoneNumber));
-                cmd.Parameters.Add(new SqlParameter("@PassH", user.PasswordH));
-
-                return await cmd.ExecuteNonQueryAsync() > 0;
+                var sqlQuery =
+                    $"INSERT INTO Users (Id, First_name, Last_name,Username, Email, Phone_number, PasswordHash)" +
+                    "VALUES (@Id, @FirstName, @LastName, @Username, @Email, @PhoneNumber, @PasswordHash)" +
+                    "INSERT INTO Users_Roles(User_id, Role_id)" +
+                    "VALUES (@Id, (SELECT r.Id FROM Roles r WHERE r.[Name] = N'USER'))";
+                var reult = db.Execute(sqlQuery, user);
+                return reult > 0;
             }
         }
         catch (Exception e)

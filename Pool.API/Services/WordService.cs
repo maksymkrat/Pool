@@ -13,17 +13,17 @@ public class WordService : IWordService
         _wordRepository = wordRepository;
     }
 
-    public Task<List<WordModel>> GetAllUsersWords(Guid userId)
+    public Task<IEnumerable<WordModel>> GetAllUsersWords(Guid userId)
     {
         return _wordRepository.GetAllUsersWords(userId);
     }
 
-    public Task<List<WordModel>> SearchWords(string word, Guid userId)
+    public Task<IEnumerable<WordModel>> SearchWords(string word, Guid userId)
     {
-        return _wordRepository.SearchWords(word, userId);
+        return _wordRepository.SearchWords( userId,word);
     }
 
-    public Task<List<WordModel>> GetFourRandomWords(Guid userId)
+    public Task<IEnumerable<WordModel>> GetFourRandomWords(Guid userId)
     {
         return _wordRepository.GetFourRandomWords(userId);
     }

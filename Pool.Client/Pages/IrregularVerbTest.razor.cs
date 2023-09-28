@@ -48,9 +48,9 @@ public  class IrregularVerbTest_razor : ComponentBase
     }
     protected void CheckVerb()
     {
-        _ = Verb.Infinitive.Trim() == Infinitive.Trim() ? TextStyleInf = "success" : TextStyleInf = "danger";
-        _ = Verb.PastSimple.Trim() == PastSimple.Trim() ? TextStylePS = "success" : TextStylePS = "danger";
-        _ = Verb.PastParticiple.Trim() == PastParticiple.Trim() ? TextStylePP = "success" : TextStylePP = "danger";
+        _ = Verb.Infinitive?.Trim() == Infinitive.Trim() ? TextStyleInf = "success" : TextStyleInf = "danger";
+        _ = Verb.PastSimple?.Trim() == PastSimple.Trim() ? TextStylePS = "success" : TextStylePS = "danger";
+        _ = Verb.PastParticiple?.Trim() == PastParticiple.Trim() ? TextStylePP = "success" : TextStylePP = "danger";
     }
 
     protected async void ShowHint()
