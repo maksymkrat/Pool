@@ -8,8 +8,9 @@ namespace Pool.Client.Services;
 public class IrregularVerbService : HttpServiceBase
 {
     public IrregularVerbService(
+        IConfiguration configuration,
         AuthenticationStateProvider authenticationStateProvider, 
-        ILocalStorageService localStorageService) : base(authenticationStateProvider, localStorageService)
+        ILocalStorageService localStorageService) : base(configuration,authenticationStateProvider, localStorageService)
     {
         _apiControllerName = "IrregularVerb";
     }

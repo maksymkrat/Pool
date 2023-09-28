@@ -15,8 +15,9 @@ public class AccountService : HttpServiceBase
    
 
     public AccountService(
+        IConfiguration configuration,
         AuthenticationStateProvider authenticationStateProvider, 
-            ILocalStorageService localStorageService, SessionService sessionService) : base(authenticationStateProvider, localStorageService)
+            ILocalStorageService localStorageService, SessionService sessionService) : base(configuration,authenticationStateProvider, localStorageService)
     {
         _apiControllerName = "account";
         _authStateProvider = authenticationStateProvider;

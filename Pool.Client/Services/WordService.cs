@@ -11,8 +11,9 @@ namespace Pool.Client.Services;
 public class WordService : HttpServiceBase
 {
     public WordService(
+        IConfiguration configuration,
         AuthenticationStateProvider authenticationStateProvider, 
-        ILocalStorageService localStorageService) : base(authenticationStateProvider, localStorageService)
+        ILocalStorageService localStorageService) : base(configuration,authenticationStateProvider, localStorageService)
     {
         _apiControllerName = "word";
     }

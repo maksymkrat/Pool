@@ -11,8 +11,8 @@ public abstract class HttpServiceBase
 {
     protected HttpClient _client { get; }
 
-    ///private IConfiguration _configuration { get; set; }
-    private const string WebApiUrl = "http://localhost:1111/api/";
+    private IConfiguration _configuration;
+    public string WebApiUrl { get; private set; } 
 
     private readonly ILocalStorageService _localStorageService;
     private AuthenticationStateProvider _authenticationStateProvider { get; set; }
@@ -20,12 +20,14 @@ public abstract class HttpServiceBase
 
 
     protected HttpServiceBase(
+        IConfiguration configuration,
         AuthenticationStateProvider authenticationStateProvider,
         ILocalStorageService localStorageService)
     {
         _localStorageService = localStorageService;
         _authenticationStateProvider = authenticationStateProvider;
-
+        _configuration = configuration;
+        WebApiUrl = _configuration.GetValue<string>("WebApiUrl");
         _client = new HttpClient();
         _client.BaseAddress = new Uri(WebApiUrl);
         _client.DefaultRequestHeaders.Accept.Clear();
