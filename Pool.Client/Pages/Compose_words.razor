@@ -42,7 +42,7 @@
             <div class="col d-flex justify-content-center">
                 @foreach (var item in mixedСharacters)
                 {
-                    <div class="col hovered-word" @onclick="(() => {AddCharForResult(item);})">
+                    <div class="col hovered-char" @onclick="(() => {AddCharForResult(item);})">
                         <span>@item</span>
                     </div> 
                 }

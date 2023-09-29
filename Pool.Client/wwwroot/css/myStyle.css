@@ -21,9 +21,12 @@
 }
 .btn-word-operation{
     height: 50px;
-    width: 90px;
+    width: 100px;
     margin: 0 0 0 20px;
 
+}
+.translation-box{
+    margin-left: 20px;
 }
 
 .tableWrap {
@@ -48,7 +51,14 @@ table {
 
 
 .hovered-word:hover {
-    /*background-color: white;*/
+    color: black;
+    transform: scale(1.1);
+    cursor: pointer;
+    box-shadow: 10px 5px 5px #0B2464;
+    border-radius: 10px;
+}
+
+.hovered-char:hover {
     color: black;
     transform: scale(1.1);
     cursor: pointer;
@@ -57,16 +67,24 @@ table {
 }
 
 .hovered-word {
-    /*background-color: white;*/
     color: black;
     border: 3px solid #0B2464;
     border-radius: 3px;
     box-shadow: 5px 2px 2px #0B2464;
     text-align: center;
-    margin: 25px;
-    font-size: 40px;
-    /*background:  #F8D7DA*/
-    /*background: #D4EDDA*/
+    margin: 15px;
+    font-size: 30px;
+}
+
+.hovered-char {
+    max-width: 80px;
+    color: black;
+    border: 3px solid #0B2464;
+    border-radius: 3px;
+    box-shadow: 5px 2px 2px #0B2464;
+    text-align: center;
+    margin: 15px;
+    font-size: 30px;
 
 }
 
@@ -78,7 +96,7 @@ table {
     border-radius: 10px;
     box-shadow: 10px 5px 5px #0B2464;
     text-align: center;
-    margin-top: 150px;
+    margin-top: 50px;
     margin-bottom: 40px;
     font-size: 40px;
 }

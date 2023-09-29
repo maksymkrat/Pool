@@ -8,9 +8,9 @@
                 <div class="col">
 
                     <div class="row mr-0">
-                        <div class="col-sm-4">
+                        <div class="col-sm-5">
                             <div class="row">
-                                <div class="col-9 d-flex">
+                                <div class="col d-flex">
                                     <input class="word border border-dark rounded-3" placeholder="word" @bind="NewWord"/>
                                     <button type="button" class="btn btn-primary btn-word-operation rounded-3" @onclick="TranslateWord">translate</button>
                                 </div>
@@ -24,7 +24,7 @@
                             </div>
                         </div>
 
-                        <div class="col-sm-8 border border-dark rounded-3">
+                        <div class="col border border-dark rounded-3 translation-box">
                             <p class="text-dark">Translation :</p>
                             <div class="">
                                 @WordForTranslation

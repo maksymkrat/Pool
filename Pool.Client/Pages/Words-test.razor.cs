@@ -22,20 +22,16 @@ public partial class Words_test : ComponentBase
     protected string resultStyle = "light";
     protected string mainWordStyle = "light";
     protected int rndWord = 0;
-    
 
 
-    protected  override void OnInitialized()
+    protected async override Task OnInitializedAsync()
     {
         var user = _sessionService.UserSession;
-        Words =  _wordService.GetFourRandomWords(user);
+        Words = await _wordService.GetFourRandomWords(user);
         if(Words.Count >= 4)
             MainWord = Words.ElementAt(rnd.Next(0, Words.Count)); //TODO: Notification You need to add at least 4 words
         InvokeAsync(StateHasChanged);
     }
-
-    
-    
 
     protected void ChangeStyleMainWord(string style)
     {
@@ -45,7 +41,7 @@ public partial class Words_test : ComponentBase
 
     protected  void ResetWord()
     {
-        OnInitialized();
+        OnInitializedAsync();
         resultStyle = "light";
         mainWordStyle = resultStyle;
     }

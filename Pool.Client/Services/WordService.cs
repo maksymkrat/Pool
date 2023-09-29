@@ -20,11 +20,11 @@ public class WordService : HttpServiceBase
 
     protected override string _apiControllerName { get; set; }
 
-    public  List<WordModel> GetAllWords(UserSessionModel user)
+    public async  Task<List<WordModel>> GetAllWords(UserSessionModel user)
     {
           //AddAuthorizationAsync();
           _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", user.Token);
-        var result =  _client.GetAsync(Url($"GetAllUsersWords/{user.Id}")).Result;
+        var result = await  _client.GetAsync(Url($"GetAllUsersWords/{user.Id}"));
         if (!result.IsSuccessStatusCode || string.IsNullOrEmpty(result.Content.ToString()))
             return new List<WordModel>();
         return  DeserializeFromStream<List<WordModel>>(result.Content).Result;
@@ -47,11 +47,11 @@ public class WordService : HttpServiceBase
     }
     
     
-    public  List<WordModel> GetFourRandomWords(UserSessionModel user)
+    public async Task<List<WordModel>> GetFourRandomWords(UserSessionModel user)
     {
          //AddAuthorizationAsync();
          _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", user.Token);
-        var result =  _client.GetAsync(Url($"GetFourRandomWords/{user.Id}")).Result;
+        var result = await _client.GetAsync(Url($"GetFourRandomWords/{user.Id}"));
         if (!result.IsSuccessStatusCode || string.IsNullOrEmpty(result.Content.ToString()))
             return new List<WordModel>();
         return  DeserializeFromStream<List<WordModel>>(result.Content).Result;
@@ -79,22 +79,22 @@ public class WordService : HttpServiceBase
             new StringContent(JsonConvert.SerializeObject(word), Encoding.UTF8, "application/json"));
         return result.IsSuccessStatusCode;
     }
-    public  WordModel GetRandomWord(UserSessionModel user)
+    public async  Task<WordModel> GetRandomWord(UserSessionModel user)
     {
          //AddAuthorizationAsync();
          _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", user.Token);
-        var result =  _client.GetAsync(Url($"GetRandomWord/{user.Id}")).Result;
+        var result =  await _client.GetAsync(Url($"GetRandomWord/{user.Id}"));
         if (!result.IsSuccessStatusCode || string.IsNullOrEmpty(result.Content.ToString()))
             return new WordModel();
         return  DeserializeFromStream<WordModel>(result.Content).Result;
     }
 
-    public  Translator Translate(string word)
+    public async Task<Translator> Translate(string word)
     {
         try
         {
              AddAuthorizationAsync();
-            var result =  _client.GetAsync(Url($"Translate/{word}")).Result;
+            var result =  await _client.GetAsync(Url($"Translate/{word}"));
             if (!result.IsSuccessStatusCode || string.IsNullOrEmpty(result.Content.ToString()))
                 return new Translator();
             return  DeserializeFromStream<Translator>(result.Content).Result;

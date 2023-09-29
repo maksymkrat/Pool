@@ -25,10 +25,11 @@ public class Compose_words_razor : ComponentBase
     protected List<char> resultWord = new List<char>();
     protected List<char> mixedСharacters = new List<char>();
 
-    protected  override void OnInitialized()
+
+    protected async override Task OnInitializedAsync()
     {
         var user = _sessionService.UserSession;
-        MainWord =  _wordService.GetRandomWord(user);
+        MainWord = await _wordService.GetRandomWord(user);
         if (MainWord?.WordText != null)
         {
             char[] arrayChars = MainWord.WordText.ToCharArray();
@@ -36,14 +37,13 @@ public class Compose_words_razor : ComponentBase
             resultWord.Clear();
             ResultStyle = "light";
         }
-        
+        InvokeAsync(StateHasChanged);
     }
-    
-    
-    
-    protected void ResetWord()
+
+
+    protected async Task ResetWord()
     {
-       OnInitialized();
+       OnInitializedAsync();
     }
 
     protected async void ShowHint()

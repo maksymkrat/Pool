@@ -27,18 +27,17 @@ public  class IrregularVerbTest_razor : ComponentBase
     protected Notification Notification { get; set; }
     protected bool DisplayNotification { get; set; }
 
-    protected override void OnInitialized()
+    protected async override Task OnInitializedAsync()
     {
         var user = _sessionService.UserSession;
-        Verb = _irregularVerbService.GetRandomIrregularVerb(user);
-        base.OnInitialized();
+        Verb =await _irregularVerbService.GetRandomIrregularVerb(user);
     }
     
     
-    protected void ResetWord()
+    protected async Task ResetWord()
     {
         var user = _sessionService.UserSession;
-        Verb = _irregularVerbService.GetRandomIrregularVerb(user);
+        Verb = await _irregularVerbService.GetRandomIrregularVerb(user);
         Infinitive = string.Empty;
         PastSimple = string.Empty;
         PastParticiple = string.Empty;

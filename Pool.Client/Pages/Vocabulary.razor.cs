@@ -42,15 +42,15 @@ public class Vocabulary_razor : ComponentBase
     protected WordModel WordToBeUpdated { get; set; }
 
 
-    protected override void OnInitialized()
+    protected async override Task OnInitializedAsync()
     {
-        UpdateWords();
+        await UpdateWords();
     }
-
-    protected void UpdateWords()
+    
+    protected async Task UpdateWords()
     {
          var user = _sessionService.UserSession;
-        Words = _wordService.GetAllWords(user); 
+        Words = await _wordService.GetAllWords(user); 
         
         InvokeAsync(StateHasChanged);
     }
@@ -72,7 +72,7 @@ public class Vocabulary_razor : ComponentBase
             WordForTranslation = string.Empty;
             if (result)
             {
-                UpdateWords();
+               await UpdateWords();
                 InvokeAsync(StateHasChanged);
             }
             else
@@ -82,12 +82,12 @@ public class Vocabulary_razor : ComponentBase
         }
     }
 
-    protected void TranslateWord()
+    protected async Task TranslateWord()
     {
         _logger.LogInformation($"{DateTime.UtcNow.ToLongTimeString()} method: TranslateWord");
         if (!string.IsNullOrWhiteSpace(NewWord))
         {
-            Translator = _wordService.Translate(NewWord);
+            Translator =  await _wordService.Translate(NewWord);
             WordTranslation = Translator.Target.Text;
             NewTranslate = Translator.Target.Text;
             WordForTranslation = Translator.Source.Text;
@@ -110,17 +110,17 @@ public class Vocabulary_razor : ComponentBase
     {
         await _wordService.DeleteById(WordToBeDeleted.Id);
         DeleteConfirmation.Hide();
-        UpdateWords();
+        await UpdateWords();
         InvokeAsync(StateHasChanged);
         WordToBeDeleted = null;
     }
 
-    protected void ConfirmUpdate()
+    protected async Task ConfirmUpdate()
     {
         _wordService.UpdateWord(WordToBeUpdated);
 
         UpdatedWord.Hide();
-        UpdateWords();
+       await UpdateWords();
         WordToBeUpdated = null;
         InvokeAsync(StateHasChanged);
     }
@@ -146,7 +146,7 @@ public class Vocabulary_razor : ComponentBase
         }
         else
         {
-            UpdateWords();
+          await  UpdateWords();
         }
     }
     protected async Task SearchTranslatedWord(string word)
@@ -157,7 +157,7 @@ public class Vocabulary_razor : ComponentBase
         }
         else
         {
-            UpdateWords();
+          await  UpdateWords();
         }
     }
 }

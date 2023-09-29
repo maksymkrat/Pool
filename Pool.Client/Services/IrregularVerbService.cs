@@ -17,7 +17,7 @@ public class IrregularVerbService : HttpServiceBase
 
     protected override string _apiControllerName { get; set; }
     
-    public  IrregularVerbModel GetRandomIrregularVerb(UserSessionModel user)
+    public async  Task<IrregularVerbModel> GetRandomIrregularVerb(UserSessionModel user)
     {
         //AddAuthorizationAsync();
         _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", user.Token);
