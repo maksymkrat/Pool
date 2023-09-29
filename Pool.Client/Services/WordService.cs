@@ -22,8 +22,7 @@ public class WordService : HttpServiceBase
 
     public async  Task<List<WordModel>> GetAllWords(UserSessionModel user)
     {
-          //AddAuthorizationAsync();
-          _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", user.Token);
+          await AddAuthorizationAsync();
         var result = await  _client.GetAsync(Url($"GetAllUsersWords/{user.Id}"));
         if (!result.IsSuccessStatusCode || string.IsNullOrEmpty(result.Content.ToString()))
             return new List<WordModel>();
@@ -49,8 +48,7 @@ public class WordService : HttpServiceBase
     
     public async Task<List<WordModel>> GetFourRandomWords(UserSessionModel user)
     {
-         //AddAuthorizationAsync();
-         _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", user.Token);
+         await AddAuthorizationAsync();
         var result = await _client.GetAsync(Url($"GetFourRandomWords/{user.Id}"));
         if (!result.IsSuccessStatusCode || string.IsNullOrEmpty(result.Content.ToString()))
             return new List<WordModel>();
@@ -81,8 +79,7 @@ public class WordService : HttpServiceBase
     }
     public async  Task<WordModel> GetRandomWord(UserSessionModel user)
     {
-         //AddAuthorizationAsync();
-         _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", user.Token);
+         await AddAuthorizationAsync();
         var result =  await _client.GetAsync(Url($"GetRandomWord/{user.Id}"));
         if (!result.IsSuccessStatusCode || string.IsNullOrEmpty(result.Content.ToString()))
             return new WordModel();
@@ -93,7 +90,7 @@ public class WordService : HttpServiceBase
     {
         try
         {
-             AddAuthorizationAsync();
+             await AddAuthorizationAsync();
             var result =  await _client.GetAsync(Url($"Translate/{word}"));
             if (!result.IsSuccessStatusCode || string.IsNullOrEmpty(result.Content.ToString()))
                 return new Translator();

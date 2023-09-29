@@ -19,7 +19,7 @@ public class IrregularVerbService : HttpServiceBase
     
     public async  Task<IrregularVerbModel> GetRandomIrregularVerb(UserSessionModel user)
     {
-        //AddAuthorizationAsync();
+        await AddAuthorizationAsync();
         _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", user.Token);
         var result =  _client.GetAsync(Url($"GetRandomIrregularVerb")).Result;
         if (!result.IsSuccessStatusCode || string.IsNullOrEmpty(result.Content.ToString()))
