@@ -30,7 +30,7 @@ public class CustomAuthenticationStateProvider : AuthenticationStateProvider
         try
         {
             var userSession = await _localStorageService.ReadEncryptedItemAsync<UserSessionModel>("UserSessionJWT");
-            if (userSession == null)
+            if (userSession == null  || userSession.ExpiryTimeStamp <= DateTime.Now)
                 return await Task.FromResult(new AuthenticationState(_anonymous));
             else
             {
@@ -85,8 +85,16 @@ public class CustomAuthenticationStateProvider : AuthenticationStateProvider
         try
         {
             var userSession = await _localStorageService.ReadEncryptedItemAsync<UserSessionModel>("UserSessionJWT");
+           
             if (userSession != null)
+            {
+                DateTime timeNow = DateTime.Now;
+                userSession.ExpiryTimeStamp = timeNow.AddSeconds(userSession.ExpiryIn);
+                await _localStorageService.SaveItemEncryptedAsync("UserSessionJWT", userSession);
+                
                 result = userSession.Token;
+            }
+                
         }
         catch (Exception e)
         {

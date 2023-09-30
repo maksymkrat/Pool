@@ -10,7 +10,7 @@ namespace Pool.API.Authentication;
 public class JwtAuthenticationManager
 {
     public const string JWT_SECURITY_KEY = "some-security-key";
-        private const int JWT_TOKEN_VALIDITY_MINS = 20;
+        private const int JWT_TOKEN_VALIDITY_MINS = 30;
 
         private readonly IUserService _userService;
 
@@ -42,7 +42,7 @@ public class JwtAuthenticationManager
             var securityTokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = claimsIdentity,
-                Expires = tokenExpiryTimeStamp,
+              //  Expires = tokenExpiryTimeStamp,
                 SigningCredentials = signingCredintials
             };
 

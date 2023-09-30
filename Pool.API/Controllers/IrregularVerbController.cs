@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Pool.API.Services.IServicec;
 
 namespace Pool.API.Controllers;
 
+[Authorize]
 [Route("api/[controller]")]
 [ApiController]
 public class IrregularVerbController : ControllerBase

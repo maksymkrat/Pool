@@ -67,6 +67,9 @@ table {
 }
 
 .hovered-word {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     color: black;
     border: 3px solid #0B2464;
     border-radius: 3px;
