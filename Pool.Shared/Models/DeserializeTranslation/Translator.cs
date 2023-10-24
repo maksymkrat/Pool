@@ -9,5 +9,5 @@ public class Translator
         
     [JsonPropertyName("target")]
     public Target Target { get; set; }
-
+    
 }

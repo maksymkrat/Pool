@@ -30,6 +30,7 @@ public abstract class HttpServiceBase
         WebApiUrl = _configuration.GetValue<string>("WebApiUrl");
         _client = new HttpClient();
         _client.BaseAddress = new Uri(WebApiUrl);
+        Console.WriteLine(WebApiUrl);
         _client.DefaultRequestHeaders.Accept.Clear();
         _client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
     }

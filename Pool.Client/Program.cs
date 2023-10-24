@@ -16,7 +16,7 @@ builder.Services.AddScoped<AccountService>();
 builder.Services.AddSingleton<SessionService>();
 builder.Services.AddScoped<WordService>();
 builder.Services.AddScoped<IrregularVerbService>();
-builder.Services.AddScoped<SpeechService>();
+ //builder.Services.AddScoped<SpeechService>(); 
 builder.Services.AddScoped<AuthenticationStateProvider, CustomAuthenticationStateProvider>();
 
 builder.Host.UseWindowsService();

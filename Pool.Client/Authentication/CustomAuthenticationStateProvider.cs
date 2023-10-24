@@ -93,6 +93,7 @@ public class CustomAuthenticationStateProvider : AuthenticationStateProvider
                 await _localStorageService.SaveItemEncryptedAsync("UserSessionJWT", userSession);
                 
                 result = userSession.Token;
+                
             }
                 
         }

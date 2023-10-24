@@ -1,5 +1,6 @@
 ﻿using System.Net;
 using System.Text.Json;
+using Microsoft.IdentityModel.Tokens;
 using Pool.API.Services.IServicec;
 using Pool.Shared.Models.DeserializeTranslation;
 
@@ -19,40 +20,45 @@ public class TranslatorService : ITranslatorService
         _logger = logger;
     }
 
+    public TranslatorService()
+    {
+    }
+
     public async Task<Translator> Translate(string word)
     {
-        _logger.LogInformation($"{DateTime.UtcNow.ToLongTimeString()} method: Translate");
-        try
-        {
-            var httpRequest = (HttpWebRequest) WebRequest.Create(URL);
-            httpRequest.Method = METHOD_POST;
-            httpRequest.Headers["Authorization"] = HEADERS;
-            httpRequest.ContentType = CONTENT_TYPE;
+        //_logger.LogInformation($"{DateTime.UtcNow.ToLongTimeString()} method: Translate");
 
-            var data = $@"{{
+        if (word.IsNullOrEmpty())
+            throw new System.NullReferenceException("word is null or empty");
+
+        var httpRequest = (HttpWebRequest) WebRequest.Create(URL);
+        httpRequest.Method = METHOD_POST;
+        httpRequest.Headers["Authorization"] = HEADERS;
+        httpRequest.ContentType = CONTENT_TYPE;
+
+        var data = $@"{{
                          ""source"": {{""dialect"": ""en"", ""text"": ""{word}""}},
                          ""target"": {{""dialect"": ""uk""}}
                             }}";
 
-            using (var streamWriter = new StreamWriter(httpRequest.GetRequestStream()))
-            {
-                streamWriter.Write(data);
-            }
-
-            var httpResponse = (HttpWebResponse) httpRequest.GetResponse();
-            using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
-            {
-                var result = streamReader.ReadToEnd();
-
-                Translator translator = JsonSerializer.Deserialize<Translator>(result);
-
-                return translator;
-            }
-        }
-        catch (Exception e)
+        using (var streamWriter = new StreamWriter(httpRequest.GetRequestStream()))
         {
-           
-            return new Translator();
+            streamWriter.Write(data);
         }
+
+        var httpResponse = (HttpWebResponse) httpRequest.GetResponse();
+        using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+        {
+            var result = streamReader.ReadToEnd();
+
+            Translator translator = JsonSerializer.Deserialize<Translator>(result);
+
+            return translator;
+        }
+    }
+
+    public Task M()
+    {
+        throw new NullReferenceException();
     }
 }
