@@ -6,7 +6,6 @@ namespace Pool.API.Services;
 
 public class IrregularVerbService : IIrregularVerbService
 {
-
     private readonly IIrregularVerbRepository _irregularVerbRepository;
 
     public IrregularVerbService(IIrregularVerbRepository irregularVerbRepository)
@@ -16,6 +15,20 @@ public class IrregularVerbService : IIrregularVerbService
 
     public async Task<IrregularVerbModel> GetRandomIrregularVerb()
     {
-        return await _irregularVerbRepository.GetRandomIrregularVerb();
+        try
+        {
+            var result = await _irregularVerbRepository.GetRandomIrregularVerb();
+            if (result == null)
+            {
+                throw new NullReferenceException();
+            }
+
+            return result;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
     }
 }

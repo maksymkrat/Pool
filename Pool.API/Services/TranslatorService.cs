@@ -20,16 +20,14 @@ public class TranslatorService : ITranslatorService
         _logger = logger;
     }
 
-    public TranslatorService()
-    {
-    }
+
 
     public async Task<Translator> Translate(string word)
     {
-        //_logger.LogInformation($"{DateTime.UtcNow.ToLongTimeString()} method: Translate");
+        _logger.LogInformation($"{DateTime.UtcNow.ToLongTimeString()} method: Translate");
 
         if (word.IsNullOrEmpty())
-            throw new System.NullReferenceException("word is null or empty");
+            throw new System.NullReferenceException();
 
         var httpRequest = (HttpWebRequest) WebRequest.Create(URL);
         httpRequest.Method = METHOD_POST;
@@ -57,8 +55,8 @@ public class TranslatorService : ITranslatorService
         }
     }
 
-    public Task M()
+    public void ForTest()
     {
-        throw new NullReferenceException();
+        _logger.LogInformation($"some log");
     }
 }

@@ -17,7 +17,7 @@ public class UserService : IUserService
         _userRepository = userRepository;
         _logger = logger;
     }
-
+    
     public Task<UserAccount> GetUserAccountByEmail(string email)
     {
         _logger.LogInformation($"{DateTime.UtcNow.ToLongTimeString()} method: GetUserAccountByEmail");
@@ -45,7 +45,7 @@ public class UserService : IUserService
         catch (Exception e)
         {
             Console.WriteLine(e);
-            throw;
+            return false;
         }
     }
 
@@ -65,6 +65,7 @@ public class UserService : IUserService
             throw;
         }
     }
+    
 
     public string DecryptPassword(string base64EncodeDate)
     {
